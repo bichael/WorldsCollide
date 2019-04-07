@@ -17,7 +17,7 @@ public class Enemy : MonoBehaviour
     void Start()
     {
         playerTransform = GameObject.FindGameObjectWithTag("Player").GetComponent<Transform> ();
-        // anim = GetComponent<Animator>();
+        anim = GetComponent<Animator>();
         // anim.SetBool("isRunning", true);
     }
 
@@ -31,13 +31,23 @@ public class Enemy : MonoBehaviour
         {
             speed = 0;
             dazedTime -= Time.deltaTime;
+            // Enemy is idle (in "dazed" state after being attacked)
+            anim.SetFloat("Magnitude", 0);
         }
 
         if (health <= 0) 
         {
             Destroy(gameObject);
         }
+
         transform.position = Vector2.MoveTowards(transform.position, playerTransform.position, speed * Time.deltaTime);
+
+        Vector3 enemyPlayerDifferenceVector = transform.position - playerTransform.position;
+        float enemyPlayerAngle = (Mathf.Atan2(enemyPlayerDifferenceVector.y, enemyPlayerDifferenceVector.x) * Mathf.Rad2Deg) / 180;
+        enemyPlayerAngle = Mathf.Round(enemyPlayerAngle * 2) / 2; // Round to nearest 0.5
+        anim.SetFloat("Direction", enemyPlayerAngle);
+        anim.SetFloat("Magnitude", enemyPlayerDifferenceVector.magnitude);
+        // Debug.Log(this + "moving towards player at diection: " + enemyPlayerAngle);
     }
 
      public void TakeDamage(int damage)
