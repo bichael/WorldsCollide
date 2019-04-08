@@ -47,14 +47,13 @@ public class Enemy : MonoBehaviour
         enemyPlayerAngle = Mathf.Round(enemyPlayerAngle * 2) / 2; // Round to nearest 0.5
         anim.SetFloat("Direction", enemyPlayerAngle);
         anim.SetFloat("Magnitude", enemyPlayerDifferenceVector.magnitude);
-        // Debug.Log(this + "moving towards player at diection: " + enemyPlayerAngle);
     }
 
      public void TakeDamage(int damage)
      {
          dazedTime = startDazedTime;
          health -= damage;
-         Debug.Log("Enemy took damage");
+         Debug.Log(this + " took " + damage + " damage");
      }
 
      void OnTriggerEnter2D(Collider2D col)

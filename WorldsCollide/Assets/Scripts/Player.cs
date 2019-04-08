@@ -28,21 +28,26 @@ public class Player : MonoBehaviour
     void Update()
     {
         UpdatePlayerAnimatorAndPosition();
-        if (Input.GetKey(KeyCode.Space))
+
+        if (timeBtwAttack <= 0) // If this checks for KeyCode.Space instead, it fails to register sometimes.
             AttemptPlayerAttack();
-        if (Input.GetKey(KeyCode.Z))
+        else
+            timeBtwAttack -= Time.deltaTime;
+
+        if (timeBtwProject <= 0)
             AttemptPlayerProjectile();
+        else
+            timeBtwProject -= Time.deltaTime;
+
     }
 
     void SetAnimatorVariables(Vector3 movementVector)
     {
         float horz = movementVector.x;
         float vert = movementVector.y;
-        // float mag = movementVector.magnitude;
         direction = Mathf.Atan2(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical")) / Mathf.PI;
         animator.SetFloat("Horizontal", horz);
         animator.SetFloat("Vertical", vert);
-        // animator.SetFloat("Magnitude", mag); // Moved to before function to allow return to idle animation.
         animator.SetFloat("Direction", direction);
     }
 
@@ -85,28 +90,24 @@ public class Player : MonoBehaviour
 
     void AttemptPlayerAttack()
     {
-        if (timeBtwAttack <= 0)
+        if (Input.GetKey(KeyCode.Space))
         {
             // player can attack
-                Debug.Log("swinging");
-                animator.SetTrigger("Attacking");
-                Collider2D[] enemiesToDamage = Physics2D.OverlapCircleAll(attackPos.position, meleeRange, enemyLayer);
-                Debug.Log("Enemies to hit:" + enemiesToDamage.Length);
-                for (int i=0; i < enemiesToDamage.Length; i++)
-                {
-                    // damage enemy
-                    enemiesToDamage[i].GetComponent<Enemy>().TakeDamage(meleeDamage);
-                }
+            animator.SetTrigger("Attacking");
+            Collider2D[] enemiesToDamage = Physics2D.OverlapCircleAll(attackPos.position, meleeRange, enemyLayer);
+            Debug.Log("# enemies found in melee hitbox: " + enemiesToDamage.Length);
+            for (int i=0; i < enemiesToDamage.Length; i++)
+            {
+                // damage enemy
+                enemiesToDamage[i].GetComponent<Enemy>().TakeDamage(meleeDamage);
+            }
             timeBtwAttack = startTimeBtwAttack;
-        } else
-        {
-            timeBtwAttack -= Time.deltaTime;
         }
     }
 
     void AttemptPlayerProjectile()
     {
-        if (timeBtwProject <= 0)
+        if (Input.GetKey(KeyCode.Z))
         {
             Vector2 projectilePosition = transform.position;
             if (direction == -0.5f) // if facing left
@@ -135,9 +136,6 @@ public class Player : MonoBehaviour
                 go.GetComponent<ProjectileController>().SetProjectileVector("Down");
             }
             timeBtwProject = startTimeBtwProject;
-        } else
-        {
-            timeBtwProject -= Time.deltaTime;
         }
     }
 
