@@ -19,7 +19,6 @@ public class Enemy : MonoBehaviour
     {
         playerTransform = GameObject.FindGameObjectWithTag("Player").GetComponent<Transform> ();
         anim = GetComponent<Animator>();
-        // anim.SetBool("isRunning", true);
     }
 
     // Update is called once per frame
@@ -56,6 +55,16 @@ public class Enemy : MonoBehaviour
          dazedTime = startDazedTime;
          health -= damage;
          Debug.Log("Enemy took damage");
+     }
+
+     void OnTriggerEnter2D(Collider2D col)
+     {
+         if (col.gameObject.tag.Equals("PlayerProjectile"))
+         {
+             TakeDamage(col.gameObject.GetComponent<ProjectileController>().damage);
+             Destroy(col.gameObject);
+
+         }
      }
 
     //  void OnTriggerEnter2D(Collider2D hit) {

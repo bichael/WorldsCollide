@@ -344,12 +344,14 @@ MonoBehaviour:
   animator: {fileID: 8822964590372274050}
   weapon: {fileID: 8822964591415676179}
   startTimeBtwAttack: 0.8
+  startTimeBtwProject: 0.8
   attackPos: {fileID: 8822964591415676172}
   enemyLayer:
     serializedVersion: 2
     m_Bits: 256
-  attackRange: 0.3
-  damage: 1
+  meleeRange: 0.3
+  meleeDamage: 1
+  bullet: {fileID: 8365747353560420087, guid: d482c31b6f5a0fe4f8dc83ebaa2f0598, type: 3}
 --- !u!1 &8822964591789362018
 GameObject:
   m_ObjectHideFlags: 0

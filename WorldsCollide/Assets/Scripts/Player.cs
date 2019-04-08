@@ -11,10 +11,13 @@ public class Player : MonoBehaviour
     public GameObject weapon;
     private float timeBtwAttack;
     public float startTimeBtwAttack;
+    private float timeBtwProject;
+    public float startTimeBtwProject;
     public Transform attackPos;
     public LayerMask enemyLayer;
-    public float attackRange;
-    public int damage;
+    public float meleeRange;
+    public int meleeDamage;
+    public GameObject bullet;
 
     void Start()
     {
@@ -27,6 +30,8 @@ public class Player : MonoBehaviour
         UpdatePlayerAnimatorAndPosition();
         if (Input.GetKey(KeyCode.Space))
             AttemptPlayerAttack();
+        if (Input.GetKey(KeyCode.Z))
+            AttemptPlayerProjectile();
     }
 
     void SetAnimatorVariables(Vector3 movementVector)
@@ -85,12 +90,12 @@ public class Player : MonoBehaviour
             // player can attack
                 Debug.Log("swinging");
                 animator.SetTrigger("Attacking");
-                Collider2D[] enemiesToDamage = Physics2D.OverlapCircleAll(attackPos.position, attackRange, enemyLayer);
+                Collider2D[] enemiesToDamage = Physics2D.OverlapCircleAll(attackPos.position, meleeRange, enemyLayer);
                 Debug.Log("Enemies to hit:" + enemiesToDamage.Length);
                 for (int i=0; i < enemiesToDamage.Length; i++)
                 {
                     // damage enemy
-                    enemiesToDamage[i].GetComponent<Enemy>().TakeDamage(damage);
+                    enemiesToDamage[i].GetComponent<Enemy>().TakeDamage(meleeDamage);
                 }
             timeBtwAttack = startTimeBtwAttack;
         } else
@@ -99,9 +104,46 @@ public class Player : MonoBehaviour
         }
     }
 
+    void AttemptPlayerProjectile()
+    {
+        if (timeBtwProject <= 0)
+        {
+            Vector2 projectilePosition = transform.position;
+            if (direction == -0.5f) // if facing left
+            {
+                projectilePosition.x -= 0.15f; // offset from player pivot (to avoid shooting from chest)
+                GameObject go = (GameObject)Instantiate (bullet, projectilePosition, Quaternion.identity);
+                go.GetComponent<ProjectileController>().SetProjectileVector("Left");
+            }
+            else if (direction == 0) // if facing up
+            {
+                projectilePosition.y += 0.15f;
+                GameObject go = (GameObject)Instantiate (bullet, projectilePosition, Quaternion.identity);
+                go.GetComponent<ProjectileController>().SetProjectileVector("Up");
+            }
+            else if (direction == 0.5f) // if facing right
+            {
+                projectilePosition.x += 0.15f;
+                GameObject go = (GameObject)Instantiate (bullet, projectilePosition, Quaternion.identity);
+                go.GetComponent<ProjectileController>().SetProjectileVector("Right");
+                
+            }
+            else if (direction == 1) // if facing down
+            {
+                projectilePosition.y -= 0.15f;
+                GameObject go = (GameObject)Instantiate (bullet, projectilePosition, Quaternion.identity);
+                go.GetComponent<ProjectileController>().SetProjectileVector("Down");
+            }
+            timeBtwProject = startTimeBtwProject;
+        } else
+        {
+            timeBtwProject -= Time.deltaTime;
+        }
+    }
+
     void OnDrawGizmosSelected()
     {
         Gizmos.color = Color.red;
-        Gizmos.DrawWireSphere(attackPos.position, attackRange);
+        Gizmos.DrawWireSphere(attackPos.position, meleeRange);
     }
 }
