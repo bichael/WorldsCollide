@@ -5,7 +5,8 @@ using UnityEngine;
 public class Enemy : MonoBehaviour
 {
     public int health;
-    public float speed = 0.5f;
+    public float initSpeed;
+    private float speed;
     private float dazedTime;
     public float startDazedTime;
 
@@ -26,7 +27,7 @@ public class Enemy : MonoBehaviour
     {
         if (dazedTime <= 0)
         {
-            speed = 0.5f;
+            speed = initSpeed;
         } else 
         {
             speed = 0;
