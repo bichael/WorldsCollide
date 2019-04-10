@@ -114,6 +114,7 @@ public class Player : MonoBehaviour
             if (direction == -0.5f) // if facing left
             {
                 projectilePosition.x -= 0.15f; // offset from player pivot (to avoid shooting from chest)
+                projectilePosition.y += 0.15f; // offset from player feet pivot
                 GameObject go = (GameObject)Instantiate (bullet, projectilePosition, Quaternion.identity);
                 go.GetComponent<ProjectileController>().SetProjectileVector("Left");
             }
@@ -126,6 +127,7 @@ public class Player : MonoBehaviour
             else if (direction == 0.5f) // if facing right
             {
                 projectilePosition.x += 0.15f;
+                projectilePosition.y += 0.15f;
                 GameObject go = (GameObject)Instantiate (bullet, projectilePosition, Quaternion.identity);
                 go.GetComponent<ProjectileController>().SetProjectileVector("Right");
                 
