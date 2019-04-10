@@ -109,6 +109,7 @@ public class Player : MonoBehaviour
     {
         if (Input.GetKey(KeyCode.Z))
         {
+            animator.SetTrigger("CastingFireball");
             Vector2 projectilePosition = transform.position;
             if (direction == -0.5f) // if facing left
             {
