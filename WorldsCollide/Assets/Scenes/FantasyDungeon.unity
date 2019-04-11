@@ -23581,19 +23581,14 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 8822964591739061873, guid: 38a92168c1d9678459a1c820fb1e6b12,
-        type: 3}
-      propertyPath: startTimeBtwAttack
-      value: 0.6
-      objectReference: {fileID: 0}
-    - target: {fileID: 8822964591739061873, guid: 38a92168c1d9678459a1c820fb1e6b12,
-        type: 3}
-      propertyPath: bullet
-      value: 
-      objectReference: {fileID: 8365747353560420087, guid: 5a02c2b8e50bb244fbb86121f77eb053,
-        type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 38a92168c1d9678459a1c820fb1e6b12, type: 3}
+--- !u!1 &845803250 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8822964591739061879, guid: 38a92168c1d9678459a1c820fb1e6b12,
+    type: 3}
+  m_PrefabInstance: {fileID: 686000211}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1613879237
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -66306,6 +66301,7 @@ GameObject:
   - component: {fileID: 8171152085878590789}
   - component: {fileID: 8171152085878590906}
   - component: {fileID: 8171152085878590904}
+  - component: {fileID: 8171152085878590907}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -66355,6 +66351,19 @@ Camera:
   m_OcclusionCulling: 0
   m_StereoConvergence: 10
   m_StereoSeparation: 0.022
+--- !u!114 &8171152085878590907
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8171152085878590905}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 09d1b1528c5dd7a429543cc83c061f74, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  player: {fileID: 845803250}
 --- !u!1 &8171152086043404384
 GameObject:
   m_ObjectHideFlags: 0
