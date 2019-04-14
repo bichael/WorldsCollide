@@ -95,7 +95,7 @@ public class Player : MonoBehaviour
             // player can attack
             animator.SetTrigger("Attacking");
             Collider2D[] enemiesToDamage = Physics2D.OverlapCircleAll(attackPos.position, meleeRange, enemyLayer);
-            Debug.Log("# enemies found in melee hitbox: " + enemiesToDamage.Length);
+            Debug.Log("# enemies found in Player melee hitbox: " + enemiesToDamage.Length);
             for (int i=0; i < enemiesToDamage.Length; i++)
             {
                 // damage enemy

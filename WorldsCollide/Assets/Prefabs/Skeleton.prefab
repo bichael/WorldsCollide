@@ -142,3 +142,9 @@ MonoBehaviour:
   health: 3
   initSpeed: 0.4
   startDazedTime: 0.6
+  startTimeBtwAttack: 1
+  playerLayer:
+    serializedVersion: 2
+    m_Bits: 512
+  meleeDamage: 1
+  meleeRange: 0.15
