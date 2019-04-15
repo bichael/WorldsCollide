@@ -147,4 +147,7 @@ public class Player : MonoBehaviour
         Gizmos.color = Color.red;
         Gizmos.DrawWireSphere(attackPos.position, meleeRange);
     }
+
+
+
 }
