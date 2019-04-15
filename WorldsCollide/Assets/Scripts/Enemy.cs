@@ -24,7 +24,8 @@ public class Enemy : MonoBehaviour
     void Awake()
     {
         player = GameObject.FindGameObjectWithTag("Player");
-        playerHealthScript = player.transform.parent.GetComponent<PlayerHealth>();
+        // playerHealthScript = player.transform.GetComponent<PlayerHealth>();
+        playerHealthScript = player.GetComponent<PlayerHealth>();
         anim = GetComponent<Animator>();
     }
 

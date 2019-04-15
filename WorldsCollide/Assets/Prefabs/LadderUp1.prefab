@@ -10,8 +10,8 @@ GameObject:
   m_Component:
   - component: {fileID: 7330589030360184517}
   - component: {fileID: 7330589030360184518}
-  - component: {fileID: 5215407479026871588}
   - component: {fileID: 8821107714377471996}
+  - component: {fileID: 2256969458701536560}
   m_Layer: 0
   m_Name: LadderUp1
   m_TagString: Untagged
@@ -81,18 +81,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &5215407479026871588
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7330589030360184519}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 26dea2520d75d274f8f9425998b229ed, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!61 &8821107714377471996
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -119,3 +107,16 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.32, y: 0.32}
   m_EdgeRadius: 0
+--- !u!114 &2256969458701536560
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7330589030360184519}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 43710eb740338fa4180acee16e501caf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  newSceneName: 

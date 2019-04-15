@@ -7,7 +7,7 @@ public class LoadF2FromNorth : MonoBehaviour
 {
 	void OnTriggerEnter2D(Collider2D col){
 		if(col.gameObject.name == "PlayerSprite"){
-			SceneManager.LoadScene("Floor1FromNorthLadder");
+			SceneManager.LoadScene("Floor2FromNorthLadder");
 		}
 	}
 }
