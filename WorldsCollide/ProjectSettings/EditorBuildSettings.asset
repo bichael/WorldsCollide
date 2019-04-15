@@ -9,21 +9,21 @@ EditorBuildSettings:
     path: Assets/Scenes/Fantasy/Dungeon/Entrance.unity
     guid: 7310c5dc9b432d645ab4a76bf8283986
   - enabled: 1
-    path: Assets/Scenes/Fantasy/Dungeon/Floor1FromB1.unity
+    path: Assets/Scenes/Fantasy/Dungeon/Obsolete/Floor1FromB1.unity
     guid: 838d0d49832a1324692c60d6ec6cc5fe
   - enabled: 1
-    path: Assets/Scenes/Fantasy/Dungeon/Floor1FromF2East.unity
+    path: Assets/Scenes/Fantasy/Dungeon/Obsolete/Floor1FromF2East.unity
     guid: 090505cb0eb87e0428d12c07c157179c
   - enabled: 1
-    path: Assets/Scenes/Fantasy/Dungeon/Floor1FromF2North.unity
+    path: Assets/Scenes/Fantasy/Dungeon/Obsolete/Floor1FromF2North.unity
     guid: 7a27c8bbed9594448ab1210107533a3a
   - enabled: 1
-    path: Assets/Scenes/Fantasy/Dungeon/Floor2FromEastLadder.unity
+    path: Assets/Scenes/Fantasy/Dungeon/Obsolete/Floor2FromEastLadder.unity
     guid: 77eebcfbac873dc409f7a1e30254fb4a
   - enabled: 1
-    path: Assets/Scenes/Fantasy/Dungeon/Floor2FromNorthLadder.unity
+    path: Assets/Scenes/Fantasy/Dungeon/Obsolete/Floor2FromNorthLadder.unity
     guid: cd5a271572f279e4b8b90baca864e9bd
   - enabled: 1
-    path: Assets/Scenes/Fantasy/Dungeon/FloorB1FromWestLadder.unity
+    path: Assets/Scenes/Fantasy/Dungeon/Obsolete/FloorB1FromWestLadder.unity
     guid: 5430e68284f82cd47a00d1e63eeb73be
   m_configObjects: {}
