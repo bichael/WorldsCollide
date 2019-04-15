@@ -6,7 +6,7 @@ using UnityEngine.SceneManagement;
 public class LoadB1From : MonoBehaviour
 {
 	void OnTriggerEnter2D(Collider2D col){
-		if(col.gameObject.name == "Player"){
+		if(col.gameObject.name == "PlayerSprite"){
 			SceneManager.LoadScene("FloorB1FromWestLadder");
 		}
 	}
