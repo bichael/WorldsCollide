@@ -13,7 +13,7 @@ public class Enemy : MonoBehaviour
     public float startTimeBtwAttack;
     public LayerMask playerLayer;
     public int meleeDamage;
-    public float meleeRange = .15f;
+    public float meleeRange = .1f;
 
     Animator anim;
     GameObject player;
