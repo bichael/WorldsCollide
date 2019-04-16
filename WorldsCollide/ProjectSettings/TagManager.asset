@@ -7,6 +7,7 @@ TagManager:
   - Weapon
   - PlayerProjectile
   - HealthUI
+  - KeyUI
   layers:
   - Default
   - TransparentFX
