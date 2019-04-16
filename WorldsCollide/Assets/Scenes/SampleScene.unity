@@ -691,6 +691,8 @@ MonoBehaviour:
     m_Bits: 0
   meleeDamage: 0
   meleeRange: 0.1
+  sightRange: 10
+  disengageRange: 2
 --- !u!212 &8171152086043404397
 SpriteRenderer:
   m_ObjectHideFlags: 0

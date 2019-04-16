@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+public enum EnemyState{IDLE_STATIC,IDLE_ROAMER,IDLE_PATROL,INSPECT,ATTACK,DEAD,NONE}
+public enum WeaponType{MELEE,PROJECTILE}
 public class Enemy : MonoBehaviour
 {
     public int health;
@@ -14,12 +16,17 @@ public class Enemy : MonoBehaviour
     public LayerMask playerLayer;
     public int meleeDamage;
     public float meleeRange = .1f;
+    public float sightRange = 1f;
+    public float disengageRange = 2f;
 
     Animator anim;
     GameObject player;
     PlayerHealth playerHealthScript;
-    bool playerInRange;
+    bool playerInRange; // Becomes true when player enters enemy collider; close enough to melee.
+    bool aggro; // Becomes true when player enters sight FOV, becomes false when player exits disengage FOV.
 
+	// public WeaponType weaponType = WeaponType.MELEE;
+	// public EnemyState idleState = EnemyState.IDLE_STATIC;
 
     void Awake()
     {
@@ -37,10 +44,36 @@ public class Enemy : MonoBehaviour
             Destroy(gameObject);
         }
         
-        if (timeBtwAttack <= 0 && playerInRange && playerHealthScript.CanBeAttacked())
-            AttemptAttack();
-        else
-            timeBtwAttack -= Time.deltaTime;
+        // Note:  The following function is called on every frame, for every enemy... This could be a memory hog; might need spawning/despawning system.
+        // If player is within FOV, begin to follow.  Also only check to attack if player is in FOV.
+        Collider2D[] sightSearch = Physics2D.OverlapCircleAll(transform.position, sightRange, playerLayer);
+        if (sightSearch.Length > 0)
+            aggro = true; // Player has entered sight FOV and enemy will chase until exits disengage FOV
+
+        if (aggro)
+        {
+            //Check if player is far enough to disengage
+            Collider2D[] disengageSearch = Physics2D.OverlapCircleAll(transform.position, disengageRange, playerLayer);
+            if (disengageSearch.Length > 0)
+            {
+                // Move towards the player.
+                transform.position = Vector2.MoveTowards(transform.position, player.transform.position, speed * Time.deltaTime);
+                Vector3 enemyPlayerDifferenceVector = transform.position - player.transform.position;
+                float enemyPlayerAngle = (Mathf.Atan2(enemyPlayerDifferenceVector.y, enemyPlayerDifferenceVector.x) * Mathf.Rad2Deg) / 180;
+                enemyPlayerAngle = Mathf.Round(enemyPlayerAngle * 2) / 2; // Round to nearest 0.5
+                anim.SetFloat("Direction", enemyPlayerAngle);
+                anim.SetFloat("Magnitude", enemyPlayerDifferenceVector.magnitude);
+
+                // Attempt to attack the player.
+                if (timeBtwAttack <= 0 && playerInRange && playerHealthScript.CanBeAttacked())
+                    AttemptAttack();
+                else
+                    timeBtwAttack -= Time.deltaTime;
+            } 
+            else {
+                aggro = false; // Player has left both enemy FOVs and enemy should now rest.
+            }
+        } 
 
         if (dazedTime <= 0)
         {
@@ -52,13 +85,6 @@ public class Enemy : MonoBehaviour
             // Enemy is idle (in "dazed" state after being attacked)
             anim.SetFloat("Magnitude", 0);
         }
-        transform.position = Vector2.MoveTowards(transform.position, player.transform.position, speed * Time.deltaTime);
-
-        Vector3 enemyPlayerDifferenceVector = transform.position - player.transform.position;
-        float enemyPlayerAngle = (Mathf.Atan2(enemyPlayerDifferenceVector.y, enemyPlayerDifferenceVector.x) * Mathf.Rad2Deg) / 180;
-        enemyPlayerAngle = Mathf.Round(enemyPlayerAngle * 2) / 2; // Round to nearest 0.5
-        anim.SetFloat("Direction", enemyPlayerAngle);
-        anim.SetFloat("Magnitude", enemyPlayerDifferenceVector.magnitude);
     }
 
     public void TakeDamage(int damage)
@@ -108,5 +134,7 @@ public class Enemy : MonoBehaviour
     {
         Gizmos.color = Color.red;
         Gizmos.DrawWireSphere(transform.position, meleeRange);
+        Gizmos.DrawWireSphere(transform.position, sightRange);
+        Gizmos.DrawWireSphere(transform.position, disengageRange);
     }
 }
