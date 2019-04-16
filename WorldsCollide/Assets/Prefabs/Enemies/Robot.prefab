@@ -142,9 +142,13 @@ MonoBehaviour:
   health: 3
   initSpeed: 1
   startDazedTime: 0.6
-  startTimeBtwAttack: 1
+  startTimeBtwAttack: 0.5
   playerLayer:
     serializedVersion: 2
     m_Bits: 512
   meleeDamage: 1
   meleeRange: 0.1
+  sightRange: 1
+  disengageRange: 2
+  weaponType: 1
+  bullet: {fileID: 8365747353560420087, guid: 453e186c6d71d6243ab844014f087ea4, type: 3}

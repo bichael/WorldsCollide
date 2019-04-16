@@ -15,8 +15,8 @@ GameObject:
   - component: {fileID: 3350509219015633606}
   - component: {fileID: 446638599}
   m_Layer: 0
-  m_Name: RedFireball
-  m_TagString: PlayerProjectile
+  m_Name: RobotLaser
+  m_TagString: EnemyProjectile
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -72,7 +72,7 @@ SpriteRenderer:
   m_SortingLayerID: 1407772449
   m_SortingLayer: 2
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 246edc915133519498b18378cbac038c, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 6c68463b9f1ef35468063124674507ae, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -95,7 +95,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 83b1319c0db8e154db4e42b253ce403b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damage: 3
+  damage: 1
   speed: 0.05
 --- !u!95 &446638598
 Animator:
@@ -107,7 +107,7 @@ Animator:
   m_GameObject: {fileID: 8365747353560420087}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 48430a25696d15d46a37dc74bee10c65, type: 2}
+  m_Controller: {fileID: 9100000, guid: 6968f0bf140390c45b846048c790aa2e, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0

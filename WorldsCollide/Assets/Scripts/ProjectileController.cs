@@ -29,6 +29,20 @@ public class ProjectileController : MonoBehaviour
         Destroy (gameObject);
     }
 
+    // Alternate unused approach related to shooting a projectile directly at the player.
+    // public void SetEnemyProjectileVector(Vector3 enemyPlayerDifferenceVector)
+    // {
+    //     // The below conditional blocks will have projectiles shoot 4 diagonal directions.
+    //     if (enemyPlayerDifferenceVector.x < 0)
+    //         xSpeed = speed;
+    //     else if (enemyPlayerDifferenceVector.x > 0)
+    //         xSpeed = -speed;
+    //     if (enemyPlayerDifferenceVector.y < 0)
+    //         ySpeed = speed;
+    //     else if (enemyPlayerDifferenceVector.y > 0)
+    //         ySpeed = -speed;
+    // }
+
     public void SetProjectileVector(string direction)
     {
         if (direction == "Up")
@@ -39,5 +53,25 @@ public class ProjectileController : MonoBehaviour
             xSpeed = -speed;
         else if (direction == "Right")
             xSpeed = speed;
+        // else if (direction == "UpLeft")
+        // {
+        //     xSpeed = -speed;
+        //     ySpeed = speed;
+        // }
+        // else if (direction == "UpRight")
+        // {
+        //     xSpeed = speed;
+        //     ySpeed = speed;
+        // }
+        // else if (direction == "DownLeft")
+        // {
+        //     xSpeed = -speed;
+        //     ySpeed = -speed;
+        // }
+        // else if (direction == "DownRight")
+        // {
+        //     xSpeed = speed;
+        //     ySpeed = -speed;
+        // }
     }
 }

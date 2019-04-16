@@ -8,6 +8,7 @@ TagManager:
   - PlayerProjectile
   - HealthUI
   - KeyUI
+  - EnemyProjectile
   layers:
   - Default
   - TransparentFX

@@ -150,3 +150,5 @@ MonoBehaviour:
   meleeRange: 0.1
   sightRange: 1
   disengageRange: 2
+  weaponType: 0
+  bullet: {fileID: 0}

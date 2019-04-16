@@ -91,4 +91,11 @@ public class PlayerHealth : MonoBehaviour
             for (int i = 0; i < (currentHealth - numberOfHeartsInGUI); i++)
                 healthUI.transform.GetChild((startingHealth-i) - 1).GetComponent<Image>().enabled = true;
     }
+
+    void OnTriggerEnter2D(Collider2D col)
+    {
+        if (currentHealth > 0) // Also known as "if not dead"
+            if (col.gameObject.tag.Equals("EnemyProjectile"))
+                TakeDamage(col.gameObject.GetComponent<ProjectileController>().damage);
+    }
 }
