@@ -9,7 +9,7 @@ EditorBuildSettings:
     path: Assets/Scenes/Fantasy/Dungeon/Entrance.unity
     guid: 7310c5dc9b432d645ab4a76bf8283986
   - enabled: 1
-    path: Assets/Scenes/Fantasy/Dungeon/Obsolete/Floor1FromB1.unity
+    path: Assets/Scenes/Fantasy/Dungeon/Obsolete/Testing doors.unity
     guid: 838d0d49832a1324692c60d6ec6cc5fe
   - enabled: 1
     path: Assets/Scenes/Fantasy/Dungeon/Obsolete/Floor1FromF2East.unity
