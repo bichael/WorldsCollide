@@ -328,22 +328,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 2676293366394259334, guid: 7fcd5ec5c8bca5c42b89f4f81f926542,
-        type: 3}
-      propertyPath: startTimeBtwAttack
-      value: 0.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 2676293366394259334, guid: 7fcd5ec5c8bca5c42b89f4f81f926542,
-        type: 3}
-      propertyPath: weaponType
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 2676293366394259334, guid: 7fcd5ec5c8bca5c42b89f4f81f926542,
-        type: 3}
-      propertyPath: bullet
-      value: 
-      objectReference: {fileID: 8365747353560420087, guid: 5c3fa9ca7b4850749b467d51cba5fc93,
-        type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7fcd5ec5c8bca5c42b89f4f81f926542, type: 3}
 --- !u!1001 &686000211
