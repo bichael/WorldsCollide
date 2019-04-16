@@ -8,7 +8,7 @@ public class PlayerHealth : MonoBehaviour
     public int startingHealth;
     public int currentHealth;
     private float damageCooldown;
-    public float startDamageCooldown;
+    public float damageGracePeriod;
     private bool canBeAttacked;
     private GameObject healthUI;
     public Image damageImage;
@@ -58,8 +58,9 @@ public class PlayerHealth : MonoBehaviour
 
     public void TakeDamage(int amount)
     {
+        canBeAttacked = false;
         damaged = true;
-        damageCooldown = startDamageCooldown;
+        damageCooldown = damageGracePeriod;
         currentHealth -= amount;
         Debug.Log("Player took " + amount + " damage.");
         AssertPlayerHealthEqualsHearts(currentHealth);

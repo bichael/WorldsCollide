@@ -259,7 +259,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   startingHealth: 3
   currentHealth: 0
-  startDamageCooldown: 0.6
+  damageGracePeriod: 2
   damageImage: {fileID: 0}
   deathClip: {fileID: 8300000, guid: 1fc2a6af6eef4134683f42f90cde0f18, type: 3}
   flashSpeed: 5
