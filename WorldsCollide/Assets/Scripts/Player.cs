@@ -18,6 +18,7 @@ public class Player : MonoBehaviour
     public float meleeRange;
     public int meleeDamage;
     public GameObject bullet;
+    public bool blocking;
 
     void Start()
     {
