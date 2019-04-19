@@ -58,36 +58,26 @@ public class PlayerHealth : MonoBehaviour
 
     public void TakeDamage(int amount)
     {
-        if(playerMovement.blocking == true){
+        if (playerMovement.blocking == true) 
+        {
             amount -= 1;
-            if(amount > 0){
-                canBeAttacked = false;
-                damaged = true;
-                damageCooldown = damageGracePeriod;
-                currentHealth -= amount;
-                Debug.Log("Player took " + amount + " damage.");
-                AssertPlayerHealthEqualsHearts(currentHealth);
-                playerAudio.Play();
-                
-                if (currentHealth <= 0 && !isDead) 
-                {
-                    Death();
-                }
-            }
         }
-        else{
-            canBeAttacked = false;
-            damaged = true;
-            damageCooldown = damageGracePeriod;
-            currentHealth -= amount;
-            Debug.Log("Player took " + amount + " damage.");
-            AssertPlayerHealthEqualsHearts(currentHealth);
-            playerAudio.Play();
-            
-            if (currentHealth <= 0 && !isDead) 
-            {
-                Death();
-            }
+
+        // Early exit if damage has been reduced to 0.
+        if(amount == 0)
+            return;
+
+        canBeAttacked = false;
+        damaged = true;
+        damageCooldown = damageGracePeriod;
+        currentHealth -= amount;
+        Debug.Log("Player took " + amount + " damage.");
+        AssertPlayerHealthEqualsHearts(currentHealth);
+        playerAudio.Play();
+        
+        if (currentHealth <= 0 && !isDead) 
+        {
+            Death();
         }
     }
 

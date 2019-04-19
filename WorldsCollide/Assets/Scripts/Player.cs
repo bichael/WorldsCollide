@@ -21,10 +21,7 @@ public class Player : MonoBehaviour
     public int meleeDamage;
     public GameObject bullet;
     public bool blocking;
-<<<<<<< HEAD
     public bool attacking;
-=======
->>>>>>> f3a5af9086eaeb12f25994499b146f24ab99db80
 
     void Start()
     {
