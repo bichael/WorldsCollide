@@ -13,12 +13,18 @@ public class Player : MonoBehaviour
     public float startTimeBtwAttack;
     private float timeBtwProject;
     public float startTimeBtwProject;
+    public float timeBtwShield;
+    public float startTimeBtwShield;
     public Transform attackPos;
     public LayerMask enemyLayer;
     public float meleeRange;
     public int meleeDamage;
     public GameObject bullet;
     public bool blocking;
+<<<<<<< HEAD
+    public bool attacking;
+=======
+>>>>>>> f3a5af9086eaeb12f25994499b146f24ab99db80
 
     void Start()
     {
@@ -29,7 +35,15 @@ public class Player : MonoBehaviour
     void Update()
     {
         UpdatePlayerAnimatorAndPosition();
-
+        if (timeBtwShield <= 0)
+        {
+            blocking = false;
+            AttemptPlayerShield();
+        }
+        else
+        {
+            timeBtwShield -= Time.deltaTime;
+        }
         if (timeBtwAttack <= 0) // If this checks for KeyCode.Space instead, it fails to register sometimes.
             AttemptPlayerAttack();
         else
@@ -89,11 +103,27 @@ public class Player : MonoBehaviour
         }
     }
 
+    void AttemptPlayerShield()
+    {
+        if(Input.GetKey(KeyCode.X) && (attacking == false)){
+            //animator.SetTrigger("ShieldUp");
+            blocking = true;
+            timeBtwShield = startTimeBtwShield;
+        }
+        /*
+        if(Input.GetKeyUp(KeyCode.X)){
+            blocking = false;
+        }
+        */
+
+    }
+
     void AttemptPlayerAttack()
     {
         if (Input.GetKey(KeyCode.Space))
         {
             // player can attack
+            blocking = false;
             animator.SetTrigger("Attacking");
             Collider2D[] enemiesToDamage = Physics2D.OverlapCircleAll(attackPos.position, meleeRange, enemyLayer);
             Debug.Log("# enemies found in Player melee hitbox: " + enemiesToDamage.Length);
