@@ -143,7 +143,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   health: 2
   initSpeed: 0.4
-  startDazedTime: 0.6
+  startDazedTime: 0.1
   startTimeBtwAttack: 1
   playerLayer:
     serializedVersion: 2
