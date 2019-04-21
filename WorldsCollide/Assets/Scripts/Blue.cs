@@ -4,15 +4,13 @@ using UnityEngine;
 
 public class Blue : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+	public GameObject BlueBlock;
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+	public void MakeActive(){
+		BlueBlock.SetActive(true);
+	}
+
+	public void MakeInactive(){
+		BlueBlock.SetActive(false);
+	}
 }

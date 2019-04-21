@@ -4,15 +4,29 @@ using UnityEngine;
 
 public class Switch : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+	
+	//public Red Redscript;
+	//public Blue Bluescript;
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+    
+
+	public void OnTriggerEnter2D(Collider2D col){
+		if(col.name == "Player"){
+			if(GameController.control.redactive == true){
+				GameController.control.redactive = false;
+				GameController.control.blueactive = true;
+
+				//Redscript.MakeInactive();
+				//Bluescript.MakeActive();
+			}
+			else if(GameController.control.redactive == false){
+				GameController.control.redactive = true;
+				GameController.control.blueactive = false;
+
+				//Redscript.MakeActive();
+				//Bluescript.MakeInactive();
+			}
+		}
+
+	}
 }

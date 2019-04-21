@@ -4,15 +4,13 @@ using UnityEngine;
 
 public class Red : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+	public GameObject RedBlock;
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+	public void MakeActive(){
+		RedBlock.SetActive(true);
+	}
+
+	public void MakeInactive(){
+		RedBlock.SetActive(false);
+	}
 }
