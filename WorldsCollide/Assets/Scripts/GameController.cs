@@ -7,8 +7,8 @@ public class GameController : MonoBehaviour
 {
 	public static GameController control;
 	public int keys = 0;
-	public bool blueactive = false;
-	public bool redactive = true;
+	public bool blueactive;
+	public bool redactive;
 
 	public Red redscript;
 	public Blue bluescript;
@@ -18,12 +18,12 @@ public class GameController : MonoBehaviour
         if (Input.GetKey(KeyCode.R))
             SceneManager.LoadScene(SceneManager.GetActiveScene().name);
 
-		if(redactive){
+		if((redscript != null) && redactive){
 			redscript.MakeInactive();
 			bluescript.MakeActive();
 		}
 
-		if(blueactive){
+		if((bluescript != null) && blueactive){
 			redscript.MakeActive();
 			bluescript.MakeInactive();
 		}
