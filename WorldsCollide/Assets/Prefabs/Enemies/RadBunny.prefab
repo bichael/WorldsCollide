@@ -149,7 +149,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 512
   meleeDamage: 1
-  meleeRange: 0.1
+  meleeRange: 0.15
   sightRange: 1
   disengageRange: 2
   weaponType: 0

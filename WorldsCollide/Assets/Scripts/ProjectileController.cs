@@ -25,7 +25,7 @@ public class ProjectileController : MonoBehaviour
 
     IEnumerator DestroyBullet()
     {
-        yield return new WaitForSeconds(5f);
+        yield return new WaitForSeconds(0.3f);
         Destroy (gameObject);
     }
 
@@ -53,25 +53,25 @@ public class ProjectileController : MonoBehaviour
             xSpeed = -speed;
         else if (direction == "Right")
             xSpeed = speed;
-        // else if (direction == "UpLeft")
-        // {
-        //     xSpeed = -speed;
-        //     ySpeed = speed;
-        // }
-        // else if (direction == "UpRight")
-        // {
-        //     xSpeed = speed;
-        //     ySpeed = speed;
-        // }
-        // else if (direction == "DownLeft")
-        // {
-        //     xSpeed = -speed;
-        //     ySpeed = -speed;
-        // }
-        // else if (direction == "DownRight")
-        // {
-        //     xSpeed = speed;
-        //     ySpeed = -speed;
-        // }
+        else if (direction == "UpLeft")
+        {
+            xSpeed = -speed;
+            ySpeed = speed;
+        }
+        else if (direction == "UpRight")
+        {
+            xSpeed = speed;
+            ySpeed = speed;
+        }
+        else if (direction == "DownLeft")
+        {
+            xSpeed = -speed;
+            ySpeed = -speed;
+        }
+        else if (direction == "DownRight")
+        {
+            xSpeed = speed;
+            ySpeed = -speed;
+        }
     }
 }

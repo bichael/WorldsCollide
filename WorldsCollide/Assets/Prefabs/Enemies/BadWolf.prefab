@@ -148,7 +148,7 @@ MonoBehaviour:
   playerLayer:
     serializedVersion: 2
     m_Bits: 512
-  meleeDamage: 1
+  meleeDamage: 2
   meleeRange: 0.1
   sightRange: 1
   disengageRange: 2
