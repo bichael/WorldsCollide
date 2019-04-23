@@ -124,7 +124,7 @@ public class Player : MonoBehaviour
 			return;
 		}
         if(Input.GetKey(KeyCode.L) && (attacking == false) && (firing == false)){
-            //animator.SetTrigger("ShieldUp");
+            animator.SetTrigger("Shielding");
             blocking = true;
             timeBtwShield = startTimeBtwShield;
         }

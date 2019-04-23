@@ -142,8 +142,8 @@ public class Enemy : MonoBehaviour
             float enemyPlayerAngle = (Mathf.Atan2(enemyPlayerDifferenceVector.y, enemyPlayerDifferenceVector.x) * Mathf.Rad2Deg) / 180;
 
             // Shoot projectile in 4 directions towards player.
-            enemyPlayerAngle = Mathf.Round(enemyPlayerAngle * 2) / 2; // Round to nearest 0.25
-            // enemyPlayerAngle = Mathf.Round(enemyPlayerAngle * 4) / 4; // Round to nearest 0.25
+            // enemyPlayerAngle = Mathf.Round(enemyPlayerAngle * 2) / 2; // Round to nearest 0.5
+            enemyPlayerAngle = Mathf.Round(enemyPlayerAngle * 4) / 4; // Round to nearest 0.25
 
             /* IMPORTANT TODO */
             // TODO: Rotate bullet sprite to go with direction!
