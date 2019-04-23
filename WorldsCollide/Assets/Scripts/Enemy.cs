@@ -156,6 +156,14 @@ public class Enemy : MonoBehaviour
                 go.GetComponent<ProjectileController>().SetProjectileVector("Right");
             else if (enemyPlayerAngle == 0.5f) // if facing down
                 go.GetComponent<ProjectileController>().SetProjectileVector("Down");
+            else if (enemyPlayerAngle == -0.25) // if facing up-left
+                go.GetComponent<ProjectileController>().SetProjectileVector("UpLeft");
+            else if ((enemyPlayerAngle == -0.75) || (enemyPlayerAngle == 1.25 )) // if facing up-right
+                go.GetComponent<ProjectileController>().SetProjectileVector("UpRight");
+            else if (enemyPlayerAngle == 0.75) // if facing down-right
+                go.GetComponent<ProjectileController>().SetProjectileVector("DownRight");
+            else if ((enemyPlayerAngle == 0.25) || (enemyPlayerAngle == -1.25))// if facing down-left
+                go.GetComponent<ProjectileController>().SetProjectileVector("DownLeft");
 
             // ALTERNATE APPROACH: Shoot projectile directly at player.
             // GameObject go = (GameObject)Instantiate (bullet, transform.position, Quaternion.identity);

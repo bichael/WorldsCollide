@@ -151,7 +151,7 @@ MonoBehaviour:
   meleeDamage: 0
   meleeRange: 0
   sightRange: 1
-  disengageRange: 2
+  disengageRange: 3
   weaponType: 1
   bullet: {fileID: 8365747353560420087, guid: 5c3fa9ca7b4850749b467d51cba5fc93, type: 3}
 --- !u!50 &6864872912183092173

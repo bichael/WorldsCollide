@@ -150,7 +150,7 @@ MonoBehaviour:
     m_Bits: 512
   meleeDamage: 1
   meleeRange: 0.1
-  sightRange: 1
+  sightRange: 2
   disengageRange: 2
   weaponType: 0
   bullet: {fileID: 0}
