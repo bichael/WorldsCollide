@@ -23,6 +23,9 @@ public class Player : MonoBehaviour
     public bool blocking;
     public bool attacking;
 	public bool playercanmove = true;
+    public bool firing;
+
+
     void Start()
     {
 
@@ -45,13 +48,17 @@ public class Player : MonoBehaviour
         {
             timeBtwShield -= Time.deltaTime;
         }
-        if (timeBtwAttack <= 0) // If this checks for KeyCode.Space instead, it fails to register sometimes.
+        if (timeBtwAttack <= 0){ // If this checks for KeyCode.Space instead, it fails to register sometimes.
+            attacking = false;
             AttemptPlayerAttack();
+        }
         else
             timeBtwAttack -= Time.deltaTime;
 
-        if (timeBtwProject <= 0)
+        if (timeBtwProject <= 0){
+            firing = false;
             AttemptPlayerProjectile();
+        }
         else
             timeBtwProject -= Time.deltaTime;
 
@@ -116,7 +123,7 @@ public class Player : MonoBehaviour
 		if(!playercanmove){
 			return;
 		}
-        if(Input.GetKey(KeyCode.L) && (attacking == false)){
+        if(Input.GetKey(KeyCode.L) && (attacking == false) && (firing == false)){
             //animator.SetTrigger("ShieldUp");
             blocking = true;
             timeBtwShield = startTimeBtwShield;
@@ -134,9 +141,10 @@ public class Player : MonoBehaviour
 		if(!playercanmove){
 			return;
 		}
-        if (Input.GetKey(KeyCode.J))
+        if ((Input.GetKey(KeyCode.J)) && (firing == false))
         {
             // player can attack
+            attacking = true;
             blocking = false;
             animator.SetTrigger("Attacking");
             Collider2D[] enemiesToDamage = Physics2D.OverlapCircleAll(attackPos.position, meleeRange, enemyLayer);
@@ -155,28 +163,29 @@ public class Player : MonoBehaviour
 		if(!playercanmove){
 			return;
 		}
-        if (Input.GetKey(KeyCode.K))
+        if ((Input.GetKey(KeyCode.K)) && (attacking == false))
         {
+            firing = true;
             blocking = false;
             animator.SetTrigger("CastingFireball");
             Vector2 projectilePosition = transform.position;
-            //if (direction == -0.5f) // if facing left
-            if ((direction < -0.25)&(direction >= -0.75))
+            if (direction == -0.5f) // if facing left
+            //if ((direction < -0.25)&(direction >= -0.75))
             {
                 projectilePosition.x -= 0.15f; // offset from player pivot (to avoid shooting from chest)
                 projectilePosition.y += 0.15f; // offset from player feet pivot
                 GameObject go = (GameObject)Instantiate (bullet, projectilePosition, Quaternion.identity);
                 go.GetComponent<ProjectileController>().SetProjectileVector("Left");
             }
-            //else if (direction == 0) // if facing up
-            else if ((direction < 0.25)&(direction >= -0.25))
+            else if (direction == 0) // if facing up
+            //else if ((direction < 0.25)&(direction >= -0.25))
             {
                 projectilePosition.y += 0.15f;
                 GameObject go = (GameObject)Instantiate (bullet, projectilePosition, Quaternion.identity);
                 go.GetComponent<ProjectileController>().SetProjectileVector("Up");
             }
-            //else if (direction == 0.5f) // if facing right
-            else if ((direction < 0.75)&(direction >= 0.25))
+            else if (direction == 0.5f) // if facing right
+            //else if ((direction < 0.75)&(direction >= 0.25))
             {
                 projectilePosition.x += 0.15f;
                 projectilePosition.y += 0.15f;
@@ -184,12 +193,40 @@ public class Player : MonoBehaviour
                 go.GetComponent<ProjectileController>().SetProjectileVector("Right");
                 
             }
-            //else if (direction == 1) // if facing down
-            else if ((direction < 1.25)&(direction >= 0.75))
+            else if (direction == 1) // if facing down
+            //else if ((direction < 1.25)&(direction >= 0.75))
             {
                 projectilePosition.y -= 0.15f;
                 GameObject go = (GameObject)Instantiate (bullet, projectilePosition, Quaternion.identity);
                 go.GetComponent<ProjectileController>().SetProjectileVector("Down");
+            }
+            else if ((direction == -0.25) || (direction == 1.75)) // if facing up-left
+            {
+                projectilePosition.y += 0.15f;
+                projectilePosition.x -= 0.15f;
+                GameObject go = (GameObject)Instantiate (bullet, projectilePosition, Quaternion.identity);
+                go.GetComponent<ProjectileController>().SetProjectileVector("UpLeft");
+            }
+            else if (direction == 0.25) // if facing up-right
+            {
+                projectilePosition.y += 0.15f;
+                projectilePosition.x += 0.15f;
+                GameObject go = (GameObject)Instantiate (bullet, projectilePosition, Quaternion.identity);
+                go.GetComponent<ProjectileController>().SetProjectileVector("UpRight");
+            }
+            else if (direction == 0.75) // if facing down-right
+            {
+                projectilePosition.y -= 0.15f;
+                projectilePosition.x += 0.15f;
+                GameObject go = (GameObject)Instantiate (bullet, projectilePosition, Quaternion.identity);
+                go.GetComponent<ProjectileController>().SetProjectileVector("DownRight");
+            }
+            else if ((direction == 1.25) || (direction == -0.75)) // if facing down-left
+            {
+                projectilePosition.y -= 0.15f;
+                projectilePosition.x -= 0.15f;
+                GameObject go = (GameObject)Instantiate (bullet, projectilePosition, Quaternion.identity);
+                go.GetComponent<ProjectileController>().SetProjectileVector("DownLeft");
             }
             timeBtwProject = startTimeBtwProject;
         }

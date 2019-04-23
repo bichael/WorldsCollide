@@ -143,15 +143,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   health: 2
   initSpeed: 1
-  startDazedTime: 1
+  startDazedTime: 0.5
   startTimeBtwAttack: 1
   playerLayer:
     serializedVersion: 2
     m_Bits: 512
   meleeDamage: 0
   meleeRange: 0
-  sightRange: 1
-  disengageRange: 2
+  sightRange: 1.5
+  disengageRange: 3
   weaponType: 1
   bullet: {fileID: 8365747353560420087, guid: 453e186c6d71d6243ab844014f087ea4, type: 3}
 --- !u!70 &7106250017160559172
