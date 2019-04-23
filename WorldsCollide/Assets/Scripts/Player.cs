@@ -22,7 +22,7 @@ public class Player : MonoBehaviour
     public GameObject bullet;
     public bool blocking;
     public bool attacking;
-
+	public bool playercanmove = true;
     void Start()
     {
 
@@ -31,6 +31,10 @@ public class Player : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+		if(!playercanmove){
+
+			return;
+		}
         UpdatePlayerAnimatorAndPosition();
         if (timeBtwShield <= 0)
         {
@@ -55,6 +59,9 @@ public class Player : MonoBehaviour
 
     void SetAnimatorVariables(Vector3 movementVector)
     {
+		if(!playercanmove){
+			return;
+		}
         float horz = movementVector.x;
         float vert = movementVector.y;
         direction = Mathf.Atan2(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical")) / Mathf.PI;
@@ -69,7 +76,11 @@ public class Player : MonoBehaviour
         animator.SetFloat("Magnitude", movement.magnitude);
         if (movement != Vector3.zero) // Avoid player always facing "0" direction when idle
         {
-            SetAnimatorVariables(movement);
+            
+			if(!playercanmove){
+				return;
+			}
+			SetAnimatorVariables(movement);
             transform.position = transform.position + movement * Time.deltaTime;
             
             // set melee hitbox direction
@@ -102,6 +113,9 @@ public class Player : MonoBehaviour
 
     void AttemptPlayerShield()
     {
+		if(!playercanmove){
+			return;
+		}
         if(Input.GetKey(KeyCode.L) && (attacking == false)){
             //animator.SetTrigger("ShieldUp");
             blocking = true;
@@ -117,6 +131,9 @@ public class Player : MonoBehaviour
 
     void AttemptPlayerAttack()
     {
+		if(!playercanmove){
+			return;
+		}
         if (Input.GetKey(KeyCode.J))
         {
             // player can attack
@@ -135,6 +152,9 @@ public class Player : MonoBehaviour
 
     void AttemptPlayerProjectile()
     {
+		if(!playercanmove){
+			return;
+		}
         if (Input.GetKey(KeyCode.K))
         {
             blocking = false;

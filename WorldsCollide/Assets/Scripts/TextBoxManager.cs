@@ -68,7 +68,7 @@ public class TextBoxManager : MonoBehaviour
 		textBox.SetActive (true);
 		isActive = true;
 		if (stopPlayerMovement) {
-			//player.canMove = false;
+			player.playercanmove = false;
 		}
 
 	}
@@ -78,7 +78,7 @@ public class TextBoxManager : MonoBehaviour
 		isActive = false;
 
 
-		//player.canMove = true;
+		player.playercanmove = true;
 
 	}
 
