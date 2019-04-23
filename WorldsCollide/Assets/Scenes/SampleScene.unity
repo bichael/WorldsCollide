@@ -199,11 +199,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 8171152086181821611}
     m_Modifications:
-    - target: {fileID: 678084077140841101, guid: 8f54d7a45be9bde4988405c0df67019f,
-        type: 3}
-      propertyPath: m_Name
-      value: Robot
-      objectReference: {fileID: 0}
     - target: {fileID: 678084077140841100, guid: 8f54d7a45be9bde4988405c0df67019f,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -259,6 +254,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 678084077140841101, guid: 8f54d7a45be9bde4988405c0df67019f,
+        type: 3}
+      propertyPath: m_Name
+      value: Robot
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8f54d7a45be9bde4988405c0df67019f, type: 3}
 --- !u!1001 &665013771
@@ -268,11 +268,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 8171152086181821611}
     m_Modifications:
-    - target: {fileID: 2676293366394259354, guid: 7fcd5ec5c8bca5c42b89f4f81f926542,
-        type: 3}
-      propertyPath: m_Name
-      value: FlameEnemy
-      objectReference: {fileID: 0}
     - target: {fileID: 2676293366394259355, guid: 7fcd5ec5c8bca5c42b89f4f81f926542,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -327,6 +322,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2676293366394259354, guid: 7fcd5ec5c8bca5c42b89f4f81f926542,
+        type: 3}
+      propertyPath: m_Name
+      value: FlameEnemy
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7fcd5ec5c8bca5c42b89f4f81f926542, type: 3}
