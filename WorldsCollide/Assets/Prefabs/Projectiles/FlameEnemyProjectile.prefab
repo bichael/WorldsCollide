@@ -72,7 +72,7 @@ SpriteRenderer:
   m_SortingLayerID: 1407772449
   m_SortingLayer: 2
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 6c68463b9f1ef35468063124674507ae, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 5555a4ed1efdd484187521b7ca97588c, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -98,6 +98,7 @@ MonoBehaviour:
   damage: 1
   speed: 0.03
   range: 4
+  daze_mod: 0
 --- !u!95 &446638598
 Animator:
   serializedVersion: 3
@@ -127,11 +128,11 @@ CapsuleCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
-  m_Size: {x: 0.05, y: 0.05}
+  m_Offset: {x: 0, y: -0.02}
+  m_Size: {x: 0.04, y: 0.08}
   m_Direction: 0
 --- !u!50 &446638599
 Rigidbody2D:

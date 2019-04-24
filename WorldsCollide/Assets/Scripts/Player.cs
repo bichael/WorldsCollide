@@ -176,67 +176,70 @@ public class Player : MonoBehaviour
                 blocking = false;
             }
             animator.SetTrigger("CastingFireball");
+
+            // Rotate bullet sprite to go with player direction
+            Quaternion fixedDirection = Quaternion.identity;
+            fixedDirection.eulerAngles = new Vector3(0, 0, 180 - (direction * 180)); // Multiply by 180 to convert to degrees.
+            Debug.Log("direction = " + direction);
+
             Vector2 projectilePosition = transform.position;
-            float projectileAngle = Mathf.Round(direction * 4) / 4; // Round to nearest 0.25
+            float projectileAngle = Mathf.Round(direction * 2) / 2; // Round to nearest 0.5
             if (projectileAngle == -0.5f) // if facing left
-            //if ((direction < -0.25)&(direction >= -0.75))
             {
                 projectilePosition.x -= 0.15f; // offset from player pivot (to avoid shooting from chest)
                 projectilePosition.y += 0.15f; // offset from player feet pivot
-                GameObject go = (GameObject)Instantiate (bullet, projectilePosition, Quaternion.identity);
+                GameObject go = (GameObject)Instantiate (bullet, projectilePosition, fixedDirection);
                 go.GetComponent<ProjectileController>().SetProjectileVector("Left");
             }
             else if (projectileAngle == 0) // if facing up
-            //else if ((direction < 0.25)&(direction >= -0.25))
             {
                 projectilePosition.y += 0.15f;
-                GameObject go = (GameObject)Instantiate (bullet, projectilePosition, Quaternion.identity);
+                GameObject go = (GameObject)Instantiate (bullet, projectilePosition, fixedDirection);
                 go.GetComponent<ProjectileController>().SetProjectileVector("Up");
             }
             else if (projectileAngle == 0.5f) // if facing right
-            //else if ((direction < 0.75)&(direction >= 0.25))
             {
                 projectilePosition.x += 0.15f;
                 projectilePosition.y += 0.15f;
-                GameObject go = (GameObject)Instantiate (bullet, projectilePosition, Quaternion.identity);
+                GameObject go = (GameObject)Instantiate (bullet, projectilePosition, fixedDirection);
                 go.GetComponent<ProjectileController>().SetProjectileVector("Right");
                 
             }
             else if ((projectileAngle == 1) || (projectileAngle == -1)) // if facing down
-            //else if ((direction < 1.25)&(direction >= 0.75))
             {
                 projectilePosition.y -= 0.15f;
-                GameObject go = (GameObject)Instantiate (bullet, projectilePosition, Quaternion.identity);
+                GameObject go = (GameObject)Instantiate (bullet, projectilePosition, fixedDirection);
                 go.GetComponent<ProjectileController>().SetProjectileVector("Down");
             }
-            else if (projectileAngle == -0.25) // if facing up-left
-            {
-                projectilePosition.y += 0.15f;
-                projectilePosition.x -= 0.15f;
-                GameObject go = (GameObject)Instantiate (bullet, projectilePosition, Quaternion.identity);
-                go.GetComponent<ProjectileController>().SetProjectileVector("UpLeft");
-            }
-            else if (projectileAngle == 0.25) // if facing up-right
-            {
-                projectilePosition.y += 0.15f;
-                projectilePosition.x += 0.15f;
-                GameObject go = (GameObject)Instantiate (bullet, projectilePosition, Quaternion.identity);
-                go.GetComponent<ProjectileController>().SetProjectileVector("UpRight");
-            }
-            else if (projectileAngle == 0.75) // if facing down-right
-            {
-                projectilePosition.y -= 0.15f;
-                projectilePosition.x += 0.15f;
-                GameObject go = (GameObject)Instantiate (bullet, projectilePosition, Quaternion.identity);
-                go.GetComponent<ProjectileController>().SetProjectileVector("DownRight");
-            }
-            else if (projectileAngle == -0.75f) // if facing down-left
-            {
-                projectilePosition.y -= 0.15f;
-                projectilePosition.x -= 0.15f;
-                GameObject go = (GameObject)Instantiate (bullet, projectilePosition, Quaternion.identity);
-                go.GetComponent<ProjectileController>().SetProjectileVector("DownLeft");
-            }
+            // We don't want the player to shoot diagonally.
+            // else if (projectileAngle == -0.25) // if facing up-left
+            // {
+            //     projectilePosition.y += 0.15f;
+            //     projectilePosition.x -= 0.15f;
+            //     GameObject go = (GameObject)Instantiate (bullet, projectilePosition, fixedDirection);
+            //     go.GetComponent<ProjectileController>().SetProjectileVector("UpLeft");
+            // }
+            // else if (projectileAngle == 0.25) // if facing up-right
+            // {
+            //     projectilePosition.y += 0.15f;
+            //     projectilePosition.x += 0.15f;
+            //     GameObject go = (GameObject)Instantiate (bullet, projectilePosition, fixedDirection);
+            //     go.GetComponent<ProjectileController>().SetProjectileVector("UpRight");
+            // }
+            // else if (projectileAngle == 0.75) // if facing down-right
+            // {
+            //     projectilePosition.y -= 0.15f;
+            //     projectilePosition.x += 0.15f;
+            //     GameObject go = (GameObject)Instantiate (bullet, projectilePosition, fixedDirection);
+            //     go.GetComponent<ProjectileController>().SetProjectileVector("DownRight");
+            // }
+            // else if (projectileAngle == -0.75f) // if facing down-left
+            // {
+            //     projectilePosition.y -= 0.15f;
+            //     projectilePosition.x -= 0.15f;
+            //     GameObject go = (GameObject)Instantiate (bullet, projectilePosition, fixedDirection);
+            //     go.GetComponent<ProjectileController>().SetProjectileVector("DownLeft");
+            // }
             timeBtwProject = startTimeBtwProject;
         }
     }

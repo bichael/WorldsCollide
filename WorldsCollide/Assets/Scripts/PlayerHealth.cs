@@ -101,7 +101,7 @@ public class PlayerHealth : MonoBehaviour
                 healthUI.transform.GetChild((startingHealth-i) - 1).GetComponent<Image>().enabled = true;
     }
 
-    void OnTriggerEnter2D(Collider2D col)
+    void OnCollisionEnter2D(Collision2D col)
     {
         if (currentHealth > 0) // Also known as "if not dead"
             if (col.gameObject.tag.Equals("EnemyProjectile"))
