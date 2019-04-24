@@ -169,7 +169,8 @@ public class Player : MonoBehaviour
             blocking = false;
             animator.SetTrigger("CastingFireball");
             Vector2 projectilePosition = transform.position;
-            if (direction == -0.5f) // if facing left
+            float projectileAngle = Mathf.Round(direction * 4) / 4; // Round to nearest 0.25
+            if (projectileAngle == -0.5f) // if facing left
             //if ((direction < -0.25)&(direction >= -0.75))
             {
                 projectilePosition.x -= 0.15f; // offset from player pivot (to avoid shooting from chest)
@@ -177,14 +178,14 @@ public class Player : MonoBehaviour
                 GameObject go = (GameObject)Instantiate (bullet, projectilePosition, Quaternion.identity);
                 go.GetComponent<ProjectileController>().SetProjectileVector("Left");
             }
-            else if (direction == 0) // if facing up
+            else if (projectileAngle == 0) // if facing up
             //else if ((direction < 0.25)&(direction >= -0.25))
             {
                 projectilePosition.y += 0.15f;
                 GameObject go = (GameObject)Instantiate (bullet, projectilePosition, Quaternion.identity);
                 go.GetComponent<ProjectileController>().SetProjectileVector("Up");
             }
-            else if (direction == 0.5f) // if facing right
+            else if (projectileAngle == 0.5f) // if facing right
             //else if ((direction < 0.75)&(direction >= 0.25))
             {
                 projectilePosition.x += 0.15f;
@@ -193,35 +194,35 @@ public class Player : MonoBehaviour
                 go.GetComponent<ProjectileController>().SetProjectileVector("Right");
                 
             }
-            else if (direction == 1) // if facing down
+            else if ((projectileAngle == 1) || (projectileAngle == -1)) // if facing down
             //else if ((direction < 1.25)&(direction >= 0.75))
             {
                 projectilePosition.y -= 0.15f;
                 GameObject go = (GameObject)Instantiate (bullet, projectilePosition, Quaternion.identity);
                 go.GetComponent<ProjectileController>().SetProjectileVector("Down");
             }
-            else if ((direction == -0.25) || (direction == 1.75)) // if facing up-left
+            else if (projectileAngle == -0.25) // if facing up-left
             {
                 projectilePosition.y += 0.15f;
                 projectilePosition.x -= 0.15f;
                 GameObject go = (GameObject)Instantiate (bullet, projectilePosition, Quaternion.identity);
                 go.GetComponent<ProjectileController>().SetProjectileVector("UpLeft");
             }
-            else if (direction == 0.25) // if facing up-right
+            else if (projectileAngle == 0.25) // if facing up-right
             {
                 projectilePosition.y += 0.15f;
                 projectilePosition.x += 0.15f;
                 GameObject go = (GameObject)Instantiate (bullet, projectilePosition, Quaternion.identity);
                 go.GetComponent<ProjectileController>().SetProjectileVector("UpRight");
             }
-            else if (direction == 0.75) // if facing down-right
+            else if (projectileAngle == 0.75) // if facing down-right
             {
                 projectilePosition.y -= 0.15f;
                 projectilePosition.x += 0.15f;
                 GameObject go = (GameObject)Instantiate (bullet, projectilePosition, Quaternion.identity);
                 go.GetComponent<ProjectileController>().SetProjectileVector("DownRight");
             }
-            else if ((direction == 1.25) || (direction == -0.75)) // if facing down-left
+            else if (projectileAngle == -0.75f) // if facing down-left
             {
                 projectilePosition.y -= 0.15f;
                 projectilePosition.x -= 0.15f;
