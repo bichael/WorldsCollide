@@ -132,6 +132,12 @@ public class Enemy : MonoBehaviour
         health -= damage;
         Debug.Log(this + " took " + damage + " damage");
     }
+    public void TakeProjDamage(int damage,float mod)
+    {
+        dazedTime = startDazedTime * mod;
+        health -= damage;
+        Debug.Log(this + " took " + damage + " damage");
+    }
 
     private void AttemptAttack()
     {
@@ -192,7 +198,7 @@ public class Enemy : MonoBehaviour
     {
         if (col.gameObject.tag.Equals("PlayerProjectile"))
         {
-            TakeDamage(col.gameObject.GetComponent<ProjectileController>().damage);
+            TakeProjDamage(col.gameObject.GetComponent<ProjectileController>().damage, col.gameObject.GetComponent<ProjectileController>().daze_mod);
             Destroy(col.gameObject);
         }
         else if (col.gameObject == player)
