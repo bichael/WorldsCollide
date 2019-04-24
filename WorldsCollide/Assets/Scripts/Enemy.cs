@@ -145,29 +145,34 @@ public class Enemy : MonoBehaviour
             // enemyPlayerAngle = Mathf.Round(enemyPlayerAngle * 2) / 2; // Round to nearest 0.5
             enemyPlayerAngle = Mathf.Round(enemyPlayerAngle * 4) / 4; // Round to nearest 0.25
 
-            /* IMPORTANT TODO */
-            // TODO: Rotate bullet sprite to go with direction!
-            GameObject go = (GameObject)Instantiate (bullet, transform.position, Quaternion.identity);
+            // Rotate bullet sprite to go with enemy direction (facing player)
+            Quaternion fixedDirection = Quaternion.identity;
+            fixedDirection.eulerAngles = new Vector3(0, 0, 90 - (-enemyPlayerAngle * 180)); // Multiply by 180 to convert to degrees.  Offset by 90 just cuz.
+            GameObject go = (GameObject)Instantiate (bullet, transform.position, fixedDirection);
             if (enemyPlayerAngle == 0) // if facing left
                 go.GetComponent<ProjectileController>().SetProjectileVector("Left");
             else if (enemyPlayerAngle == -0.5f) // if facing up
                 go.GetComponent<ProjectileController>().SetProjectileVector("Up");
-            else if (enemyPlayerAngle == 1) // if facing right
+            else if ((enemyPlayerAngle == 1) || (enemyPlayerAngle == -1)) // if facing right
                 go.GetComponent<ProjectileController>().SetProjectileVector("Right");
             else if (enemyPlayerAngle == 0.5f) // if facing down
                 go.GetComponent<ProjectileController>().SetProjectileVector("Down");
             else if (enemyPlayerAngle == -0.25) // if facing up-left
                 go.GetComponent<ProjectileController>().SetProjectileVector("UpLeft");
-            else if ((enemyPlayerAngle == -0.75) || (enemyPlayerAngle == 1.25 )) // if facing up-right
+            else if (enemyPlayerAngle == -0.75) // if facing up-right
                 go.GetComponent<ProjectileController>().SetProjectileVector("UpRight");
             else if (enemyPlayerAngle == 0.75) // if facing down-right
                 go.GetComponent<ProjectileController>().SetProjectileVector("DownRight");
-            else if ((enemyPlayerAngle == 0.25) || (enemyPlayerAngle == -1.25))// if facing down-left
+            else if (enemyPlayerAngle == 0.25)// if facing down-left
                 go.GetComponent<ProjectileController>().SetProjectileVector("DownLeft");
+            else
+                Debug.Log("Uncovered enemy projectile rotation! : " + (enemyPlayerAngle * 180));
 
-            // ALTERNATE APPROACH: Shoot projectile directly at player.
-            // GameObject go = (GameObject)Instantiate (bullet, transform.position, Quaternion.identity);
-            // go.GetComponent<ProjectileController>().SetEnemyProjectileVector(transform.position - player.transform.position);
+            // // ALTERNATE APPROACH: Shoot projectile directly at player.
+            // Quaternion fixedDirection = Quaternion.identity;
+            // fixedDirection.eulerAngles = new Vector3(0, 0, 90 - (-enemyPlayerAngle * 180)); // Multiply by 180 to convert to degrees.  Offset by 90 just cuz.
+            // GameObject go = (GameObject)Instantiate (bullet, transform.position, fixedDirection);
+            // go.GetComponent<Rigidbody2D>().velocity = -enemyPlayerDifferenceVector;
         }
         else if (weaponType == WeaponType.MELEE)
         {
