@@ -75,14 +75,12 @@ public class Player : MonoBehaviour
         animator.SetFloat("Horizontal", horz);
         animator.SetFloat("Vertical", vert);
         animator.SetFloat("Direction", direction);
-        Debug.Log("Set Horizontal, Vertical, and Direction in animator");
     }
 
     void UpdatePlayerAnimatorAndPosition()
     {
         Vector3 movement = new Vector3(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical"), 0.0f);
         animator.SetFloat("Magnitude", movement.magnitude);
-        Debug.Log("Sent Magnitude to animator");
         if (movement != Vector3.zero) // Avoid player always facing "0" direction when idle
         {
             
@@ -127,7 +125,6 @@ public class Player : MonoBehaviour
 		}
         if(Input.GetKey(KeyCode.L) && (attacking == false) && (firing == false)){
             animator.SetTrigger("Shielding");
-            Debug.Log("Sent Shielding to animator");
             blocking = true;
             timeBtwShield = startTimeBtwShield;
         }
@@ -150,7 +147,6 @@ public class Player : MonoBehaviour
             attacking = true;
             blocking = false;
             animator.SetTrigger("Attacking");
-            Debug.Log("Sent Attacking to animator");
             Collider2D[] enemiesToDamage = Physics2D.OverlapCircleAll(attackPos.position, meleeRange, enemyLayer);
             Debug.Log("# enemies found in Player melee hitbox: " + enemiesToDamage.Length);
             for (int i=0; i < enemiesToDamage.Length; i++)
@@ -172,7 +168,6 @@ public class Player : MonoBehaviour
             firing = true;
             blocking = false;
             animator.SetTrigger("CastingFireball");
-            Debug.Log("Sent CastingFireball to animator");
             Vector2 projectilePosition = transform.position;
             float projectileAngle = Mathf.Round(direction * 4) / 4; // Round to nearest 0.25
             if (projectileAngle == -0.5f) // if facing left
