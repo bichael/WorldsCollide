@@ -35,13 +35,15 @@ public class Player : MonoBehaviour
     void Update()
     {
 		if(!playercanmove){
-
 			return;
 		}
         UpdatePlayerAnimatorAndPosition();
         if (timeBtwShield <= 0)
         {
-            blocking = false;
+            if(blocking == true){
+                animator.SetTrigger("ExitShielding");
+                blocking = false;
+            }
             AttemptPlayerShield();
         }
         else
@@ -148,7 +150,10 @@ public class Player : MonoBehaviour
         {
             // player can attack
             attacking = true;
-            blocking = false;
+            if(blocking == true){
+                animator.SetTrigger("ExitShielding");
+                blocking = false;
+            }
             animator.SetTrigger("Attacking");
             Debug.Log("Sent Attacking to animator");
             Collider2D[] enemiesToDamage = Physics2D.OverlapCircleAll(attackPos.position, meleeRange, enemyLayer);
@@ -170,7 +175,10 @@ public class Player : MonoBehaviour
         if ((Input.GetKey(KeyCode.K)) && (attacking == false))
         {
             firing = true;
-            blocking = false;
+            if(blocking == true){
+                animator.SetTrigger("ExitShielding");
+                blocking = false;
+            }
             animator.SetTrigger("CastingFireball");
             Debug.Log("Sent CastingFireball to animator");
             Vector2 projectilePosition = transform.position;
