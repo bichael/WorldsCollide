@@ -105,6 +105,14 @@ public class PlayerHealth : MonoBehaviour
     {
         if (currentHealth > 0) // Also known as "if not dead"
             if (col.gameObject.tag.Equals("EnemyProjectile"))
+            {
                 TakeDamage(col.gameObject.GetComponent<ProjectileController>().damage);
-    }
+            }
+            if (col.gameObject.tag.Equals("HealthPickUp"))
+            {
+                currentHealth ++;
+                AssertPlayerHealthEqualsHearts(currentHealth);
+                //col.gameObject.SetActive(false);
+            }
+    }   
 }

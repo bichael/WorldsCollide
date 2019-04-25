@@ -9,6 +9,7 @@ TagManager:
   - HealthUI
   - KeyUI
   - EnemyProjectile
+  - HealthPickUp
   layers:
   - Default
   - TransparentFX
