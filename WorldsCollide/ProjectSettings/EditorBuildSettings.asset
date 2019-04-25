@@ -6,24 +6,30 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
+    path: Assets/Scenes/MainMenu.unity
+    guid: 22b0a97d4a0d4ee4daf19ccdd76e8422
+  - enabled: 1
+    path: Assets/Scenes/Hub.unity
+    guid: 544f2ca57356e7b4d94d8a66cca31904
+  - enabled: 1
     path: Assets/Scenes/Fantasy/Dungeon.unity
     guid: 7310c5dc9b432d645ab4a76bf8283986
-  - enabled: 1
-    path: Assets/Scenes/Fantasy/Dungeon/Obsolete/Testing doors.unity
-    guid: 838d0d49832a1324692c60d6ec6cc5fe
-  - enabled: 1
-    path: Assets/Scenes/Fantasy/Dungeon/Obsolete/Floor1FromF2East.unity
-    guid: 090505cb0eb87e0428d12c07c157179c
-  - enabled: 1
-    path: Assets/Scenes/Fantasy/Dungeon/Obsolete/Floor1FromF2North.unity
-    guid: 7a27c8bbed9594448ab1210107533a3a
-  - enabled: 1
-    path: Assets/Scenes/Fantasy/Dungeon/Obsolete/Floor2FromEastLadder.unity
-    guid: 77eebcfbac873dc409f7a1e30254fb4a
-  - enabled: 1
-    path: Assets/Scenes/Fantasy/Dungeon/Obsolete/Floor2FromNorthLadder.unity
-    guid: cd5a271572f279e4b8b90baca864e9bd
-  - enabled: 1
-    path: Assets/Scenes/Fantasy/Dungeon/Obsolete/FloorB1FromWestLadder.unity
-    guid: 5430e68284f82cd47a00d1e63eeb73be
+  - enabled: 0
+    path: 
+    guid: 00000000000000000000000000000000
+  - enabled: 0
+    path: 
+    guid: 00000000000000000000000000000000
+  - enabled: 0
+    path: 
+    guid: 00000000000000000000000000000000
+  - enabled: 0
+    path: 
+    guid: 00000000000000000000000000000000
+  - enabled: 0
+    path: 
+    guid: 00000000000000000000000000000000
+  - enabled: 0
+    path: 
+    guid: 00000000000000000000000000000000
   m_configObjects: {}

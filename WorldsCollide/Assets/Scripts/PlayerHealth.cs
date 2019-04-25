@@ -56,6 +56,8 @@ public class PlayerHealth : MonoBehaviour
     // Creates the list of original hearts to be used for hiding later when damaged.
     private void GetHeartsFromUI()
     {
+        if (healthUI == null)
+            return;
         heartsInUI = new List<Image>();
         foreach (Transform heartImageChild in healthUI.transform)
             heartsInUI.Add(heartImageChild.GetComponent<Image>());
@@ -113,10 +115,16 @@ public class PlayerHealth : MonoBehaviour
     {
         if (decreaseHealth)
             for (int i = 0; i < (startingHealth - currentHealth); i++) // (startingHealth - currentHealth) = Numbers of hearts that should be disabled, starting from the end.
-                heartsInUI[(startingHealth - 1) - i].enabled = false; // Subtract 1 because list index starts at 0.
+            {
+                if (healthUI != null)
+                    heartsInUI[(startingHealth - 1) - i].enabled = false; // Subtract 1 because list index starts at 0.
+            }
         else
             for (int i = 0; i < currentHealth; i++)
-                heartsInUI[i].enabled = true;
+            {
+                if (healthUI != null)
+                    heartsInUI[i].enabled = true;
+            }
     }
 
     void OnCollisionEnter2D(Collision2D col)
