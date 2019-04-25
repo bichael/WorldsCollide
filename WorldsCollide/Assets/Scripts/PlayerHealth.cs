@@ -20,6 +20,7 @@ public class PlayerHealth : MonoBehaviour
     Player playerMovement;
     bool isDead;
     bool damaged;
+    List<Image> heartsInUI;
 
     void Awake ()
     {
@@ -27,6 +28,7 @@ public class PlayerHealth : MonoBehaviour
         playerMovement = GetComponent<Player>();
         currentHealth = startingHealth;
         healthUI = GameObject.FindGameObjectWithTag("HealthUI");
+        GetHeartsFromUI();
     }
 
     // Update is called once per frame
@@ -51,6 +53,14 @@ public class PlayerHealth : MonoBehaviour
         
     }
 
+    // Creates the list of original hearts to be used for hiding later when damaged.
+    private void GetHeartsFromUI()
+    {
+        heartsInUI = new List<Image>();
+        foreach (Transform heartImageChild in healthUI.transform)
+            heartsInUI.Add(heartImageChild.GetComponent<Image>());
+    }
+
     public bool CanBeAttacked()
     {
         return canBeAttacked;
@@ -72,13 +82,20 @@ public class PlayerHealth : MonoBehaviour
         damageCooldown = damageGracePeriod;
         currentHealth -= amount;
         Debug.Log("Player took " + amount + " damage.");
-        AssertPlayerHealthEqualsHearts(currentHealth);
+        AssertPlayerHealthEqualsHearts(true);
         playerAudio.Play();
         
         if (currentHealth <= 0 && !isDead) 
         {
             Death();
         }
+    }
+
+    private void Heal(int amount)
+    {
+        currentHealth += amount;
+        AssertPlayerHealthEqualsHearts(false);
+        //col.gameObject.SetActive(false);
     }
 
     void Death()
@@ -90,29 +107,29 @@ public class PlayerHealth : MonoBehaviour
         playerMovement.enabled = false;
     }
 
-    void AssertPlayerHealthEqualsHearts(int hp)
+    // If damage, make sure all hearts from currentHealth to startingHealth are hidden.  If heal, make sure all hearts from 0 to currentHealth are shown.
+    // The basis of this approach is that we want to avoid recalculating how many hearts are shown in the UI each time this is called bc it's messy.
+    void AssertPlayerHealthEqualsHearts(bool decreaseHealth)
     {
-        int numberOfHeartsInGUI = healthUI.transform.childCount;
-        if (currentHealth < numberOfHeartsInGUI)
-            for (int i = 0; i < (numberOfHeartsInGUI - currentHealth); i++)
-                healthUI.transform.GetChild((startingHealth-i) - 1).GetComponent<Image>().enabled = false;
-        else if (currentHealth > numberOfHeartsInGUI)
-            for (int i = 0; i < (currentHealth - numberOfHeartsInGUI); i++)
-                healthUI.transform.GetChild((startingHealth-i) - 1).GetComponent<Image>().enabled = true;
+        if (decreaseHealth)
+            for (int i = 0; i < (startingHealth - currentHealth); i++) // (startingHealth - currentHealth) = Numbers of hearts that should be disabled, starting from the end.
+                heartsInUI[(startingHealth - 1) - i].enabled = false; // Subtract 1 because list index starts at 0.
+        else
+            for (int i = 0; i < currentHealth; i++)
+                heartsInUI[i].enabled = true;
     }
 
     void OnCollisionEnter2D(Collision2D col)
     {
         if (currentHealth > 0) // Also known as "if not dead"
             if (col.gameObject.tag.Equals("EnemyProjectile"))
-            {
                 TakeDamage(col.gameObject.GetComponent<ProjectileController>().damage);
-            }
+    }
+
+    void OnTriggerEnter2D(Collider2D col)
+    {
+        if ((currentHealth > 0) && (currentHealth < startingHealth)) // Can't heal if you're dead or if you're already at max health.
             if (col.gameObject.tag.Equals("HealthPickUp"))
-            {
-                currentHealth ++;
-                AssertPlayerHealthEqualsHearts(currentHealth);
-                //col.gameObject.SetActive(false);
-            }
-    }   
+                Heal(1);
+    }
 }
