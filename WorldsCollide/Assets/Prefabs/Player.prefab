@@ -1,5 +1,107 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &1479374305
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1479374309}
+  - component: {fileID: 1479374308}
+  m_Layer: 0
+  m_Name: SwordInventoryIcon
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 0
+--- !u!4 &1479374309
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1479374305}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 5703356203344524672}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1479374308
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1479374305}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d6f76201b6b2cb243bc07acc8752bea7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Name: Sword
+  Image: {fileID: 21300000, guid: f178486cfaa26e345aaa392f8a55d893, type: 3}
+  InteractText: 
+  ItemType: 2
+  PickPosition: {x: 0, y: 0, z: 0}
+  PickRotation: {x: 0, y: 0, z: 0}
+  UseItemAfterPickup: 0
+  player: {fileID: 0}
+--- !u!1 &4346025706782264446
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4773970084415206617}
+  - component: {fileID: 3818824068414095452}
+  m_Layer: 0
+  m_Name: ShieldInventoryIcon
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 0
+--- !u!4 &4773970084415206617
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4346025706782264446}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 5703356203344524672}
+  m_RootOrder: 4
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &3818824068414095452
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4346025706782264446}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d6f76201b6b2cb243bc07acc8752bea7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Name: Shield
+  Image: {fileID: 21300000, guid: b3fc6ebeb2f10e443a5ac93e61e3c86c, type: 3}
+  InteractText: 
+  ItemType: 2
+  PickPosition: {x: 0, y: 0, z: 0}
+  PickRotation: {x: 0, y: 0, z: 0}
+  UseItemAfterPickup: 0
+  player: {fileID: 0}
 --- !u!1 &5703356202206725907
 GameObject:
   m_ObjectHideFlags: 0
@@ -115,6 +217,9 @@ Transform:
   m_Children:
   - {fileID: 5703356202206725900}
   - {fileID: 8171152085878590789}
+  - {fileID: 1479374309}
+  - {fileID: 2014628205034820778}
+  - {fileID: 4773970084415206617}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -238,6 +343,8 @@ MonoBehaviour:
   weapon: {fileID: 5703356202206725907}
   startTimeBtwAttack: 0.6
   startTimeBtwProject: 0.8
+  timeBtwShield: 0
+  startTimeBtwShield: 0
   attackPos: {fileID: 5703356202206725900}
   enemyLayer:
     serializedVersion: 2
@@ -245,6 +352,17 @@ MonoBehaviour:
   meleeRange: 0.3
   meleeDamage: 1
   bullet: {fileID: 8365747353560420087, guid: 5a02c2b8e50bb244fbb86121f77eb053, type: 3}
+  meleeWeapon: {fileID: 1479374305}
+  rangedWeapon: {fileID: 7690515626145151289}
+  equipment: {fileID: 4346025706782264446}
+  blocking: 0
+  attacking: 0
+  playercanmove: 1
+  firing: 0
+  HasStaff: 1
+  HasShield: 1
+  Inventory: {fileID: 0}
+  Hud: {fileID: 0}
 --- !u!114 &5703356203344524676
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -257,7 +375,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 21903f6a3c2ef3d4d92a73e359a1f58b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  startingHealth: 3
+  startingHealth: 5
   currentHealth: 0
   damageGracePeriod: 2
   damageImage: {fileID: 0}
@@ -360,6 +478,57 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!1 &7690515626145151289
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2014628205034820778}
+  - component: {fileID: 580377644579220333}
+  m_Layer: 0
+  m_Name: StaffInventoryIcon
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 0
+--- !u!4 &2014628205034820778
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7690515626145151289}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 5703356203344524672}
+  m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &580377644579220333
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7690515626145151289}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d6f76201b6b2cb243bc07acc8752bea7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Name: Staff
+  Image: {fileID: 21300000, guid: b17c4737e2529274b9887d9ec7b7e955, type: 3}
+  InteractText: 
+  ItemType: 2
+  PickPosition: {x: 0, y: 0, z: 0}
+  PickRotation: {x: 0, y: 0, z: 0}
+  UseItemAfterPickup: 0
+  player: {fileID: 0}
 --- !u!1 &8171152085878590905
 GameObject:
   m_ObjectHideFlags: 0

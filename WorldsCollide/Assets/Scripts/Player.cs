@@ -7,7 +7,6 @@ public class Player : MonoBehaviour
     public Animator animator;
     private float direction;
     // public float speed;
-    // public bool weaponEquipped;
     public GameObject weapon;
     private float timeBtwAttack;
     public float startTimeBtwAttack;
@@ -20,15 +19,36 @@ public class Player : MonoBehaviour
     public float meleeRange;
     public int meleeDamage;
     public GameObject bullet;
+    public GameObject meleeWeapon; // Should be Sword
+    public GameObject rangedWeapon;
+    public GameObject equipment;
     public bool blocking;
     public bool attacking;
 	public bool playercanmove = true;
     public bool firing;
+    public bool HasStaff; // These are set for true now for easy development, but will soon be changed to false for real playtesting.
+    public bool HasShield;
 
+    private InventoryItemBase mCurrentItem = null;
+    public Inventory Inventory;
+    public HUD Hud;
 
     void Start()
     {
-
+        Inventory.ItemUsed += Inventory_ItemUsed;
+        Inventory.ItemRemoved += Inventory_ItemRemoved;
+        if (meleeWeapon != null)
+            Inventory.AddItem(meleeWeapon.GetComponent<InventoryItemBase>());
+        if (rangedWeapon != null)
+        {
+            Inventory.AddItem(rangedWeapon.GetComponent<InventoryItemBase>());
+            HasStaff = true;
+        }
+        if (equipment != null)
+        {
+            Inventory.AddItem(equipment.GetComponent<InventoryItemBase>());
+            HasShield = true;
+        }
     }
 
     // Update is called once per frame
@@ -38,6 +58,13 @@ public class Player : MonoBehaviour
 			return;
 		}
         UpdatePlayerAnimatorAndPosition();
+
+        // Interact with the item
+        if (mInteractItem != null && Input.GetKeyDown(KeyCode.F))
+        {
+            InteractWithItem();
+        }
+
         if (timeBtwShield <= 0)
         {
             if(blocking == true){
@@ -126,6 +153,11 @@ public class Player : MonoBehaviour
 			return;
 		}
         if(Input.GetKey(KeyCode.L) && (attacking == false) && (firing == false)){
+            if (!HasShield)
+            {
+                Debug.Log("Can't use shield yet, none have been found!");
+                return;
+            }
             animator.SetTrigger("Shielding");
             blocking = true;
             timeBtwShield = startTimeBtwShield;
@@ -170,6 +202,11 @@ public class Player : MonoBehaviour
 		}
         if ((Input.GetKey(KeyCode.K)) && (attacking == false))
         {
+            if (!HasStaff)
+            {
+                Debug.Log("Can't use any ranged weapons yet, none have been found!");
+                return;
+            }
             firing = true;
             if(blocking == true){
                 animator.SetTrigger("ExitShielding");
@@ -244,12 +281,97 @@ public class Player : MonoBehaviour
         }
     }
 
+    /* INVENTORY */
+    // TODO These functions only change the current item, but should be expanded to set the hotkey.
+    private void Inventory_ItemRemoved(object sender, InventoryEventArgs e)
+    {
+        InventoryItemBase item = e.Item;
+
+        GameObject goItem = (item as MonoBehaviour).gameObject;
+        goItem.SetActive(true);
+    }
+
+    private void SetItemActive(InventoryItemBase item, bool active)
+    {
+        GameObject currentItem = (item as MonoBehaviour).gameObject;
+        currentItem.SetActive(active);
+    }
+
+    private void Inventory_ItemUsed(object sender, InventoryEventArgs e)
+    {
+        if (e.Item.ItemType != EItemType.Consumable)
+        {
+            // If the player carries an item, un-use it (remove from player's hand)
+            if (mCurrentItem != null)
+            {
+                SetItemActive(mCurrentItem, false);
+            }
+
+            InventoryItemBase item = e.Item;
+
+            // Use item (put it to hand of the player)
+            SetItemActive(item, true);
+
+            mCurrentItem = e.Item;
+        }
+
+    }
+
+    public void InteractWithItem()
+    {
+        if (mInteractItem != null)
+        {
+            mInteractItem.OnInteract();
+
+            if (mInteractItem is InventoryItemBase)
+            {
+                InventoryItemBase inventoryItem = mInteractItem as InventoryItemBase;
+                Inventory.AddItem(inventoryItem);
+                inventoryItem.OnPickup();
+
+                if (inventoryItem.UseItemAfterPickup)
+                {
+                    Inventory.UseItem(inventoryItem);
+                }
+            }
+        }
+
+        Hud.CloseMessagePanel();
+
+        mInteractItem = null;
+    }
+
+    private InventoryItemBase mInteractItem = null;
+
+    /* END INVENTORY */
+
     void OnDrawGizmosSelected()
     {
         Gizmos.color = Color.red;
         Gizmos.DrawWireSphere(attackPos.position, meleeRange);
     }
 
+    private void OnTriggerEnter2D(Collider2D other)
+    {
+        InventoryItemBase item = other.GetComponent<InventoryItemBase>();
 
+        if (item != null)
+        {
+            if (item.CanInteract(other))
+            {
+                mInteractItem = item;
+                Hud.OpenMessagePanel(mInteractItem);
+            }
+        }
+    }
 
+    private void OnTriggerExit2D(Collider2D other)
+    {
+        InteractableItemBase item = other.GetComponent<InteractableItemBase>();
+        if (item != null)
+        {
+            Hud.CloseMessagePanel();
+            mInteractItem = null;
+        }
+    }
 }
