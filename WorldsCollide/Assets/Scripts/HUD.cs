@@ -39,8 +39,8 @@ public class HUD : MonoBehaviour {
                 if (itemCount > 1)
                     txtCount.text = itemCount.ToString();
                 else
-                    txtCount.text = "";
-                         
+                    txtCount.text = "";                    
+                // TODO Should player auto-equip item on pickup?  Current design is not so.
 
                 // Store a reference to the item
                 // itemDragHandler.Item = e.Item;

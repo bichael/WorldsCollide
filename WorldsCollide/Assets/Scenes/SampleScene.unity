@@ -427,6 +427,11 @@ PrefabInstance:
       propertyPath: rangedWeapon
       value: 
       objectReference: {fileID: 0}
+    - target: {fileID: 5703356203344524683, guid: 38a92168c1d9678459a1c820fb1e6b12,
+        type: 3}
+      propertyPath: inventoryPanel
+      value: 
+      objectReference: {fileID: 1245393015}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 38a92168c1d9678459a1c820fb1e6b12, type: 3}
 --- !u!4 &865744495 stripped
@@ -540,6 +545,12 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 39def6ac5265736418a9513fc05df9bd, type: 3}
+--- !u!224 &1245393015 stripped
+RectTransform:
+  m_CorrespondingSourceObject: {fileID: 224647040203447460, guid: f007437e236d93f4d8b04ca4db15347f,
+    type: 3}
+  m_PrefabInstance: {fileID: 2092250691}
+  m_PrefabAsset: {fileID: 0}
 --- !u!114 &1298693053 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 1021129497493814197, guid: 35482f9ec69c3904da4fc12188d939e0,
@@ -729,7 +740,7 @@ MonoBehaviour:
   Name: Staff
   Image: {fileID: 21300000, guid: b17c4737e2529274b9887d9ec7b7e955, type: 3}
   InteractText: Press F to pickup the item
-  ItemType: 2
+  ItemType: 3
   PickPosition: {x: 0, y: 0, z: 0}
   PickRotation: {x: 0, y: 0, z: 0}
   UseItemAfterPickup: 0
@@ -846,11 +857,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: HUD
       objectReference: {fileID: 0}
-    - target: {fileID: 114894058241734744, guid: f007437e236d93f4d8b04ca4db15347f,
-        type: 3}
-      propertyPath: Inventory
-      value: 
-      objectReference: {fileID: 1298693053}
     - target: {fileID: 224284725806146870, guid: f007437e236d93f4d8b04ca4db15347f,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -956,6 +962,11 @@ PrefabInstance:
       propertyPath: m_Pivot.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 114894058241734744, guid: f007437e236d93f4d8b04ca4db15347f,
+        type: 3}
+      propertyPath: Inventory
+      value: 
+      objectReference: {fileID: 1298693053}
     - target: {fileID: 224030246617770446, guid: f007437e236d93f4d8b04ca4db15347f,
         type: 3}
       propertyPath: m_AnchorMin.y
@@ -1853,7 +1864,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &8171152086181821611
 Transform:
   m_ObjectHideFlags: 0

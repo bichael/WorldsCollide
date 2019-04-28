@@ -97,7 +97,7 @@ MonoBehaviour:
   Name: Shield
   Image: {fileID: 21300000, guid: b3fc6ebeb2f10e443a5ac93e61e3c86c, type: 3}
   InteractText: 
-  ItemType: 2
+  ItemType: 0
   PickPosition: {x: 0, y: 0, z: 0}
   PickRotation: {x: 0, y: 0, z: 0}
   UseItemAfterPickup: 0
@@ -140,7 +140,7 @@ SpriteRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5703356202206725907}
-  m_Enabled: 0
+  m_Enabled: 1
   m_CastShadows: 0
   m_ReceiveShadows: 0
   m_DynamicOccludee: 1
@@ -167,8 +167,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 2113412505
-  m_SortingLayer: 0
+  m_SortingLayerID: 1407772449
+  m_SortingLayer: 2
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: aec35367047c0124e9fc8f5745946d6f, type: 3}
   m_Color: {r: 1, g: 0, b: 0, a: 0.24313726}
@@ -303,8 +303,8 @@ CapsuleCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.01056838, y: 0.10376227}
-  m_Size: {x: 0.19886324, y: 0.22392374}
+  m_Offset: {x: 0.011560902, y: 0.11097419}
+  m_Size: {x: 0.1968782, y: 0.20595354}
   m_Direction: 0
 --- !u!50 &3843562466845422696
 Rigidbody2D:
@@ -344,23 +344,24 @@ MonoBehaviour:
   startTimeBtwAttack: 0.6
   startTimeBtwProject: 0.8
   timeBtwShield: 0
-  startTimeBtwShield: 0
+  startTimeBtwShield: 2
   attackPos: {fileID: 5703356202206725900}
   enemyLayer:
     serializedVersion: 2
     m_Bits: 256
-  meleeRange: 0.3
-  meleeDamage: 1
+  meleeRange: 0.25
+  meleeDamage: 3
   bullet: {fileID: 8365747353560420087, guid: 5a02c2b8e50bb244fbb86121f77eb053, type: 3}
-  meleeWeapon: {fileID: 1479374305}
-  rangedWeapon: {fileID: 7690515626145151289}
-  equipment: {fileID: 4346025706782264446}
+  meleeWeapon: {fileID: 1479374308}
+  rangedWeapon: {fileID: 580377644579220333}
+  equipment: {fileID: 3818824068414095452}
   blocking: 0
   attacking: 0
   playercanmove: 1
   firing: 0
-  HasStaff: 1
-  HasShield: 1
+  staffEquipped: 0
+  shieldEquipped: 0
+  inventoryPanel: {fileID: 0}
   Inventory: {fileID: 0}
   Hud: {fileID: 0}
 --- !u!114 &5703356203344524676
@@ -377,7 +378,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   startingHealth: 5
   currentHealth: 0
-  damageGracePeriod: 2
+  damageGracePeriod: 0.5
   damageImage: {fileID: 0}
   deathClip: {fileID: 8300000, guid: 1fc2a6af6eef4134683f42f90cde0f18, type: 3}
   flashSpeed: 5
@@ -524,7 +525,7 @@ MonoBehaviour:
   Name: Staff
   Image: {fileID: 21300000, guid: b17c4737e2529274b9887d9ec7b7e955, type: 3}
   InteractText: 
-  ItemType: 2
+  ItemType: 3
   PickPosition: {x: 0, y: 0, z: 0}
   PickRotation: {x: 0, y: 0, z: 0}
   UseItemAfterPickup: 0

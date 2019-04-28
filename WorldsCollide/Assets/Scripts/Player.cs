@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Player : MonoBehaviour
 {
@@ -19,52 +20,44 @@ public class Player : MonoBehaviour
     public float meleeRange;
     public int meleeDamage;
     public GameObject bullet;
-    public GameObject meleeWeapon; // Should be Sword
-    public GameObject rangedWeapon;
-    public GameObject equipment;
+    public InventoryItemBase meleeWeapon; // Should be Sword
+    public InventoryItemBase rangedWeapon;
+    public InventoryItemBase equipment;
     public bool blocking;
     public bool attacking;
 	public bool playercanmove = true;
     public bool firing;
-    public bool HasStaff; // These are set for true now for easy development, but will soon be changed to false for real playtesting.
-    public bool HasShield;
+    public bool staffEquipped;
+    public bool shieldEquipped;
+    public Transform inventoryPanel;
 
     private InventoryItemBase mCurrentItem = null;
     public Inventory Inventory;
     public HUD Hud;
+    private List<InventoryItemBase> itemsEquipped = new List<InventoryItemBase>(); // Maintains which slots are actually filled.
 
     void Start()
     {
-        Inventory.ItemUsed += Inventory_ItemUsed;
-        Inventory.ItemRemoved += Inventory_ItemRemoved;
-        if (meleeWeapon != null)
-            Inventory.AddItem(meleeWeapon.GetComponent<InventoryItemBase>());
-        if (rangedWeapon != null)
-        {
-            Inventory.AddItem(rangedWeapon.GetComponent<InventoryItemBase>());
-            HasStaff = true;
-        }
-        if (equipment != null)
-        {
-            Inventory.AddItem(equipment.GetComponent<InventoryItemBase>());
-            HasShield = true;
-        }
+        SetPlayerStartingItems();
     }
 
     // Update is called once per frame
     void Update()
     {
+        /* Movement */
 		if(!playercanmove){
 			return;
 		}
         UpdatePlayerAnimatorAndPosition();
 
-        // Interact with the item
+        /* Detect keys pressed that work every frame */
         if (mInteractItem != null && Input.GetKeyDown(KeyCode.F))
         {
             InteractWithItem();
         }
+        AttemptChangeEquipment();
 
+        /* Detect key presses that are conditional based on a timer (Shield, Melee, Projectile) */
         if (timeBtwShield <= 0)
         {
             if(blocking == true){
@@ -72,25 +65,66 @@ public class Player : MonoBehaviour
                 blocking = false;
             }
             AttemptPlayerShield();
-        }
-        else
-        {
+        } else
             timeBtwShield -= Time.deltaTime;
-        }
         if (timeBtwAttack <= 0){ // If this checks for KeyCode.Space instead, it fails to register sometimes.
             attacking = false;
             AttemptPlayerAttack();
-        }
-        else
+        } else
             timeBtwAttack -= Time.deltaTime;
-
         if (timeBtwProject <= 0){
             firing = false;
             AttemptPlayerProjectile();
-        }
-        else
+        } else
             timeBtwProject -= Time.deltaTime;
+    }
 
+    void SetPlayerStartingItems()
+    {
+        int count = 0;
+        Inventory.ItemUsed += Inventory_ItemUsed;
+        Inventory.ItemRemoved += Inventory_ItemRemoved;
+        if (meleeWeapon != null)
+        {
+            InventoryItemBase sword = meleeWeapon.GetComponent<InventoryItemBase>();
+            Inventory.AddItem(sword);
+            // Update GUI label and add to existing list to minimize iteration on HUD slots later
+            UpdateAssignedKeyText(count++, "J");
+            itemsEquipped.Add(sword);
+        }
+        if (rangedWeapon != null)
+        {
+            InventoryItemBase startRanged = rangedWeapon.GetComponent<InventoryItemBase>();
+            UpdateAssignedKeyText(count++, "K");
+            Inventory.AddItem(startRanged);
+        }
+        if (equipment != null)
+        {
+            InventoryItemBase startEquip = equipment.GetComponent<InventoryItemBase>();
+            UpdateAssignedKeyText(count++, "L");
+            Inventory.AddItem(startEquip);
+        }
+        SetPlayerItemBooleans();
+    }
+
+    void UpdateAssignedKeyText(int slot, string desiredCharacter)
+    {
+        Transform keyTextTransform = inventoryPanel.GetChild(slot).GetChild(0).GetChild(2);
+        Text assignedKey = keyTextTransform.GetComponent<Text>();
+        assignedKey.text = desiredCharacter;
+    }
+
+    void SetPlayerItemBooleans()
+    {
+        if ((rangedWeapon != null) && (rangedWeapon.Name == "Staff"))
+            staffEquipped = true;
+        else
+            staffEquipped = false;
+
+        if ((equipment != null) && (equipment.Name == "Shield"))
+            shieldEquipped = true;
+        else
+            shieldEquipped = false;
     }
 
     void SetAnimatorVariables(Vector3 movementVector)
@@ -119,7 +153,7 @@ public class Player : MonoBehaviour
 			SetAnimatorVariables(movement);
             transform.position = transform.position + movement * Time.deltaTime;
             
-            // set melee hitbox direction
+            // set melee hitbox direction TODO fix to account for player sprite pivot!  Look at InvisibleSword to see
             float absX = Mathf.Abs(movement.x);
             float absY = Mathf.Abs(movement.y);
             if (absX > absY) // Player is moving more horz than vert
@@ -147,13 +181,68 @@ public class Player : MonoBehaviour
         }
     }
 
+    void AttemptChangeEquipment()
+    {
+        int keyPressed = 0;
+        if (Input.GetKeyDown(KeyCode.Alpha1) || (Input.GetKeyDown(KeyCode.Keypad1)))
+            keyPressed = 1;
+        if (Input.GetKeyDown(KeyCode.Alpha2) || (Input.GetKeyDown(KeyCode.Keypad2)))
+            keyPressed = 2;
+        if (Input.GetKeyDown(KeyCode.Alpha3) || (Input.GetKeyDown(KeyCode.Keypad3)))
+            keyPressed = 3;
+        if (Input.GetKeyDown(KeyCode.Alpha4) || (Input.GetKeyDown(KeyCode.Keypad4)))
+            keyPressed = 4;
+        if (Input.GetKeyDown(KeyCode.Alpha5) || (Input.GetKeyDown(KeyCode.Keypad5)))
+            keyPressed = 5;
+        if (Input.GetKeyDown(KeyCode.Alpha6) || (Input.GetKeyDown(KeyCode.Keypad6)))
+            keyPressed = 6;
+        if (Input.GetKeyDown(KeyCode.Alpha7) || (Input.GetKeyDown(KeyCode.Keypad7)))
+            keyPressed = 7;
+        if (Input.GetKeyDown(KeyCode.Alpha8) || (Input.GetKeyDown(KeyCode.Keypad8)))
+            keyPressed = 8;
+        if (Input.GetKeyDown(KeyCode.Alpha9) || (Input.GetKeyDown(KeyCode.Keypad9)))
+            keyPressed = 9;
+
+        // Early exit if no input
+        if (keyPressed == 0)
+            return;
+        Debug.Log("0");
+
+        // If the slot pressed has an item in it which is not already equipped, assert it becomes equipped and the has correct label.
+        InventoryItemBase itemFromSlotPressed = Inventory.GetItemFromSlot(keyPressed-1);
+        if ((itemFromSlotPressed != null) && (itemFromSlotPressed != meleeWeapon) && (itemFromSlotPressed != rangedWeapon) && (itemFromSlotPressed != equipment))
+        {
+            Debug.Log("1");
+            if (itemFromSlotPressed.ItemType == EItemType.Default) // Shield, etc.
+            {
+                // Reset the old equipment's label back to its numkey, which happens to be its slot (also must account for index start @ 0)
+                UpdateAssignedKeyText((equipment.Slot.Id), (equipment.Slot.Id+1).ToString());
+                // Replace the gameobject attached to the player with new equipment
+                equipment = itemFromSlotPressed;
+                UpdateAssignedKeyText(keyPressed-1, "L");
+            }
+            else if (itemFromSlotPressed.ItemType == EItemType.RangedWeapon) // Staff, etc.
+            {
+                Debug.Log("2");
+                if (rangedWeapon != null)
+                    UpdateAssignedKeyText((rangedWeapon.Slot.Id), (rangedWeapon.Slot.Id+1).ToString());
+                rangedWeapon = itemFromSlotPressed;
+                UpdateAssignedKeyText(keyPressed-1, "K");
+            }
+            // if (itemFromSlotPressed.ItemType == EItemType.MeleeWeapon) // Only sword, so will never be used.
+            SetPlayerItemBooleans();
+        } else if (itemFromSlotPressed == null) {
+            Debug.Log("[Empty: Inventory Slot #" + keyPressed + "]");
+        }
+    }
+
     void AttemptPlayerShield()
     {
 		if(!playercanmove){
 			return;
 		}
         if(Input.GetKey(KeyCode.L) && (attacking == false) && (firing == false)){
-            if (!HasShield)
+            if (!shieldEquipped)
             {
                 Debug.Log("Can't use shield yet, none have been found!");
                 return;
@@ -202,7 +291,7 @@ public class Player : MonoBehaviour
 		}
         if ((Input.GetKey(KeyCode.K)) && (attacking == false))
         {
-            if (!HasStaff)
+            if (!staffEquipped)
             {
                 Debug.Log("Can't use any ranged weapons yet, none have been found!");
                 return;
@@ -282,7 +371,6 @@ public class Player : MonoBehaviour
     }
 
     /* INVENTORY */
-    // TODO These functions only change the current item, but should be expanded to set the hotkey.
     private void Inventory_ItemRemoved(object sender, InventoryEventArgs e)
     {
         InventoryItemBase item = e.Item;

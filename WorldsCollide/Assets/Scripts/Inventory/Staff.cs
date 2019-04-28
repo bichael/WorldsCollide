@@ -13,6 +13,5 @@ public class Staff : InventoryItemBase
     public override void OnPickup()
     {
         base.OnPickup();
-        player.HasStaff = true;
     }
 }

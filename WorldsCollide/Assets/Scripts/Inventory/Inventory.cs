@@ -21,6 +21,11 @@ public class Inventory : MonoBehaviour
         }
     }
 
+    public InventoryItemBase GetItemFromSlot(int slot)
+    {
+        return mSlots[slot].FirstItem;
+    }
+
     private InventorySlot FindStackableSlot(InventoryItemBase item)
     {
         foreach (InventorySlot slot in mSlots)
