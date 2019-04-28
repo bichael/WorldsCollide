@@ -175,7 +175,7 @@ public class Player : MonoBehaviour
 		if(!playercanmove){
 			return;
 		}
-        if ((Input.GetKey(KeyCode.J)) && (firing == false))
+        if ((Input.GetKey(KeyCode.Space)) && (firing == false))
         {
             // player can attack
             attacking = true;

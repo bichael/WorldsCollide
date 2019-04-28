@@ -97,7 +97,6 @@ public class PlayerHealth : MonoBehaviour
     {
         currentHealth += amount;
         AssertPlayerHealthEqualsHearts(false);
-        //col.gameObject.SetActive(false);
     }
 
     void Death()
@@ -138,6 +137,9 @@ public class PlayerHealth : MonoBehaviour
     {
         if ((currentHealth > 0) && (currentHealth < startingHealth)) // Can't heal if you're dead or if you're already at max health.
             if (col.gameObject.tag.Equals("HealthPickUp"))
-                Heal(1);
+                if (currentHealth < startingHealth){
+                    Heal(1);
+                    col.gameObject.SetActive(false);
+                }
     }
 }
