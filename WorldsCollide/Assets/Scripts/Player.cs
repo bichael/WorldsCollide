@@ -45,34 +45,40 @@ public class Player : MonoBehaviour
     void Update()
     {
         /* Movement */
-		if(!playercanmove){
+		if (!playercanmove)
 			return;
-		}
+
         UpdatePlayerAnimatorAndPosition();
 
-        /* Detect keys pressed that work every frame */
+
+        /* Detect key presses that work every frame */
         if (mInteractItem != null && Input.GetKeyDown(KeyCode.F))
-        {
             InteractWithItem();
-        }
+
         AttemptChangeEquipment();
+
 
         /* Detect key presses that are conditional based on a timer (Shield, Melee, Projectile) */
         if (timeBtwShield <= 0)
         {
-            if(blocking == true){
+            if (blocking == true)
+            {
                 animator.SetTrigger("ExitShielding");
                 blocking = false;
             }
             AttemptPlayerShield();
         } else
             timeBtwShield -= Time.deltaTime;
-        if (timeBtwAttack <= 0){ // If this checks for KeyCode.Space instead, it fails to register sometimes.
+            
+        if (timeBtwAttack <= 0) // If this checks for KeyCode.Space instead, it fails to register sometimes.
+        { 
             attacking = false;
             AttemptPlayerAttack();
         } else
             timeBtwAttack -= Time.deltaTime;
-        if (timeBtwProject <= 0){
+
+        if (timeBtwProject <= 0)
+        {
             firing = false;
             AttemptPlayerProjectile();
         } else
@@ -84,6 +90,7 @@ public class Player : MonoBehaviour
         int count = 0;
         Inventory.ItemUsed += Inventory_ItemUsed;
         Inventory.ItemRemoved += Inventory_ItemRemoved;
+
         if (meleeWeapon != null)
         {
             InventoryItemBase sword = meleeWeapon.GetComponent<InventoryItemBase>();
@@ -92,18 +99,21 @@ public class Player : MonoBehaviour
             UpdateAssignedKeyText(count++, "J");
             itemsEquipped.Add(sword);
         }
+
         if (rangedWeapon != null)
         {
             InventoryItemBase startRanged = rangedWeapon.GetComponent<InventoryItemBase>();
             UpdateAssignedKeyText(count++, "K");
             Inventory.AddItem(startRanged);
         }
+
         if (equipment != null)
         {
             InventoryItemBase startEquip = equipment.GetComponent<InventoryItemBase>();
             UpdateAssignedKeyText(count++, "L");
             Inventory.AddItem(startEquip);
         }
+
         SetPlayerItemBooleans();
     }
 
@@ -129,9 +139,9 @@ public class Player : MonoBehaviour
 
     void SetAnimatorVariables(Vector3 movementVector)
     {
-		if(!playercanmove){
+		if (!playercanmove)
 			return;
-		}
+        
         float horz = movementVector.x;
         float vert = movementVector.y;
         direction = Mathf.Atan2(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical")) / Mathf.PI;
@@ -147,36 +157,27 @@ public class Player : MonoBehaviour
         if (movement != Vector3.zero) // Avoid player always facing "0" direction when idle
         {
             
-			if(!playercanmove){
+			if (!playercanmove)
 				return;
-			}
+            
 			SetAnimatorVariables(movement);
             transform.position = transform.position + movement * Time.deltaTime;
             
-            // set melee hitbox direction TODO fix to account for player sprite pivot!  Look at InvisibleSword to see
+            // Set melee hitbox direction
             float absX = Mathf.Abs(movement.x);
             float absY = Mathf.Abs(movement.y);
             if (absX > absY) // Player is moving more horz than vert
             {
                 if (movement.x > 0) // Player is moving right
-                {
-                    attackPos.position = transform.position + (0.1f * Vector3.right); // Set weapon to be on the right of the player
-                } 
+                    attackPos.position = transform.position + (0.15f * Vector3.right) + (0.1f * Vector3.up);
                 else if (movement.x < 0)
-                {
-                    attackPos.position = transform.position + (0.1f * Vector3.left); // Set weapon to be on the left of the player
-                }
-            }
-            else // Player is moving more vert than horz
+                    attackPos.position = transform.position + (0.15f * Vector3.left) + (0.1f * Vector3.up);
+            } else // Player is moving more vert than horz
             {
                 if (movement.y > 0) 
-                {
-                    attackPos.position = transform.position + (0.1f * Vector3.up); // Set weapon above player
-                }
+                    attackPos.position = transform.position + (0.25f * Vector3.up);
                 else if (movement.y < 0)
-                {
-                    attackPos.position = transform.position + (0.1f * Vector3.down); 
-                }
+                    attackPos.position = transform.position; 
             }
         }
     }
@@ -206,26 +207,25 @@ public class Player : MonoBehaviour
         // Early exit if no input
         if (keyPressed == 0)
             return;
-        Debug.Log("0");
 
         // If the slot pressed has an item in it which is not already equipped, assert it becomes equipped and the has correct label.
         InventoryItemBase itemFromSlotPressed = Inventory.GetItemFromSlot(keyPressed-1);
         if ((itemFromSlotPressed != null) && (itemFromSlotPressed != meleeWeapon) && (itemFromSlotPressed != rangedWeapon) && (itemFromSlotPressed != equipment))
         {
-            Debug.Log("1");
             if (itemFromSlotPressed.ItemType == EItemType.Default) // Shield, etc.
             {
-                // Reset the old equipment's label back to its numkey, which happens to be its slot (also must account for index start @ 0)
-                UpdateAssignedKeyText((equipment.Slot.Id), (equipment.Slot.Id+1).ToString());
-                // Replace the gameobject attached to the player with new equipment
+                if (equipment != null)
+                    // Reset the old equipment's label back to its numkey, which happens to be its slot (also must account for index start @ 0)
+                    UpdateAssignedKeyText((equipment.Slot.Id), (equipment.Slot.Id+1).ToString());
+                
+                // Replace the gameobject attached to the player with the new equipment
                 equipment = itemFromSlotPressed;
                 UpdateAssignedKeyText(keyPressed-1, "L");
-            }
-            else if (itemFromSlotPressed.ItemType == EItemType.RangedWeapon) // Staff, etc.
+            } else if (itemFromSlotPressed.ItemType == EItemType.RangedWeapon) // Staff, etc.
             {
-                Debug.Log("2");
                 if (rangedWeapon != null)
                     UpdateAssignedKeyText((rangedWeapon.Slot.Id), (rangedWeapon.Slot.Id+1).ToString());
+                
                 rangedWeapon = itemFromSlotPressed;
                 UpdateAssignedKeyText(keyPressed-1, "K");
             }
@@ -238,10 +238,11 @@ public class Player : MonoBehaviour
 
     void AttemptPlayerShield()
     {
-		if(!playercanmove){
+		if (!playercanmove)
 			return;
-		}
-        if(Input.GetKey(KeyCode.L) && (attacking == false) && (firing == false)){
+
+        if (Input.GetKey(KeyCode.L) && (attacking == false) && (firing == false))
+        {
             if (!shieldEquipped)
             {
                 Debug.Log("Can't use shield yet, none have been found!");
@@ -261,17 +262,19 @@ public class Player : MonoBehaviour
 
     void AttemptPlayerAttack()
     {
-		if(!playercanmove){
+		if (!playercanmove)
 			return;
-		}
+
         if ((Input.GetKey(KeyCode.J)) && (firing == false))
         {
             // player can attack
             attacking = true;
-            if(blocking == true){
+            if (blocking == true)
+            {
                 animator.SetTrigger("ExitShielding");
                 blocking = false;
             }
+
             animator.SetTrigger("Attacking");
             Collider2D[] enemiesToDamage = Physics2D.OverlapCircleAll(attackPos.position, meleeRange, enemyLayer);
             Debug.Log("# enemies found in Player melee hitbox: " + enemiesToDamage.Length);
@@ -280,15 +283,15 @@ public class Player : MonoBehaviour
                 // damage enemy
                 enemiesToDamage[i].GetComponent<Enemy>().TakeDamage(meleeDamage);
             }
+
             timeBtwAttack = startTimeBtwAttack;
         }
     }
 
     void AttemptPlayerProjectile()
     {
-		if(!playercanmove){
+		if (!playercanmove)
 			return;
-		}
         if ((Input.GetKey(KeyCode.K)) && (attacking == false))
         {
             if (!staffEquipped)
@@ -296,11 +299,14 @@ public class Player : MonoBehaviour
                 Debug.Log("Can't use any ranged weapons yet, none have been found!");
                 return;
             }
+
             firing = true;
-            if(blocking == true){
+            if (blocking == true)
+            {
                 animator.SetTrigger("ExitShielding");
                 blocking = false;
             }
+
             animator.SetTrigger("CastingFireball");
 
             // Rotate bullet sprite to go with player direction
