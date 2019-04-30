@@ -13,6 +13,10 @@ public class Gary : MonoBehaviour
     public Slider healthBar;
     private GameObject player;
     private Animator anim;
+    AudioSource garyAudio;
+    AudioSource sfxAudio;
+    public AudioClip garyHurtClip;
+    public AudioClip garyAttackClip;
     public bool phase1;
     public bool phase2;
     private float speed;
@@ -22,6 +26,8 @@ public class Gary : MonoBehaviour
     {
         player = GameObject.FindGameObjectWithTag("Player");        
         anim = GetComponent<Animator>();
+        garyAudio = GetComponent<AudioSource>();
+        sfxAudio = GameObject.FindGameObjectWithTag("GameController").GetComponent<AudioSource>();
         phase1 = true;
         speed = bullet.GetComponent<ProjectileController>().speed;
     }
@@ -125,6 +131,8 @@ public class Gary : MonoBehaviour
             go.gameObject.GetComponent<ProjectileController>().SetProjectileVector("None");
             go.gameObject.GetComponent<Rigidbody2D>().velocity = target * speed;
         }
+        garyAudio.clip = garyAttackClip;
+        garyAudio.Play();
     }
 
     void OnTriggerEnter2D(Collider2D col)
@@ -139,6 +147,8 @@ public class Gary : MonoBehaviour
 
     void TakeDamage(int amount)
     {
+        sfxAudio.clip = garyHurtClip;
+        sfxAudio.Play();
         health -= amount;
     }
 }

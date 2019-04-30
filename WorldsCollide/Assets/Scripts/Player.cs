@@ -32,7 +32,14 @@ public class Player : MonoBehaviour
     public bool staffEquipped;
     public bool shieldEquipped;
     public Transform inventoryPanel;
-
+    AudioSource playerAudio;
+    public AudioClip fireballClip;
+    public AudioClip shotgunClip;
+    public AudioClip meleeClip;
+    public AudioClip shieldClip;
+    public AudioClip timeStopWatchClip;
+    public AudioClip nukaSodaClip;
+    
     private InventoryItemBase mCurrentItem = null;
     public Inventory Inventory;
     public HUD Hud;
@@ -40,6 +47,7 @@ public class Player : MonoBehaviour
 
     void Start()
     {
+        playerAudio = GetComponent<AudioSource>();
         SetPlayerStartingItems();
     }
 
@@ -257,16 +265,22 @@ public class Player : MonoBehaviour
                 if (equipment.GetComponent<Staff>().Name.Equals("Shield"))
                 {
                     animator.SetTrigger("Shielding");
+                    playerAudio.clip = shieldClip;
+                    playerAudio.Play();
                     blocking = true;
                 }
                 else if (equipment.GetComponent<Staff>().Name.Equals("Time Stop Watch"))
                 {
                     Debug.Log("Stop time!");
+                    playerAudio.clip = timeStopWatchClip;
+                    playerAudio.Play();
                     // 1. Freeze enemies, 2. add blue tint to screen (perhaps copy damageImage from PlayerHealth?)
                 }
                 else if (equipment.GetComponent<Staff>().Name.Equals("Nuka Soda"))
                 {
                     Debug.Log("Buff player!");
+                    playerAudio.clip = nukaSodaClip;
+                    playerAudio.Play();
                     // 1. Increase player movement speed, 2. Increase melee attack speed [3. Decrease cooldowns?]
                 }
             }
@@ -290,6 +304,8 @@ public class Player : MonoBehaviour
             }
 
             animator.SetTrigger("Attacking");
+            playerAudio.clip = meleeClip;
+            playerAudio.Play();
             Collider2D[] enemiesToDamage = Physics2D.OverlapCircleAll(attackPos.position, meleeRange, enemyLayer);
             Debug.Log("# enemies found in Player melee hitbox: " + enemiesToDamage.Length);
             for (int i=0; i < enemiesToDamage.Length; i++)
@@ -317,6 +333,8 @@ public class Player : MonoBehaviour
                 if (rangedWeapon.GetComponent<Staff>().Name.Equals("Staff"))
                 {
                     animator.SetTrigger("CastingFireball");
+                    playerAudio.clip = fireballClip;
+                    playerAudio.Play();
 
                     // Rotate bullet sprite to go with player direction
                     Quaternion fixedDirection = Quaternion.identity;
@@ -355,6 +373,8 @@ public class Player : MonoBehaviour
                 else if (rangedWeapon.GetComponent<Staff>().Name.Equals("Shotgun"))
                 {
                     animator.SetTrigger("ShotgunShot");
+                    playerAudio.clip = shotgunClip;
+                    playerAudio.Play();
                     for (int i=0; i<3; i++)
                     {
                         // Spawns bullet
