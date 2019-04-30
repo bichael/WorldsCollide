@@ -31,8 +31,9 @@ public class FurnitureDeflect : MonoBehaviour
             // Send colliding object on vector towards boss
             Vector3 target = gary.transform.position - col.gameObject.transform.position;
             // col.gameObject.transform.position = Vector2.MoveTowards(col.gameObject.transform.position, target, speed * Time.deltaTime);
-            col.gameObject.GetComponent<ProjectileController>().SetProjectileVector("None");
-            col.gameObject.GetComponent<Rigidbody2D>().velocity = target * speed;
+            ProjectileController pc = col.gameObject.GetComponent<ProjectileController>();
+            pc.SetProjectileVector("None");
+            col.gameObject.GetComponent<Rigidbody2D>().velocity = target * pc.speed;
             Destroy(gameObject); // Destroy furniture that reflected the projectile.
         }
     }

@@ -15,6 +15,7 @@ public class Gary : MonoBehaviour
     private Animator anim;
     public bool phase1;
     public bool phase2;
+    private float speed;
 
     // Start is called before the first frame update
     void Start()
@@ -22,6 +23,7 @@ public class Gary : MonoBehaviour
         player = GameObject.FindGameObjectWithTag("Player");        
         anim = GetComponent<Animator>();
         phase1 = true;
+        speed = bullet.GetComponent<ProjectileController>().speed;
     }
 
     // Update is called once per frame
@@ -49,21 +51,88 @@ public class Gary : MonoBehaviour
         Vector3 enemyPlayerDifferenceVector = transform.position - player.transform.position;
         float enemyPlayerAngle = (Mathf.Atan2(enemyPlayerDifferenceVector.y, enemyPlayerDifferenceVector.x) * Mathf.Rad2Deg) / 180;
         // Shoot projectile in 8 directions towards player.
+        enemyPlayerAngle = Mathf.Round(enemyPlayerAngle * 4) / 4; // Round to nearest 0.25
         // Rotate bullet sprite to go with enemy direction (facing player)
         Quaternion fixedDirection = Quaternion.identity;
         fixedDirection.eulerAngles = new Vector3(0, 0, 90 - (enemyPlayerAngle * 180)); // Multiply by 180 to convert to degrees.  Offset by 90 just cuz.
         Vector2 projectilePosition = transform.position;
-        projectilePosition.y -= 0.5f; // offset from Gary to avoid shooting from chest.  This makes upward shots fail, but those should never happen.
         Vector3 target = player.transform.position - transform.position;
-        GameObject go = (GameObject)Instantiate (bullet, projectilePosition, fixedDirection);
-        go.GetComponent<Rigidbody2D>().velocity = target;
+        if (enemyPlayerAngle == 0) // if facing left
+        {
+            projectilePosition.x -= 0.5f; // offset from player pivot (to avoid shooting from chest)
+            GameObject go = (GameObject)Instantiate (bullet, projectilePosition, fixedDirection);
+            // go.GetComponent<ProjectileController>().SetProjectileVector("Left");
+            go.gameObject.GetComponent<ProjectileController>().SetProjectileVector("None");
+            go.gameObject.GetComponent<Rigidbody2D>().velocity = target * speed;
+        }
+        else if (enemyPlayerAngle == -0.5f) // if facing up
+        {
+            projectilePosition.y += 0.5f;
+            GameObject go = (GameObject)Instantiate (bullet, projectilePosition, fixedDirection);
+            // go.GetComponent<ProjectileController>().SetProjectileVector("Up");
+            go.gameObject.GetComponent<ProjectileController>().SetProjectileVector("None");
+            go.gameObject.GetComponent<Rigidbody2D>().velocity = target * speed;
+        }
+        else if ((enemyPlayerAngle == 1) || (enemyPlayerAngle == -1)) // if facing right
+        {
+            projectilePosition.x += 0.5f;
+            GameObject go = (GameObject)Instantiate (bullet, projectilePosition, fixedDirection);
+            // go.GetComponent<ProjectileController>().SetProjectileVector("Right");
+            go.gameObject.GetComponent<ProjectileController>().SetProjectileVector("None");
+            go.gameObject.GetComponent<Rigidbody2D>().velocity = target * speed;
+        }
+        else if (enemyPlayerAngle == 0.5f) // if facing down
+        {
+            projectilePosition.y -= 0.5f;
+            GameObject go = (GameObject)Instantiate (bullet, projectilePosition, fixedDirection);
+            // go.GetComponent<ProjectileController>().SetProjectileVector("Down");
+            go.gameObject.GetComponent<ProjectileController>().SetProjectileVector("None");
+            go.gameObject.GetComponent<Rigidbody2D>().velocity = target * speed;
+        }
+        else if (enemyPlayerAngle == -0.25) // if facing up-left
+        {
+            projectilePosition.y += 0.5f;
+            projectilePosition.x -= 0.5f;
+            GameObject go = (GameObject)Instantiate (bullet, projectilePosition, fixedDirection);
+            // go.GetComponent<ProjectileController>().SetProjectileVector("UpLeft");
+            go.gameObject.GetComponent<ProjectileController>().SetProjectileVector("None");
+            go.gameObject.GetComponent<Rigidbody2D>().velocity = target * speed;
+        }
+        else if (enemyPlayerAngle == -0.75) // if facing up-right
+        {
+            projectilePosition.y += 0.5f;
+            projectilePosition.x += 0.5f;
+            GameObject go = (GameObject)Instantiate (bullet, projectilePosition, fixedDirection);
+            // go.GetComponent<ProjectileController>().SetProjectileVector("UpRight");
+            go.gameObject.GetComponent<ProjectileController>().SetProjectileVector("None");
+            go.gameObject.GetComponent<Rigidbody2D>().velocity = target * speed;
+        }
+        else if (enemyPlayerAngle == 0.75) // if facing down-right
+        {
+            projectilePosition.y -= 0.5f;
+            projectilePosition.x += 0.5f;
+            GameObject go = (GameObject)Instantiate (bullet, projectilePosition, fixedDirection);
+            // go.GetComponent<ProjectileController>().SetProjectileVector("DownRight");
+            go.gameObject.GetComponent<ProjectileController>().SetProjectileVector("None");
+            go.gameObject.GetComponent<Rigidbody2D>().velocity = target * speed;
+        }
+        else if (enemyPlayerAngle == 0.25)// if facing down-left
+        {
+            projectilePosition.y -= 0.5f;
+            projectilePosition.x -= 0.5f;
+            GameObject go = (GameObject)Instantiate (bullet, projectilePosition, fixedDirection);
+            // go.GetComponent<ProjectileController>().SetProjectileVector("DownLeft");
+            go.gameObject.GetComponent<ProjectileController>().SetProjectileVector("None");
+            go.gameObject.GetComponent<Rigidbody2D>().velocity = target * speed;
+        }
     }
 
     void OnTriggerEnter2D(Collider2D col)
     {
         if (col.gameObject.tag.Equals("EnemyProjectile"))
         {
-            TakeDamage(col.gameObject.GetComponent<ProjectileController>().damage);
+            // TakeDamage(col.gameObject.GetComponent<ProjectileController>().damage);
+            TakeDamage(1);
             Destroy(col.gameObject);
         }
     }

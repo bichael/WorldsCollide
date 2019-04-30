@@ -16,10 +16,10 @@ MonoBehaviour:
   sceneChangeFadeColor: {r: 0, g: 0, b: 0, a: 1}
   nextSceneIndex: 1
   mainMenuMusicLoop: {fileID: 8300000, guid: f610d01e2887dba48970d7b63f71c88a, type: 3}
-  musicLoopToChangeTo: {fileID: 8300000, guid: c305b31abdd49a94fa2f8a34897d88b8, type: 3}
-  fantasyOverworldMusic: {fileID: 8300000, guid: 4abf92c6db5932a42bd6d4f3c794430a,
+  musicLoopToChangeTo: {fileID: 8300000, guid: bd22b995341df3e4aaf0785b48196495, type: 3}
+  fantasyOverworldMusic: {fileID: 8300000, guid: c305b31abdd49a94fa2f8a34897d88b8,
     type: 3}
-  fantasyDungeonMusic: {fileID: 8300000, guid: 920e867e48b3fe1469c06a1ec8b32a35, type: 3}
+  fantasyDungeonMusic: {fileID: 8300000, guid: 4abf92c6db5932a42bd6d4f3c794430a, type: 3}
   fantasyBossMusic: {fileID: 8300000, guid: 920e867e48b3fe1469c06a1ec8b32a35, type: 3}
   sciFiOverworldMusic: {fileID: 0}
   sciFiDungeonMusic: {fileID: 0}

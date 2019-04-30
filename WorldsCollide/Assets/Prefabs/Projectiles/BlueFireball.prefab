@@ -96,8 +96,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   damage: 2
-  speed: 0.01
-  range: 200
+  speed: 0.8
+  range: 100
   daze_mod: 0
 --- !u!95 &446638598
 Animator:

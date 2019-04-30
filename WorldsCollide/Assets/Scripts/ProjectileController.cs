@@ -25,6 +25,13 @@ public class ProjectileController : MonoBehaviour
         transform.position = position;
     }
 
+    void OnEnable() {
+        GameObject[] otherObjects = GameObject.FindGameObjectsWithTag("EnemyProjectile");
+        foreach (GameObject obj in otherObjects) {
+            Physics2D.IgnoreCollision(obj.GetComponent<Collider2D>(), GetComponent<Collider2D>()); 
+        }
+    }
+
     IEnumerator DestroyBullet()
     {
         yield return new WaitForSeconds(0.1f * range);
@@ -85,6 +92,17 @@ public class ProjectileController : MonoBehaviour
     {
         // Debug.Log("Collision detected IN NEW SCRIPT!");
         if (col.gameObject.tag.Equals("Player"))
+        {
             Destroy(gameObject);
+        } else if (col.gameObject.tag.Equals("EnemyProjectile"))
+        {
+            Debug.Log("EnemyProj hit a twin!");
+            Collider2D thisCollider = GetComponent<Collider2D>();
+            // Physics2D.IgnoreCollision(col.collider, GetComponent<Collider2D>()); // Why doesn't this work? :-(
+            // Physics2D.IgnoreCollision(col.collider, thisCollider); // Why doesn't this work? :-(
+            Physics2D.IgnoreCollision(thisCollider, col.collider); // Why doesn't this work? :-(
+            // Destroy(gameObject);
+            // Destroy(col.gameObject);
+        }
     }
 }
