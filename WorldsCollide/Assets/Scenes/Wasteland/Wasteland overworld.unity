@@ -224,6 +224,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: HUD
       objectReference: {fileID: 0}
+    - target: {fileID: 114894058241734744, guid: f007437e236d93f4d8b04ca4db15347f,
+        type: 3}
+      propertyPath: Inventory
+      value: 
+      objectReference: {fileID: 111291751}
     - target: {fileID: 224284725806146870, guid: f007437e236d93f4d8b04ca4db15347f,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -509,6 +514,51 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 114383409550698460, guid: f007437e236d93f4d8b04ca4db15347f,
+        type: 3}
+      propertyPath: _Inventory
+      value: 
+      objectReference: {fileID: 111291751}
+    - target: {fileID: 114406568901179578, guid: f007437e236d93f4d8b04ca4db15347f,
+        type: 3}
+      propertyPath: _Inventory
+      value: 
+      objectReference: {fileID: 111291751}
+    - target: {fileID: 114198753817453330, guid: f007437e236d93f4d8b04ca4db15347f,
+        type: 3}
+      propertyPath: _Inventory
+      value: 
+      objectReference: {fileID: 111291751}
+    - target: {fileID: 114679645002379328, guid: f007437e236d93f4d8b04ca4db15347f,
+        type: 3}
+      propertyPath: _Inventory
+      value: 
+      objectReference: {fileID: 111291751}
+    - target: {fileID: 114263109607535538, guid: f007437e236d93f4d8b04ca4db15347f,
+        type: 3}
+      propertyPath: _Inventory
+      value: 
+      objectReference: {fileID: 111291751}
+    - target: {fileID: 114402188283451614, guid: f007437e236d93f4d8b04ca4db15347f,
+        type: 3}
+      propertyPath: _Inventory
+      value: 
+      objectReference: {fileID: 111291751}
+    - target: {fileID: 114474564126365230, guid: f007437e236d93f4d8b04ca4db15347f,
+        type: 3}
+      propertyPath: _Inventory
+      value: 
+      objectReference: {fileID: 111291751}
+    - target: {fileID: 114373852797624290, guid: f007437e236d93f4d8b04ca4db15347f,
+        type: 3}
+      propertyPath: _Inventory
+      value: 
+      objectReference: {fileID: 111291751}
+    - target: {fileID: 114308647195076488, guid: f007437e236d93f4d8b04ca4db15347f,
+        type: 3}
+      propertyPath: _Inventory
+      value: 
+      objectReference: {fileID: 111291751}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f007437e236d93f4d8b04ca4db15347f, type: 3}
 --- !u!114 &809246991 stripped

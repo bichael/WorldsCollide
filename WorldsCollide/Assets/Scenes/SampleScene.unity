@@ -437,11 +437,6 @@ PrefabInstance:
       propertyPath: damageImage
       value: 
       objectReference: {fileID: 1171303584}
-    - target: {fileID: 5703356202206725901, guid: 38a92168c1d9678459a1c820fb1e6b12,
-        type: 3}
-      propertyPath: m_Enabled
-      value: 0
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 38a92168c1d9678459a1c820fb1e6b12, type: 3}
 --- !u!4 &865744495 stripped

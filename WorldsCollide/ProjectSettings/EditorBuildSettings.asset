@@ -27,7 +27,7 @@ EditorBuildSettings:
     path: Assets/Scenes/Scifi/Scifi Dungeon.unity
     guid: ce91f74bd0cf437428493547183adaeb
   - enabled: 1
-    path: Assets/Scenes/Fantasy/Fantasy overworld.unity
+    path: Assets/Scenes/Fantasy/OLD_Fantasy overworld.unity
     guid: 5a7e82d8524cef14d9a2b9c7f89fea25
   - enabled: 0
     path: 
