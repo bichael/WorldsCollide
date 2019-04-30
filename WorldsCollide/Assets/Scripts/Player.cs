@@ -13,8 +13,8 @@ public class Player : MonoBehaviour
     public float startTimeBtwAttack;
     private float timeBtwProject;
     public float startTimeBtwProject;
-    public float timeBtwShield;
-    public float startTimeBtwShield;
+    public float timeBtwEquipment;
+    public float startTimeBtwEquipment;
     public Transform attackPos;
     public LayerMask enemyLayer;
     public float meleeRange;
@@ -61,16 +61,16 @@ public class Player : MonoBehaviour
 
 
         /* Detect key presses that are conditional based on a timer (Shield, Melee, Projectile) */
-        if (timeBtwShield <= 0)
+        if (timeBtwEquipment <= 0)
         {
             if (blocking == true)
             {
                 animator.SetTrigger("ExitShielding");
                 blocking = false;
             }
-            AttemptPlayerShield();
+            AttemptPlayerEquipment();
         } else
-            timeBtwShield -= Time.deltaTime;
+            timeBtwEquipment -= Time.deltaTime;
             
         if (timeBtwAttack <= 0) // If this checks for KeyCode.Space instead, it fails to register sometimes.
         { 
@@ -241,28 +241,37 @@ public class Player : MonoBehaviour
         }
     }
 
-    void AttemptPlayerShield()
+    void AttemptPlayerEquipment()
     {
 		if (!playercanmove)
 			return;
 
         if (Input.GetKey(KeyCode.L) && (attacking == false) && (firing == false))
         {
-            if (!shieldEquipped)
+            if (equipment == null)
             {
-                Debug.Log("Can't use shield yet, none have been found!");
+                Debug.Log("Can't use equipment yet, none have been found!");
                 return;
+            } else
+            {
+                if (equipment.GetComponent<Staff>().Name.Equals("Shield"))
+                {
+                    animator.SetTrigger("Shielding");
+                    blocking = true;
+                }
+                else if (equipment.GetComponent<Staff>().Name.Equals("Time Stop Watch"))
+                {
+                    Debug.Log("Stop time!");
+                    // 1. Freeze enemies, 2. add blue tint to screen (perhaps copy damageImage from PlayerHealth?)
+                }
+                else if (equipment.GetComponent<Staff>().Name.Equals("Nuka Soda"))
+                {
+                    Debug.Log("Buff player!");
+                    // 1. Increase player movement speed, 2. Increase melee attack speed [3. Decrease cooldowns?]
+                }
             }
-            animator.SetTrigger("Shielding");
-            blocking = true;
-            timeBtwShield = startTimeBtwShield;
+            timeBtwEquipment = startTimeBtwEquipment;
         }
-        /*
-        if(Input.GetKeyUp(KeyCode.X)){
-            blocking = false;
-        }
-        */
-
     }
 
     void AttemptPlayerAttack()
