@@ -34,7 +34,7 @@ public class ProjectileController : MonoBehaviour
 
     IEnumerator DestroyBullet()
     {
-        yield return new WaitForSeconds(0.1f * range);
+        yield return new WaitForSeconds(0.2f * range);
         Destroy (gameObject);
     }
 
@@ -85,24 +85,6 @@ public class ProjectileController : MonoBehaviour
         {
             xSpeed = 0;
             ySpeed = 0;
-        }
-    }
-
-    void OnCollisionEnter2D(Collision2D col)
-    {
-        // Debug.Log("Collision detected IN NEW SCRIPT!");
-        if (col.gameObject.tag.Equals("Player"))
-        {
-            Destroy(gameObject);
-        } else if (col.gameObject.tag.Equals("EnemyProjectile"))
-        {
-            Debug.Log("EnemyProj hit a twin!");
-            Collider2D thisCollider = GetComponent<Collider2D>();
-            // Physics2D.IgnoreCollision(col.collider, GetComponent<Collider2D>()); // Why doesn't this work? :-(
-            // Physics2D.IgnoreCollision(col.collider, thisCollider); // Why doesn't this work? :-(
-            Physics2D.IgnoreCollision(thisCollider, col.collider); // Why doesn't this work? :-(
-            // Destroy(gameObject);
-            // Destroy(col.gameObject);
         }
     }
 }

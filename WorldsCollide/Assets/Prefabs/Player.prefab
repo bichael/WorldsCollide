@@ -51,6 +51,57 @@ MonoBehaviour:
   PickRotation: {x: 0, y: 0, z: 0}
   UseItemAfterPickup: 0
   player: {fileID: 0}
+--- !u!1 &4220801444352408980
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4030022892834532624}
+  - component: {fileID: 3769508739557887802}
+  m_Layer: 0
+  m_Name: GrenadeInventoryIcon
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 0
+--- !u!4 &4030022892834532624
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4220801444352408980}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 5703356203344524672}
+  m_RootOrder: 6
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &3769508739557887802
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4220801444352408980}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d6f76201b6b2cb243bc07acc8752bea7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Name: Holy Hand Grenade
+  Image: {fileID: 21300000, guid: 209c9cfeb11ae3e43b2c646f1bd666e0, type: 3}
+  InteractText: 
+  ItemType: 3
+  PickPosition: {x: 0, y: 0, z: 0}
+  PickRotation: {x: 0, y: 0, z: 0}
+  UseItemAfterPickup: 0
+  player: {fileID: 0}
 --- !u!1 &4346025706782264446
 GameObject:
   m_ObjectHideFlags: 0
@@ -221,6 +272,7 @@ Transform:
   - {fileID: 2014628205034820778}
   - {fileID: 4773970084415206617}
   - {fileID: 1453377067755989716}
+  - {fileID: 4030022892834532624}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -353,6 +405,7 @@ MonoBehaviour:
   meleeRange: 0.25
   meleeDamage: 3
   bullet: {fileID: 8365747353560420087, guid: 5a02c2b8e50bb244fbb86121f77eb053, type: 3}
+  grenade: {fileID: 0}
   meleeWeapon: {fileID: 1479374308}
   rangedWeapon: {fileID: 580377644579220333}
   equipment: {fileID: 3818824068414095452}

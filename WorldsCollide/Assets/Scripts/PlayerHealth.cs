@@ -129,20 +129,27 @@ public class PlayerHealth : MonoBehaviour
             }
     }
 
-    void OnCollisionEnter2D(Collision2D col)
-    {
-        if (currentHealth > 0) // Also known as "if not dead"
-            if (col.gameObject.tag.Equals("EnemyProjectile"))
-                TakeDamage(col.gameObject.GetComponent<ProjectileController>().damage);
-    }
+    // void OnCollisionEnter2D(Collision2D col)
+    // {
+    //     if (currentHealth > 0) // Also known as "if not dead"
+    //         if (col.gameObject.tag.Equals("EnemyProjectile"))
+    //             TakeDamage(col.gameObject.GetComponent<ProjectileController>().damage);
+    // }
 
     void OnTriggerEnter2D(Collider2D col)
     {
-        if ((currentHealth > 0) && (currentHealth < startingHealth)) // Can't heal if you're dead or if you're already at max health.
-            if (col.gameObject.tag.Equals("HealthPickUp"))
-                if (currentHealth < startingHealth){
+        if (currentHealth > 0) // Also known as "if not dead"
+        {
+            if (col.gameObject.tag.Equals("EnemyProjectile"))
+            {
+                TakeDamage(col.gameObject.GetComponent<ProjectileController>().damage);
+            } else if (col.gameObject.tag.Equals("HealthPickUp"))
+            {
+                if (currentHealth < startingHealth) {
                     Heal(1);
                     col.gameObject.SetActive(false);
                 }
+            }
+        }
     }
 }

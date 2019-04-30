@@ -20,6 +20,7 @@ public class Player : MonoBehaviour
     public float meleeRange;
     public int meleeDamage;
     public GameObject bullet;
+    public GameObject grenade;
     public InventoryItemBase meleeWeapon; // Should be Sword
     public InventoryItemBase rangedWeapon;
     public InventoryItemBase equipment;
@@ -297,10 +298,92 @@ public class Player : MonoBehaviour
 			return;
         if ((Input.GetKey(KeyCode.K)) && (attacking == false))
         {
-            if (!staffEquipped)
+            if (rangedWeapon == null)
             {
                 Debug.Log("Can't use any ranged weapons yet, none have been found!");
                 return;
+            } else 
+            {
+                if (rangedWeapon.GetComponent<Staff>().Name.Equals("Staff"))
+                {
+                    animator.SetTrigger("CastingFireball");
+
+                    // Rotate bullet sprite to go with player direction
+                    Quaternion fixedDirection = Quaternion.identity;
+                    fixedDirection.eulerAngles = new Vector3(0, 0, 180 - (direction * 180)); // Multiply by 180 to convert to degrees.
+                    Debug.Log("direction = " + direction);
+
+                    Vector2 projectilePosition = transform.position;
+                    float projectileAngle = Mathf.Round(direction * 2) / 2; // Round to nearest 0.5
+                    if (projectileAngle == -0.5f) // if facing left
+                    {
+                        projectilePosition.x -= 0.15f; // offset from player pivot (to avoid shooting from chest)
+                        projectilePosition.y += 0.15f; // offset from player feet pivot
+                        GameObject go = (GameObject)Instantiate (bullet, projectilePosition, fixedDirection);
+                        go.GetComponent<Rigidbody2D>().velocity = Vector2.left;
+                        // go.GetComponent<ProjectileController>().SetProjectileVector("Left");
+                    }
+                    else if (projectileAngle == 0) // if facing up
+                    {
+                        projectilePosition.y += 0.15f;
+                        GameObject go = (GameObject)Instantiate (bullet, projectilePosition, fixedDirection);
+                        go.GetComponent<Rigidbody2D>().velocity = Vector2.up;
+                        // go.GetComponent<ProjectileController>().SetProjectileVector("Up");
+                    }
+                    else if (projectileAngle == 0.5f) // if facing right
+                    {
+                        projectilePosition.x += 0.15f;
+                        projectilePosition.y += 0.15f;
+                        GameObject go = (GameObject)Instantiate (bullet, projectilePosition, fixedDirection);
+                        go.GetComponent<Rigidbody2D>().velocity = Vector2.right;
+                        // go.GetComponent<ProjectileController>().SetProjectileVector("Right");
+                        
+                    }
+                    else if ((projectileAngle == 1) || (projectileAngle == -1)) // if facing down
+                    {
+                        projectilePosition.y -= 0.15f;
+                        GameObject go = (GameObject)Instantiate (bullet, projectilePosition, fixedDirection);
+                        go.GetComponent<Rigidbody2D>().velocity = Vector2.down;
+                        // go.GetComponent<ProjectileController>().SetProjectileVector("Down");
+                    }
+                }
+                if (rangedWeapon.GetComponent<Staff>().Name.Equals("Holy Hand Grenade"))
+                {
+                    // Rotate grenade sprite to go with player direction
+                    Quaternion fixedDirection = Quaternion.identity;
+                    fixedDirection.eulerAngles = new Vector3(0, 0, 180 - (direction * 180)); // Multiply by 180 to convert to degrees.
+                    Debug.Log("direction = " + direction);
+
+                    Vector2 projectilePosition = transform.position;
+                    float projectileAngle = Mathf.Round(direction * 2) / 2; // Round to nearest 0.5
+                    if (projectileAngle == -0.5f) // if facing left
+                    {
+                        projectilePosition.x -= 0.15f; // offset from player pivot (to avoid shooting from chest)
+                        projectilePosition.y += 0.15f; // offset from player feet pivot
+                        GameObject go = (GameObject)Instantiate (grenade, projectilePosition, fixedDirection);
+                        go.GetComponent<Rigidbody2D>().velocity = Vector2.left;
+                    }
+                    else if (projectileAngle == 0) // if facing up
+                    {
+                        projectilePosition.y += 0.15f;
+                        GameObject go = (GameObject)Instantiate (grenade, projectilePosition, fixedDirection);
+                        go.GetComponent<Rigidbody2D>().velocity = Vector2.up;
+                    }
+                    else if (projectileAngle == 0.5f) // if facing right
+                    {
+                        projectilePosition.x += 0.15f;
+                        projectilePosition.y += 0.15f;
+                        GameObject go = (GameObject)Instantiate (grenade, projectilePosition, fixedDirection);
+                        go.GetComponent<Rigidbody2D>().velocity = Vector2.right;
+                        
+                    }
+                    else if ((projectileAngle == 1) || (projectileAngle == -1)) // if facing down
+                    {
+                        projectilePosition.y -= 0.15f;
+                        GameObject go = (GameObject)Instantiate (grenade, projectilePosition, fixedDirection);
+                        go.GetComponent<Rigidbody2D>().velocity = Vector2.down;
+                    }
+                }
             }
 
             firing = true;
@@ -309,72 +392,7 @@ public class Player : MonoBehaviour
                 animator.SetTrigger("ExitShielding");
                 blocking = false;
             }
-
-            animator.SetTrigger("CastingFireball");
-
-            // Rotate bullet sprite to go with player direction
-            Quaternion fixedDirection = Quaternion.identity;
-            fixedDirection.eulerAngles = new Vector3(0, 0, 180 - (direction * 180)); // Multiply by 180 to convert to degrees.
-            Debug.Log("direction = " + direction);
-
-            Vector2 projectilePosition = transform.position;
-            float projectileAngle = Mathf.Round(direction * 2) / 2; // Round to nearest 0.5
-            if (projectileAngle == -0.5f) // if facing left
-            {
-                projectilePosition.x -= 0.15f; // offset from player pivot (to avoid shooting from chest)
-                projectilePosition.y += 0.15f; // offset from player feet pivot
-                GameObject go = (GameObject)Instantiate (bullet, projectilePosition, fixedDirection);
-                go.GetComponent<ProjectileController>().SetProjectileVector("Left");
-            }
-            else if (projectileAngle == 0) // if facing up
-            {
-                projectilePosition.y += 0.15f;
-                GameObject go = (GameObject)Instantiate (bullet, projectilePosition, fixedDirection);
-                go.GetComponent<ProjectileController>().SetProjectileVector("Up");
-            }
-            else if (projectileAngle == 0.5f) // if facing right
-            {
-                projectilePosition.x += 0.15f;
-                projectilePosition.y += 0.15f;
-                GameObject go = (GameObject)Instantiate (bullet, projectilePosition, fixedDirection);
-                go.GetComponent<ProjectileController>().SetProjectileVector("Right");
-                
-            }
-            else if ((projectileAngle == 1) || (projectileAngle == -1)) // if facing down
-            {
-                projectilePosition.y -= 0.15f;
-                GameObject go = (GameObject)Instantiate (bullet, projectilePosition, fixedDirection);
-                go.GetComponent<ProjectileController>().SetProjectileVector("Down");
-            }
-            // We don't want the player to shoot diagonally.
-            // else if (projectileAngle == -0.25) // if facing up-left
-            // {
-            //     projectilePosition.y += 0.15f;
-            //     projectilePosition.x -= 0.15f;
-            //     GameObject go = (GameObject)Instantiate (bullet, projectilePosition, fixedDirection);
-            //     go.GetComponent<ProjectileController>().SetProjectileVector("UpLeft");
-            // }
-            // else if (projectileAngle == 0.25) // if facing up-right
-            // {
-            //     projectilePosition.y += 0.15f;
-            //     projectilePosition.x += 0.15f;
-            //     GameObject go = (GameObject)Instantiate (bullet, projectilePosition, fixedDirection);
-            //     go.GetComponent<ProjectileController>().SetProjectileVector("UpRight");
-            // }
-            // else if (projectileAngle == 0.75) // if facing down-right
-            // {
-            //     projectilePosition.y -= 0.15f;
-            //     projectilePosition.x += 0.15f;
-            //     GameObject go = (GameObject)Instantiate (bullet, projectilePosition, fixedDirection);
-            //     go.GetComponent<ProjectileController>().SetProjectileVector("DownRight");
-            // }
-            // else if (projectileAngle == -0.75f) // if facing down-left
-            // {
-            //     projectilePosition.y -= 0.15f;
-            //     projectilePosition.x -= 0.15f;
-            //     GameObject go = (GameObject)Instantiate (bullet, projectilePosition, fixedDirection);
-            //     go.GetComponent<ProjectileController>().SetProjectileVector("DownLeft");
-            // }
+            
             timeBtwProject = startTimeBtwProject;
         }
     }

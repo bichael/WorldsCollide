@@ -96,7 +96,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   damage: 1
   speed: 0.05
-  range: 0
+  range: 20
   daze_mod: 0
 --- !u!50 &446638599
 Rigidbody2D:
@@ -129,7 +129,7 @@ BoxCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0.005, y: 0.01}
