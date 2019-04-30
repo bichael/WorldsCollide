@@ -74,6 +74,17 @@ public class ProjectileController : MonoBehaviour
         {
             xSpeed = speed;
             ySpeed = -speed;
+        } else if (direction == "None")
+        {
+            xSpeed = 0;
+            ySpeed = 0;
         }
+    }
+
+    void OnCollisionEnter2D(Collision2D col)
+    {
+        // Debug.Log("Collision detected IN NEW SCRIPT!");
+        if (col.gameObject.tag.Equals("Player"))
+            Destroy(gameObject);
     }
 }
