@@ -18,21 +18,16 @@ public class SaveLoad : MonoBehaviour
 		//FileStream stream = new FileStream (path, FileMode.Create);
 
 		PlayerData data = new PlayerData ();
-		/*data.MaxHealth=GameController.control.MaxHealth ;
-		data.CurrentHealth=GameController.control.CurrentHealth;
-		data.RedWeapon=GameController.control.RedWeapon ;
-		data.BlueWeapon=GameController.control.BlueWeapon ;
-		data.GreenWeapon=GameController.control.GreenWeapon;
-		data.YellowWeapon=GameController.control.YellowWeapon ;
-		data.healthupgrade1=GameController.control.healthupgrade1 ;
-		data.healthupgrade2=GameController.control.healthupgrade2 ;
-		data.healthupgrade3=GameController.control.healthupgrade3 ;
-		data.healthupgrade4=GameController.control.healthupgrade4 ;
-		data.healthupgrade5=GameController.control.healthupgrade5;
-		data.healthupgrade6=GameController.control.healthupgrade6;
-		data.healthupgrade7= GameController.control.healthupgrade7;
-		data.healthupgrade8= GameController.control.healthupgrade8 ;
-		data.whichsave = GameController.control.whichsave;*/
+		data.keys = GameController.control.keys;
+		data.blueactive = GameController.control.blueactive;
+		data.redactive = GameController.control.redactive;
+		data.grenade = GameController.control.grenade;
+		data.staff = GameController.control.staff;
+		data.watch = GameController.control.watch;
+		data.cola = GameController.control.cola;
+		data.fantasydone = GameController.control.fantasydone;
+		data.scifidone = GameController.control.scifidone;
+		data.wastelanddone = GameController.control.wastelanddone;
 		formatter.Serialize (path, data);
 		path.Close ();
 	}
@@ -45,59 +40,21 @@ public class SaveLoad : MonoBehaviour
 			FileStream file = File.Open (Application.persistentDataPath + "/player.boi", FileMode.Open);
 			PlayerData data = (PlayerData)formatter.Deserialize (file);
 			file.Close ();
-			/*if (data.CurrentHealth == '0') {
-				data.CurrentHealth = data.MaxHealth;
-			}*/
-			/*GameController.control.MaxHealth = data.MaxHealth;
-			GameController.control.CurrentHealth = 100;
-			GameController.control.RedWeapon = data.RedWeapon;
-			GameController.control.BlueWeapon = data.BlueWeapon;
-			GameController.control.GreenWeapon = data.GreenWeapon;
-			GameController.control.YellowWeapon = data.YellowWeapon;
-			GameController.control.healthupgrade1 = data.healthupgrade1;
-			GameController.control.healthupgrade2 = data.healthupgrade2;
-			GameController.control.healthupgrade3 = data.healthupgrade3;
-			GameController.control.healthupgrade4 = data.healthupgrade4;
-			GameController.control.healthupgrade5 = data.healthupgrade5;
-			GameController.control.healthupgrade6 = data.healthupgrade6;
-			GameController.control.healthupgrade7 = data.healthupgrade7;
-			GameController.control.healthupgrade8 = data.healthupgrade8;
-			GameController.control.whichsave = data.whichsave;
-			if (GameController.control.whichsave == "entrance") {
-				Application.LoadLevel (5);
+			GameController.control.keys = GameController.control.keys;
+			GameController.control.blueactive = data.blueactive;
+			GameController.control.redactive = data.redactive;
+			GameController.control.grenade = data.grenade;
+			GameController.control.staff = data.staff;
+			GameController.control.watch = data.watch;
+			GameController.control.cola = data.cola;
+			GameController.control.fantasydone = data.fantasydone;
+			GameController.control.scifidone = data.scifidone;
+			GameController.control.wastelanddone = data.wastelanddone;
 
-			}
-			if (GameController.control.whichsave == "red") {
-				Application.LoadLevel (12);
-
-			}
-			if (GameController.control.whichsave == "blue") {
-				Application.LoadLevel (3);
-
-			}
-			if (GameController.control.whichsave == "green") {
-				Application.LoadLevel (8);
-
-			}*/
 
 
 		} else {
-			/*GameController.control.MaxHealth = 100;
-			GameController.control.CurrentHealth = 100;
-			GameController.control.RedWeapon = true;
-			GameController.control.BlueWeapon =false;
-			GameController.control.GreenWeapon = false;
-			GameController.control.YellowWeapon = false;
-			GameController.control.healthupgrade1 = false;
-			GameController.control.healthupgrade2 =false;
-			GameController.control.healthupgrade3 = false;
-			GameController.control.healthupgrade4 = false;
-			GameController.control.healthupgrade5 = false;
-			GameController.control.healthupgrade6 =false;
-			GameController.control.healthupgrade7 = false;
-			GameController.control.healthupgrade8 = false;
-			GameController.control.whichsave = "entrance";*/
-			Application.LoadLevel (5);
+			//Application.LoadLevel (5);
 		}
 
 
@@ -107,20 +64,15 @@ public class SaveLoad : MonoBehaviour
 
 [System.Serializable]
 class PlayerData{
-	/*public int MaxHealth;
-	public  int CurrentHealth;
-	public  bool RedWeapon;
-	public  bool BlueWeapon;
-	public  bool GreenWeapon;
-	public  bool YellowWeapon;
-	public  bool healthupgrade1;
-	public  bool healthupgrade2;
-	public  bool healthupgrade3;
-	public  bool healthupgrade4;
-	public  bool healthupgrade5;
-	public  bool healthupgrade6;
-	public  bool healthupgrade7;
-	public  bool healthupgrade8;
-	public string whichsave;*/
+	public int keys;
+	public bool blueactive;
+	public bool redactive;
+	public bool grenade;
+	public bool staff;
+	public bool watch;
+	public bool cola;
+	public bool fantasydone;
+	public bool scifidone;
+	public bool wastelanddone;
 }
 

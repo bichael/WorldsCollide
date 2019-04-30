@@ -9,6 +9,13 @@ public class GameController : MonoBehaviour
 	public int keys = 0;
 	public bool blueactive;
 	public bool redactive;
+	public bool grenade = false;
+	public bool staff = false;
+	public bool watch = false;
+	public bool cola = false;
+	public bool fantasydone = false;
+	public bool scifidone = false;
+	public bool wastelanddone = false;
 
 	public Red redscript;
 	public Blue bluescript;

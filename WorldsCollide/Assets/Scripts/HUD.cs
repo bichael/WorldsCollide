@@ -6,7 +6,7 @@ using UnityEngine.UI;
 public class HUD : MonoBehaviour {
 
     public Inventory Inventory;
-
+	public GameObject SavePanel;
     public GameObject MessagePanel;
 
 	// Use this for initialization
@@ -137,4 +137,14 @@ public class HUD : MonoBehaviour {
 
         mIsMessagePanelOpened = false;
     }
+
+	public void OpenSavePanel(){
+		SavePanel.SetActive(true);
+
+	}
+
+	public void CloseSavePanel(){
+		SavePanel.SetActive(false);
+	}
+
 }
