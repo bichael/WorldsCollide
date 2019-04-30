@@ -153,6 +153,57 @@ MonoBehaviour:
   PickRotation: {x: 0, y: 0, z: 0}
   UseItemAfterPickup: 0
   player: {fileID: 0}
+--- !u!1 &4820947817990122175
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 797901447045353271}
+  - component: {fileID: 388855889479784286}
+  m_Layer: 0
+  m_Name: NukaSodaInventoryIcon
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 0
+--- !u!4 &797901447045353271
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4820947817990122175}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 5703356203344524672}
+  m_RootOrder: 9
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &388855889479784286
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4820947817990122175}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d6f76201b6b2cb243bc07acc8752bea7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Name: Nuka Soda
+  Image: {fileID: 21300000, guid: be3009b8a7b5d4e48bd4295c0731c219, type: 3}
+  InteractText: 
+  ItemType: 0
+  PickPosition: {x: 0, y: 0, z: 0}
+  PickRotation: {x: 0, y: 0, z: 0}
+  UseItemAfterPickup: 0
+  player: {fileID: 0}
 --- !u!1 &5703356202206725907
 GameObject:
   m_ObjectHideFlags: 0
@@ -273,6 +324,9 @@ Transform:
   - {fileID: 4773970084415206617}
   - {fileID: 1453377067755989716}
   - {fileID: 4030022892834532624}
+  - {fileID: 7364497507621706260}
+  - {fileID: 5429582370869725122}
+  - {fileID: 797901447045353271}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -396,8 +450,8 @@ MonoBehaviour:
   weapon: {fileID: 5703356202206725907}
   startTimeBtwAttack: 0.6
   startTimeBtwProject: 0.8
-  timeBtwShield: 0
-  startTimeBtwShield: 2
+  timeBtwEquipment: 0
+  startTimeBtwEquipment: 2
   attackPos: {fileID: 5703356202206725900}
   enemyLayer:
     serializedVersion: 2
@@ -405,10 +459,12 @@ MonoBehaviour:
   meleeRange: 0.25
   meleeDamage: 3
   bullet: {fileID: 8365747353560420087, guid: 5a02c2b8e50bb244fbb86121f77eb053, type: 3}
-  grenade: {fileID: 0}
+  shotgunPellet: {fileID: 8365747353560420087, guid: 4efd34cc1e3adc94e941065e6d82b86d,
+    type: 3}
+  grenade: {fileID: 5468873657229393453, guid: 4309f3e1c1133244c81d04ef3acca702, type: 3}
   meleeWeapon: {fileID: 1479374308}
-  rangedWeapon: {fileID: 580377644579220333}
-  equipment: {fileID: 3818824068414095452}
+  rangedWeapon: {fileID: 0}
+  equipment: {fileID: 0}
   blocking: 0
   attacking: 0
   playercanmove: 1
@@ -533,6 +589,57 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!1 &5716355974873132516
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 7364497507621706260}
+  - component: {fileID: 589437592373626674}
+  m_Layer: 0
+  m_Name: ShotgunInventoryIcon
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 0
+--- !u!4 &7364497507621706260
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5716355974873132516}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 5703356203344524672}
+  m_RootOrder: 7
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &589437592373626674
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5716355974873132516}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d6f76201b6b2cb243bc07acc8752bea7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Name: Shotgun
+  Image: {fileID: 21300000, guid: b4a85a3ec87e051418bff872bb1aa104, type: 3}
+  InteractText: 
+  ItemType: 3
+  PickPosition: {x: 0, y: 0, z: 0}
+  PickRotation: {x: 0, y: 0, z: 0}
+  UseItemAfterPickup: 0
+  player: {fileID: 0}
 --- !u!1 &7690515626145151289
 GameObject:
   m_ObjectHideFlags: 0
@@ -680,6 +787,57 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 5703356203344524677}
+--- !u!1 &8328724801642786997
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 5429582370869725122}
+  - component: {fileID: 8159392399362312290}
+  m_Layer: 0
+  m_Name: WatchInventoryIcon
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 0
+--- !u!4 &5429582370869725122
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8328724801642786997}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 5703356203344524672}
+  m_RootOrder: 8
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &8159392399362312290
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8328724801642786997}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d6f76201b6b2cb243bc07acc8752bea7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Name: Time Stop Watch
+  Image: {fileID: 21300000, guid: 7f66c482d248bc34685b08c5fa39ca86, type: 3}
+  InteractText: 
+  ItemType: 0
+  PickPosition: {x: 0, y: 0, z: 0}
+  PickRotation: {x: 0, y: 0, z: 0}
+  UseItemAfterPickup: 0
+  player: {fileID: 0}
 --- !u!1001 &1873683675028246880
 PrefabInstance:
   m_ObjectHideFlags: 0

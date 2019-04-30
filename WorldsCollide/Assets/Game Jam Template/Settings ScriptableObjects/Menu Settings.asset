@@ -21,9 +21,11 @@ MonoBehaviour:
     type: 3}
   fantasyDungeonMusic: {fileID: 8300000, guid: 4abf92c6db5932a42bd6d4f3c794430a, type: 3}
   fantasyBossMusic: {fileID: 8300000, guid: 920e867e48b3fe1469c06a1ec8b32a35, type: 3}
-  sciFiOverworldMusic: {fileID: 0}
-  sciFiDungeonMusic: {fileID: 0}
-  sciFiBossMusic: {fileID: 0}
-  postApocOverworldMusic: {fileID: 0}
-  postApocDungeonMusic: {fileID: 0}
-  postApocBossMusic: {fileID: 0}
+  sciFiOverworldMusic: {fileID: 8300000, guid: 3e7fee8b22d0cf8489e38800bbd22e3c, type: 3}
+  sciFiDungeonMusic: {fileID: 8300000, guid: 25c26390023cb82439c55e8dc05eaa57, type: 3}
+  sciFiBossMusic: {fileID: 8300000, guid: 727c72744c77e8e47971ee82b4be090b, type: 3}
+  postApocOverworldMusic: {fileID: 8300000, guid: f610d01e2887dba48970d7b63f71c88a,
+    type: 3}
+  postApocDungeonMusic: {fileID: 8300000, guid: 4b06e6a11319bf3469cdf0348318c0a3,
+    type: 3}
+  postApocBossMusic: {fileID: 8300000, guid: 19b7a625cae129747a2d59339ad3707d, type: 3}
