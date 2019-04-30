@@ -14,6 +14,15 @@ public class MenuSettings : ScriptableObject
     [Header("Add your menu music here")]
     public AudioClip mainMenuMusicLoop;
     [Header("If you want to play new music after Start is pressed, add it here")]
-    public AudioClip musicLoopToChangeTo;
+    public AudioClip musicLoopToChangeTo; // Hub
+    public AudioClip fantasyOverworldMusic;
+    public AudioClip fantasyDungeonMusic;
+    public AudioClip fantasyBossMusic;
+    public AudioClip sciFiOverworldMusic;
+    public AudioClip sciFiDungeonMusic;
+    public AudioClip sciFiBossMusic;
+    public AudioClip postApocOverworldMusic;
+    public AudioClip postApocDungeonMusic;
+    public AudioClip postApocBossMusic;
 
 }
