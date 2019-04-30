@@ -2796,6 +2796,21 @@ PrefabInstance:
       propertyPath: m_Name
       value: TextBoxManager
       objectReference: {fileID: 0}
+    - target: {fileID: 8434226239177342768, guid: 094c763e402eaa14b9ca4e60eefe8c23,
+        type: 3}
+      propertyPath: textBox
+      value: 
+      objectReference: {fileID: 1891905018}
+    - target: {fileID: 8434226239177342768, guid: 094c763e402eaa14b9ca4e60eefe8c23,
+        type: 3}
+      propertyPath: theText
+      value: 
+      objectReference: {fileID: 1891905017}
+    - target: {fileID: 8434226239177342768, guid: 094c763e402eaa14b9ca4e60eefe8c23,
+        type: 3}
+      propertyPath: endAtLine
+      value: 50
+      objectReference: {fileID: 0}
     - target: {fileID: 8434226239177342767, guid: 094c763e402eaa14b9ca4e60eefe8c23,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -2850,21 +2865,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8434226239177342768, guid: 094c763e402eaa14b9ca4e60eefe8c23,
-        type: 3}
-      propertyPath: textBox
-      value: 
-      objectReference: {fileID: 1891905018}
-    - target: {fileID: 8434226239177342768, guid: 094c763e402eaa14b9ca4e60eefe8c23,
-        type: 3}
-      propertyPath: theText
-      value: 
-      objectReference: {fileID: 1891905017}
-    - target: {fileID: 8434226239177342768, guid: 094c763e402eaa14b9ca4e60eefe8c23,
-        type: 3}
-      propertyPath: endAtLine
-      value: 50
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 094c763e402eaa14b9ca4e60eefe8c23, type: 3}
@@ -122004,11 +122004,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: HUD
       objectReference: {fileID: 0}
-    - target: {fileID: 114894058241734744, guid: f007437e236d93f4d8b04ca4db15347f,
-        type: 3}
-      propertyPath: Inventory
-      value: 
-      objectReference: {fileID: 814791415}
     - target: {fileID: 224284725806146870, guid: f007437e236d93f4d8b04ca4db15347f,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -122294,6 +122289,11 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 114894058241734744, guid: f007437e236d93f4d8b04ca4db15347f,
+        type: 3}
+      propertyPath: Inventory
+      value: 
+      objectReference: {fileID: 814791415}
     - target: {fileID: 114383409550698460, guid: f007437e236d93f4d8b04ca4db15347f,
         type: 3}
       propertyPath: _Inventory
@@ -122380,6 +122380,12 @@ MonoBehaviour:
 --- !u!1 &1891905018 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 1110487696105504, guid: f007437e236d93f4d8b04ca4db15347f,
+    type: 3}
+  m_PrefabInstance: {fileID: 1891905014}
+  m_PrefabAsset: {fileID: 0}
+--- !u!224 &1891905019 stripped
+RectTransform:
+  m_CorrespondingSourceObject: {fileID: 224647040203447460, guid: f007437e236d93f4d8b04ca4db15347f,
     type: 3}
   m_PrefabInstance: {fileID: 1891905014}
   m_PrefabAsset: {fileID: 0}
@@ -122830,6 +122836,21 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
+    - target: {fileID: 5703356203344524683, guid: 38a92168c1d9678459a1c820fb1e6b12,
+        type: 3}
+      propertyPath: Inventory
+      value: 
+      objectReference: {fileID: 814791415}
+    - target: {fileID: 5703356203344524683, guid: 38a92168c1d9678459a1c820fb1e6b12,
+        type: 3}
+      propertyPath: Hud
+      value: 
+      objectReference: {fileID: 1891905015}
+    - target: {fileID: 5703356203344524683, guid: 38a92168c1d9678459a1c820fb1e6b12,
+        type: 3}
+      propertyPath: inventoryPanel
+      value: 
+      objectReference: {fileID: 1891905019}
     - target: {fileID: 5703356203344524672, guid: 38a92168c1d9678459a1c820fb1e6b12,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -122895,16 +122916,6 @@ PrefabInstance:
       propertyPath: startingHealth
       value: 5
       objectReference: {fileID: 0}
-    - target: {fileID: 5703356203344524683, guid: 38a92168c1d9678459a1c820fb1e6b12,
-        type: 3}
-      propertyPath: Inventory
-      value: 
-      objectReference: {fileID: 814791415}
-    - target: {fileID: 5703356203344524683, guid: 38a92168c1d9678459a1c820fb1e6b12,
-        type: 3}
-      propertyPath: Hud
-      value: 
-      objectReference: {fileID: 1891905015}
     - target: {fileID: 5703356203344524678, guid: 38a92168c1d9678459a1c820fb1e6b12,
         type: 3}
       propertyPath: m_Offset.y

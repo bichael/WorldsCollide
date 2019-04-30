@@ -13,9 +13,10 @@ GameObject:
   - component: {fileID: 8203074540897511910}
   - component: {fileID: 7567512827006473479}
   - component: {fileID: 1882607483342340392}
+  - component: {fileID: 1246326309}
   m_Layer: 10
   m_Name: Gary
-  m_TagString: Untagged
+  m_TagString: Gary
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -138,3 +139,21 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &1246326309
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1882607483342340399}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 95d186fc6adacde40822010cad51d3d8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  health: 10
+  damage: 0
+  bullet: {fileID: 8365747353560420087, guid: d482c31b6f5a0fe4f8dc83ebaa2f0598, type: 3}
+  healthBar: {fileID: 0}
+  phase1: 1
+  phase2: 0

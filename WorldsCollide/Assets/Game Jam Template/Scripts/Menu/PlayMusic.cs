@@ -34,10 +34,55 @@ public class PlayMusic : MonoBehaviour {
 			case 0:
 				musicSource.clip = menuSettings.mainMenuMusicLoop;
 				break;
-			//If scene index is 1 (usually main scene) assign the clip mainMusic to musicSource
+			//If scene index is 1 (usually main scene) assign the clip mainMusic to musicSource [HUB]
 			case 1:
                 Debug.Log("Scene index is 1, setting music to " + menuSettings.musicLoopToChangeTo);
 				musicSource.clip = menuSettings.musicLoopToChangeTo;
+				break;
+			//If scene index is 2, it is the first world's overworld. (Fantasy)
+			case 2:
+                Debug.Log("Scene index is 2, setting music to " + menuSettings.fantasyOverworldMusic);
+				musicSource.clip = menuSettings.fantasyOverworldMusic;
+				break;
+			//If scene index is 3, it is the first world's dungeon.
+			case 3:
+                Debug.Log("Scene index is 3, setting music to " + menuSettings.fantasyDungeonMusic);
+				musicSource.clip = menuSettings.fantasyDungeonMusic;
+				break;
+			//If scene index is 4, it is the first world's boss.
+			case 4:
+                Debug.Log("Scene index is 4, setting music to " + menuSettings.fantasyBossMusic);
+				musicSource.clip = menuSettings.fantasyBossMusic;
+				break;
+			//If scene index is 5, it is the second world's overworld. (Sci-Fi)
+			case 5:
+                Debug.Log("Scene index is 5, setting music to " + menuSettings.sciFiOverworldMusic);
+				musicSource.clip = menuSettings.sciFiOverworldMusic;
+				break;
+			//If scene index is 6, it is the second world's dungeon.
+			case 6:
+                Debug.Log("Scene index is 6, setting music to " + menuSettings.sciFiDungeonMusic);
+				musicSource.clip = menuSettings.sciFiDungeonMusic;
+				break;
+			//If scene index is 7, it is the second world's boss.
+			case 7:
+                Debug.Log("Scene index is 7, setting music to " + menuSettings.sciFiBossMusic);
+				musicSource.clip = menuSettings.sciFiBossMusic;
+				break;
+			//If scene index is 8, it is the third world's overworld. (Post-Apocalyptic)
+			case 8:
+                Debug.Log("Scene index is 8, setting music to " + menuSettings.postApocOverworldMusic);
+				musicSource.clip = menuSettings.postApocOverworldMusic;
+				break;
+			//If scene index is 9, it is the third world's dungeon.
+			case 9:
+                Debug.Log("Scene index is 9, setting music to " + menuSettings.postApocDungeonMusic);
+				musicSource.clip = menuSettings.postApocDungeonMusic;
+				break;
+			//If scene index is 10, it is the third world's boss.
+			case 10:
+                Debug.Log("Scene index is 10, setting music to " + menuSettings.postApocBossMusic);
+				musicSource.clip = menuSettings.postApocBossMusic;
 				break;
 
 		}

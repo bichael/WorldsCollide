@@ -88,33 +88,36 @@ public class Player : MonoBehaviour
     void SetPlayerStartingItems()
     {
         int count = 0;
-        Inventory.ItemUsed += Inventory_ItemUsed;
-        Inventory.ItemRemoved += Inventory_ItemRemoved;
-
-        if (meleeWeapon != null)
+        if (Inventory != null)
         {
-            InventoryItemBase sword = meleeWeapon.GetComponent<InventoryItemBase>();
-            Inventory.AddItem(sword);
-            // Update GUI label and add to existing list to minimize iteration on HUD slots later
-            UpdateAssignedKeyText(count++, "J");
-            itemsEquipped.Add(sword);
-        }
+            Inventory.ItemUsed += Inventory_ItemUsed;
+            Inventory.ItemRemoved += Inventory_ItemRemoved;
 
-        if (rangedWeapon != null)
-        {
-            InventoryItemBase startRanged = rangedWeapon.GetComponent<InventoryItemBase>();
-            UpdateAssignedKeyText(count++, "K");
-            Inventory.AddItem(startRanged);
-        }
+            if (meleeWeapon != null)
+            {
+                InventoryItemBase sword = meleeWeapon.GetComponent<InventoryItemBase>();
+                Inventory.AddItem(sword);
+                // Update GUI label and add to existing list to minimize iteration on HUD slots later
+                UpdateAssignedKeyText(count++, "J");
+                itemsEquipped.Add(sword);
+            }
 
-        if (equipment != null)
-        {
-            InventoryItemBase startEquip = equipment.GetComponent<InventoryItemBase>();
-            UpdateAssignedKeyText(count++, "L");
-            Inventory.AddItem(startEquip);
-        }
+            if (rangedWeapon != null)
+            {
+                InventoryItemBase startRanged = rangedWeapon.GetComponent<InventoryItemBase>();
+                UpdateAssignedKeyText(count++, "K");
+                Inventory.AddItem(startRanged);
+            }
 
-        SetPlayerItemBooleans();
+            if (equipment != null)
+            {
+                InventoryItemBase startEquip = equipment.GetComponent<InventoryItemBase>();
+                UpdateAssignedKeyText(count++, "L");
+                Inventory.AddItem(startEquip);
+            }
+
+            SetPlayerItemBooleans();
+        }
     }
 
     void UpdateAssignedKeyText(int slot, string desiredCharacter)

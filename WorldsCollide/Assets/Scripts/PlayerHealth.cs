@@ -34,13 +34,16 @@ public class PlayerHealth : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (damaged)
+        if (damageImage != null)
         {
-            damageImage.color = flashColor;
-        } else {
-            damageImage.color = Color.Lerp(damageImage.color, Color.clear, flashSpeed * Time.deltaTime);
+            if (damaged)
+            {
+                damageImage.color = flashColor;
+            } else {
+                damageImage.color = Color.Lerp(damageImage.color, Color.clear, flashSpeed * Time.deltaTime);
+            }
+            damaged = false;
         }
-        damaged = false;
 
         if (damageCooldown <= 0 && !isDead)
         {
