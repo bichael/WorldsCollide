@@ -5,16 +5,19 @@ using UnityEngine;
 public class Grenade : MonoBehaviour
 {
     private Animator _anim;
+    private AudioSource grenadeAudio;
     private Rigidbody2D _rb;
     
     public int damage = 1;
     public LayerMask enemyLayer;
+    public AudioClip explosionClip;
 
     // Start is called before the first frame update
     void Start()
     {
         StartCoroutine(DestroyGrenade());
         _anim = GetComponent<Animator>();
+        grenadeAudio = GetComponent<AudioSource>();
         _rb = GetComponent<Rigidbody2D>();
     }
 
@@ -37,6 +40,8 @@ public class Grenade : MonoBehaviour
         }
         _anim.SetTrigger("Explode");
         _rb.velocity = Vector2.zero;
+        grenadeAudio.clip = explosionClip;
+        grenadeAudio.Play();
         yield return new WaitForSeconds(1.84f);
         Destroy (gameObject);
     }

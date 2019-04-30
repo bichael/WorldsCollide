@@ -472,6 +472,12 @@ MonoBehaviour:
   staffEquipped: 0
   shieldEquipped: 0
   inventoryPanel: {fileID: 0}
+  fireballClip: {fileID: 8300000, guid: 7617081f2f21fb744a3489d514293234, type: 3}
+  shotgunClip: {fileID: 8300000, guid: e1b1dadb3a71925488949fb8a0eb751a, type: 3}
+  meleeClip: {fileID: 8300000, guid: d3c790edc92234843a822ccfe4b962fc, type: 3}
+  shieldClip: {fileID: 0}
+  timeStopWatchClip: {fileID: 8300000, guid: 144932734769452419a574f60d60be97, type: 3}
+  nukaSodaClip: {fileID: 8300000, guid: a3cd07eb88cfb0f43ad6b00f9f09e2fc, type: 3}
   Inventory: {fileID: 0}
   Hud: {fileID: 0}
 --- !u!114 &5703356203344524676
@@ -490,6 +496,7 @@ MonoBehaviour:
   currentHealth: 0
   damageGracePeriod: 0.5
   damageImage: {fileID: 0}
+  playerHurtClip: {fileID: 8300000, guid: 46ce3333ed67a0348a93809087014305, type: 3}
   deathClip: {fileID: 8300000, guid: 1fc2a6af6eef4134683f42f90cde0f18, type: 3}
   flashSpeed: 5
   flashColor: {r: 1, g: 0, b: 0, a: 0.1}
