@@ -27,6 +27,7 @@ public class Enemy : MonoBehaviour
     Animator anim;
     GameObject player;
     PlayerHealth playerHealthScript;
+    Player ply;
     bool playerInRange; // Becomes true when player enters enemy collider; close enough to melee.
     bool inSightRange; // Becomes true when player enters sight FOV, becomes false when player exits sight FOV.
     bool aggro; // Becomes true when player enters sight FOV, becomes false when player exits disengage FOV.
@@ -39,6 +40,7 @@ public class Enemy : MonoBehaviour
     {
         player = GameObject.FindGameObjectWithTag("Player");
         // playerHealthScript = player.transform.GetComponent<PlayerHealth>();
+        ply = player.GetComponent<Player>();
         playerHealthScript = player.GetComponent<PlayerHealth>();
         anim = GetComponent<Animator>();
         enemyAudio = GetComponent<AudioSource>();
@@ -56,7 +58,7 @@ public class Enemy : MonoBehaviour
         // Note:  The following function is called on every frame, for every enemy... This could be a memory hog; might need spawning/despawning system.
         // If player is within FOV, begin to follow.  Also only check to attack if player is in FOV.
         Collider2D[] sightSearch = Physics2D.OverlapCircleAll(transform.position, sightRange, playerLayer);
-        if (sightSearch.Length > 0)
+        if ((sightSearch.Length > 0) && (ply.time_stopped == false))
         {
             aggro = true; // Player has entered sight FOV and enemy will chase until exits disengage FOV
             inSightRange = true;
@@ -121,7 +123,7 @@ public class Enemy : MonoBehaviour
             }
         } 
 
-        if (dazedTime <= 0)
+        if ((dazedTime <= 0) && (ply.time_stopped == false))
         {
             speed = initSpeed;
         } else 

@@ -31,6 +31,10 @@ public class Player : MonoBehaviour
     public bool firing;
     public bool staffEquipped;
     public bool shieldEquipped;
+    public bool time_stopped;
+    public int start_time_stop_counter = 600;
+    public int time_stop_counter = 0;
+    public bool is_moving;
     public Transform inventoryPanel;
     AudioSource playerAudio;
     public AudioClip fireballClip;
@@ -71,15 +75,22 @@ public class Player : MonoBehaviour
         /* Detect key presses that are conditional based on a timer (Shield, Melee, Projectile) */
         if (timeBtwEquipment <= 0)
         {
-            if (blocking == true)
-            {
-                animator.SetTrigger("ExitShielding");
-                blocking = false;
-            }
+            //if (blocking == true)
+            //{
+           //     animator.SetTrigger("ExitShielding");
+            //    blocking = false;
+            //}
             AttemptPlayerEquipment();
         } else
             timeBtwEquipment -= Time.deltaTime;
-            
+
+        if (time_stopped){
+            if (time_stop_counter <= 0){
+                time_stopped = false;
+                timeBtwEquipment = 0;
+            }
+        }
+
         if (timeBtwAttack <= 0) // If this checks for KeyCode.Space instead, it fails to register sometimes.
         { 
             attacking = false;
@@ -169,10 +180,13 @@ public class Player : MonoBehaviour
         animator.SetFloat("Magnitude", movement.magnitude);
         if (movement != Vector3.zero) // Avoid player always facing "0" direction when idle
         {
-            
 			if (!playercanmove)
 				return;
-            
+            is_moving = true;
+            if (time_stopped){
+                time_stop_counter-=1;
+            }
+
 			SetAnimatorVariables(movement);
             transform.position = transform.position + movement * Time.deltaTime;
             
@@ -192,6 +206,9 @@ public class Player : MonoBehaviour
                 else if (movement.y < 0)
                     attackPos.position = transform.position; 
             }
+        }
+        else{
+            is_moving = false;
         }
     }
 
@@ -272,7 +289,10 @@ public class Player : MonoBehaviour
                 else if (equipment.GetComponent<Staff>().Name.Equals("Time Stop Watch"))
                 {
                     Debug.Log("Stop time!");
+                    time_stopped = true;
+                    time_stop_counter = start_time_stop_counter;
                     playerAudio.clip = timeStopWatchClip;
+                    //gameObject.GetComponent<Time_Stop_Effect>;
                     playerAudio.Play();
                     // 1. Freeze enemies, 2. add blue tint to screen (perhaps copy damageImage from PlayerHealth?)
                 }
@@ -301,6 +321,10 @@ public class Player : MonoBehaviour
             {
                 animator.SetTrigger("ExitShielding");
                 blocking = false;
+            }
+
+            if (time_stopped){
+                time_stop_counter-=100;
             }
 
             animator.SetTrigger("Attacking");
@@ -335,6 +359,10 @@ public class Player : MonoBehaviour
                     animator.SetTrigger("CastingFireball");
                     playerAudio.clip = fireballClip;
                     playerAudio.Play();
+
+                    if (time_stopped){
+                        time_stop_counter-=100;
+                    }       
 
                     // Rotate bullet sprite to go with player direction
                     Quaternion fixedDirection = Quaternion.identity;
@@ -375,6 +403,9 @@ public class Player : MonoBehaviour
                     animator.SetTrigger("ShotgunShot");
                     playerAudio.clip = shotgunClip;
                     playerAudio.Play();
+                    if (time_stopped){
+                        time_stop_counter-=100;
+                    } 
                     for (int i=0; i<3; i++)
                     {
                         // Spawns bullet
@@ -430,6 +461,9 @@ public class Player : MonoBehaviour
                 }
                 else if (rangedWeapon.GetComponent<Staff>().Name.Equals("Holy Hand Grenade"))
                 {
+                    if (time_stopped){
+                        time_stop_counter-=400;
+                    }
                     // Rotate grenade sprite to go with player direction
                     Quaternion fixedDirection = Quaternion.identity;
                     fixedDirection.eulerAngles = new Vector3(0, 0, 180 - (direction * 180)); // Multiply by 180 to convert to degrees.
