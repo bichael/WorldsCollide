@@ -6,6 +6,16 @@ using UnityEngine.UI;
 public class Player : MonoBehaviour
 {
     public Animator animator;
+    public Text swordTimer;
+    public Text shieldTimer;
+    public Text fireballTimer;
+    public Text grenadeTimer;
+    public Text shotgunTimer;
+    public Text laserTimer;
+    public Text stopwatchTimer;
+    public Text sodaTimer;
+    public Text equipmentTimer;
+    public Text projectileTimer;
     private float direction;
     // public float speed;
     public GameObject weapon;
@@ -76,6 +86,33 @@ public class Player : MonoBehaviour
         SetPlayerStartingItems();
         if (stop_time_count != null)
             stop_time_count.gameObject.SetActive(false);
+        if (projectileTimer != null){
+            projectileTimer.gameObject.SetActive(false);
+        }
+        if (shieldTimer != null){
+            shieldTimer.gameObject.SetActive(false);
+        }
+        if (stopwatchTimer != null){
+            stopwatchTimer.gameObject.SetActive(false);
+        }
+        if (sodaTimer != null){
+            sodaTimer.gameObject.SetActive(false);
+        }
+        if (swordTimer != null){
+            swordTimer.gameObject.SetActive(false);
+        }
+        if (fireballTimer != null){
+            fireballTimer.gameObject.SetActive(false);
+        }
+        if (grenadeTimer != null){
+            grenadeTimer.gameObject.SetActive(false);
+        }
+        if (shotgunTimer != null){
+            shotgunTimer.gameObject.SetActive(false);
+        }
+        if (laserTimer != null){
+            laserTimer.gameObject.SetActive(false);
+        }
         rb2d = GetComponent<Rigidbody2D>();
     }
 
@@ -104,11 +141,15 @@ public class Player : MonoBehaviour
             {
                 animator.SetTrigger("ExitShielding");
                 blocking = false;
+                if (shieldTimer != null){
+                    shieldTimer.gameObject.SetActive(false);
+                }
             }
         } 
         else
         {
-            timeBtwShield -= Time.deltaTime;          
+            timeBtwShield -= Time.deltaTime;    
+            shieldTimer.text = "Shield Duration: " + timeBtwShield.ToString();   
         }
 
         if (time_stopped)
@@ -119,6 +160,11 @@ public class Player : MonoBehaviour
                 timeBtwEquipment = 0;
                 stop_time_count.gameObject.SetActive(false);
                 timeBtwStopwatch = startTimeBtwStopwatch;
+                stopwatchTimer.gameObject.SetActive(true);
+                stopwatchTimer.text = "StopWatch Cooldown: " + timeBtwStopwatch.ToString();
+                if (stopwatchTimer != null){
+                    stopwatchTimer.gameObject.SetActive(false);
+                }
             }
             stop_time_count.value = time_stop_counter;
         }
@@ -130,6 +176,7 @@ public class Player : MonoBehaviour
         else
         {
             timeBtwStopwatch -= Time.deltaTime;
+            stopwatchTimer.text = "StopWatch Cooldown: " + timeBtwStopwatch.ToString();
         }
 
         if (timeBtwSoda <= 0){
@@ -138,17 +185,25 @@ public class Player : MonoBehaviour
             }
             sodaBuff = false;
             animator.speed = 1;
+            if (sodaTimer != null){
+                sodaTimer.gameObject.SetActive(false);
+            }
         }
         else 
         {
             timeBtwSoda -= Time.deltaTime;
+            sodaTimer.text = "Nuka Soda Duration: " + timeBtwSoda.ToString();
         }
 
         if (sodaCooldown <= 0){
             sodaCooldown = 0;
+            if (sodaTimer != null){
+                sodaTimer.gameObject.SetActive(false);
+            }
         }
         else{
             sodaCooldown -= Time.deltaTime;
+            sodaTimer.text = "Nuka Soda Cooldown: " + sodaCooldown.ToString();
         }
 
         if (timeBtwEquipment <= 0)
@@ -158,57 +213,83 @@ public class Player : MonoBehaviour
         else
         {
             timeBtwEquipment -= Time.deltaTime;
+            equipmentTimer.text = "Equipment Cooldown: " + timeBtwEquipment.ToString();
         }
 
         if (timeBtwAttack <= 0) // If this checks for KeyCode.Space instead, it fails to register sometimes.
         { 
             attacking = false;
+            if (swordTimer != null){
+                swordTimer.gameObject.SetActive(false);
+            }
             AttemptPlayerAttack();
-        } else
+        } else{
             timeBtwAttack -= Time.deltaTime;
+            swordTimer.text = "Sword Cooldown: " + timeBtwAttack.ToString();
+        }
 
         if (timeBtwFireball <= 0)
         {
             timeBtwFireball = 0;
+            if (fireballTimer != null){
+                fireballTimer.gameObject.SetActive(false);
+            }
         }
         else
         {
             timeBtwFireball -= Time.deltaTime;
+            fireballTimer.text = "Fireball Cooldown: " + timeBtwFireball.ToString();
         }
 
         if (timeBtwGrenade <= 0)
         {
             timeBtwGrenade = 0;
+            if (grenadeTimer != null){
+                grenadeTimer.gameObject.SetActive(false);
+            }
         }
         else
         {
             timeBtwGrenade -= Time.deltaTime;
+            grenadeTimer.text = "Grenade Cooldown: " + timeBtwGrenade.ToString();
         }
 
         if (timeBtwLaser <= 0)
         {
             timeBtwLaser = 0;
+            if (laserTimer != null){
+                laserTimer.gameObject.SetActive(false);
+            }
         }
         else
         {
             timeBtwLaser -= Time.deltaTime;
+            laserTimer.text = "Laser Cannon Cooldown: " + timeBtwLaser.ToString();
         }
 
         if (timeBtwShotgun <= 0)
         {
             timeBtwShotgun = 0;
+            if (shotgunTimer != null){
+                shotgunTimer.gameObject.SetActive(false);
+            }
         }
         else
         {
             timeBtwShotgun -= Time.deltaTime;
+            shotgunTimer.text = "Shotgun Cooldown: " + timeBtwShotgun.ToString();
         }
 
         if (timeBtwProject <= 0)
         {
             firing = false;
+            if (projectileTimer != null){
+                projectileTimer.gameObject.SetActive(false);
+            }
             AttemptPlayerProjectile();
         } else
             timeBtwProject -= Time.deltaTime;
+            projectileTimer.text = "Projectile Cooldown: " + (timeBtwProject.ToString());
     }
 
     void SetPlayerStartingItems()
@@ -436,6 +517,8 @@ public class Player : MonoBehaviour
                 {
                     //startTimeBtwEquipment = 10.0f;\
                     timeBtwShield = startTimeBtwShield;
+                    shieldTimer.gameObject.SetActive(true);
+                    shieldTimer.text = "Shield Duration: " + timeBtwShield; 
                     animator.SetTrigger("Shielding");
                     playerAudio.clip = shieldClip;
                     playerAudio.Play();
@@ -462,12 +545,17 @@ public class Player : MonoBehaviour
                     sodaBuff = true;
                     animator.speed = 2;
                     timeBtwSoda = startTimeBtwSoda;
+                    sodaTimer.gameObject.SetActive(true);
+                    sodaTimer.text = "Nuka Soda Duration: " + timeBtwSoda;
                     playerAudio.clip = nukaSodaClip;
                     playerAudio.Play();
                     // 1. Increase player movement speed, 2. Increase melee attack speed [3. Decrease cooldowns?]
                 }
             }
-            //timeBtwEquipment = startTimeBtwEquipment;
+            
+            timeBtwEquipment = startTimeBtwEquipment;
+            equipmentTimer.gameObject.SetActive(true);
+            equipmentTimer.text = "Equipment Cooldown: " + timeBtwEquipment;
         }
     }
 
@@ -510,6 +598,8 @@ public class Player : MonoBehaviour
             else{
                 timeBtwAttack = startTimeBtwAttack / 2;
             }
+            swordTimer.gameObject.SetActive(true);
+            swordTimer.text = "Sword Cooldown: " + timeBtwAttack;
         }
     }
 
@@ -531,6 +621,8 @@ public class Player : MonoBehaviour
                     playerAudio.clip = fireballClip;
                     playerAudio.Play();
                     timeBtwFireball = startTimeBtwFireball;
+                    fireballTimer.gameObject.SetActive(true);
+                    fireballTimer.text = "Fireball Cooldown: " + timeBtwFireball;
                     if (time_stopped){
                         time_stop_counter-=200;
                     }       
@@ -575,6 +667,8 @@ public class Player : MonoBehaviour
                     playerAudio.clip = shotgunClip;
                     playerAudio.Play();
                     timeBtwShotgun = startTimeBtwShotgun;
+                    shotgunTimer.gameObject.SetActive(true);
+                    shotgunTimer.text = "Shotgun Cooldown: " + timeBtwShotgun;
                     if (time_stopped){
                         time_stop_counter-=200;
                     } 
@@ -635,6 +729,8 @@ public class Player : MonoBehaviour
                 else if ((rangedWeapon.GetComponent<Staff>().Name.Equals("Holy Hand Grenade")) && (timeBtwGrenade <= 0))
                 {
                     timeBtwGrenade = startTimeBtwGrenade;
+                    grenadeTimer.gameObject.SetActive(true);
+                    grenadeTimer.text = "Grenade Cooldown: " + timeBtwGrenade;
                     if (time_stopped){
                         time_stop_counter-=400;
                     }
@@ -679,6 +775,8 @@ public class Player : MonoBehaviour
                     playerAudio.clip = laserCannonClip;
                     playerAudio.Play();
                     timeBtwLaser = startTimeBtwLaser;
+                    laserTimer.gameObject.SetActive(true);
+                    laserTimer.text = "Laser Cannon Cooldown: " + timeBtwLaser;
                     if (time_stopped){
                         time_stop_counter-=600;
                     }       
@@ -731,6 +829,8 @@ public class Player : MonoBehaviour
             }
             
             timeBtwProject = startTimeBtwProject;
+            projectileTimer.gameObject.SetActive(true);
+            projectileTimer.text = "Projectile Cooldown: " + timeBtwProject;
         }
     }
 
