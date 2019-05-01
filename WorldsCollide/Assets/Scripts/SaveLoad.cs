@@ -23,9 +23,10 @@ public class SaveLoad : MonoBehaviour
 		data.blueactive = GameController.control.blueactive;
 		data.redactive = GameController.control.redactive;
 		data.grenade = GameController.control.grenade;
+		data.shotgun = GameController.control.shotgun;
 		data.staff = GameController.control.staff;
 		data.watch = GameController.control.watch;
-		data.cola = GameController.control.cola;
+		data.soda = GameController.control.soda;
 		data.fantasydone = GameController.control.fantasydone;
 		data.scifidone = GameController.control.scifidone;
 		data.wastelanddone = GameController.control.wastelanddone;
@@ -46,9 +47,10 @@ public class SaveLoad : MonoBehaviour
 			GameController.control.blueactive = data.blueactive;
 			GameController.control.redactive = data.redactive;
 			GameController.control.grenade = data.grenade;
+			GameController.control.shotgun = data.shotgun;
 			GameController.control.staff = data.staff;
 			GameController.control.watch = data.watch;
-			GameController.control.cola = data.cola;
+			GameController.control.soda = data.soda;
 			GameController.control.fantasydone = data.fantasydone;
 			GameController.control.scifidone = data.scifidone;
 			GameController.control.wastelanddone = data.wastelanddone;
@@ -70,9 +72,10 @@ class PlayerData{
 	public bool blueactive;
 	public bool redactive;
 	public bool grenade;
+	public bool shotgun;
 	public bool staff;
 	public bool watch;
-	public bool cola;
+	public bool soda;
 	public bool fantasydone;
 	public bool scifidone;
 	public bool wastelanddone;

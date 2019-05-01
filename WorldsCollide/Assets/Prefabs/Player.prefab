@@ -16,7 +16,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &1479374309
 Transform:
   m_ObjectHideFlags: 0
@@ -63,11 +63,11 @@ GameObject:
   - component: {fileID: 3769508739557887802}
   m_Layer: 0
   m_Name: GrenadeInventoryIcon
-  m_TagString: Untagged
+  m_TagString: PlayerGrenade
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &4030022892834532624
 Transform:
   m_ObjectHideFlags: 0
@@ -95,7 +95,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Name: Holy Hand Grenade
-  Image: {fileID: 21300000, guid: 209c9cfeb11ae3e43b2c646f1bd666e0, type: 3}
+  Image: {fileID: 21300000, guid: 3a14f7323c95a7b44890704540c91c4e, type: 3}
   InteractText: 
   ItemType: 3
   PickPosition: {x: 0, y: 0, z: 0}
@@ -114,11 +114,11 @@ GameObject:
   - component: {fileID: 3818824068414095452}
   m_Layer: 0
   m_Name: ShieldInventoryIcon
-  m_TagString: Untagged
+  m_TagString: PlayerShield
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &4773970084415206617
 Transform:
   m_ObjectHideFlags: 0
@@ -165,11 +165,11 @@ GameObject:
   - component: {fileID: 388855889479784286}
   m_Layer: 0
   m_Name: NukaSodaInventoryIcon
-  m_TagString: Untagged
+  m_TagString: PlayerSoda
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &797901447045353271
 Transform:
   m_ObjectHideFlags: 0
@@ -271,7 +271,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 1407772449
   m_SortingLayer: 2
-  m_SortingOrder: 0
+  m_SortingOrder: -1
   m_Sprite: {fileID: 21300000, guid: aec35367047c0124e9fc8f5745946d6f, type: 3}
   m_Color: {r: 1, g: 0, b: 0, a: 0.24313726}
   m_FlipX: 0
@@ -471,6 +471,10 @@ MonoBehaviour:
   firing: 0
   staffEquipped: 0
   shieldEquipped: 0
+  time_stopped: 0
+  start_time_stop_counter: 300
+  time_stop_counter: 0
+  is_moving: 0
   inventoryPanel: {fileID: 0}
   fireballClip: {fileID: 8300000, guid: 7617081f2f21fb744a3489d514293234, type: 3}
   shotgunClip: {fileID: 8300000, guid: e1b1dadb3a71925488949fb8a0eb751a, type: 3}
@@ -608,11 +612,11 @@ GameObject:
   - component: {fileID: 589437592373626674}
   m_Layer: 0
   m_Name: ShotgunInventoryIcon
-  m_TagString: Untagged
+  m_TagString: PlayerShotgun
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &7364497507621706260
 Transform:
   m_ObjectHideFlags: 0
@@ -659,11 +663,11 @@ GameObject:
   - component: {fileID: 580377644579220333}
   m_Layer: 0
   m_Name: StaffInventoryIcon
-  m_TagString: Untagged
+  m_TagString: PlayerStaff
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &2014628205034820778
 Transform:
   m_ObjectHideFlags: 0
@@ -806,11 +810,11 @@ GameObject:
   - component: {fileID: 8159392399362312290}
   m_Layer: 0
   m_Name: WatchInventoryIcon
-  m_TagString: Untagged
+  m_TagString: PlayerWatch
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &5429582370869725122
 Transform:
   m_ObjectHideFlags: 0

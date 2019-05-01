@@ -11,6 +11,13 @@ TagManager:
   - EnemyProjectile
   - HealthPickUp
   - Gary
+  - PlayerGrenade
+  - PlayerStaff
+  - PlayerShield
+  - PlayerShotgun
+  - PlayerWatch
+  - PlayerSoda
+  - PlayerCannon
   layers:
   - Default
   - TransparentFX

@@ -123,19 +123,62 @@ public class Player : MonoBehaviour
                 itemsEquipped.Add(sword);
             }
 
-            if (rangedWeapon != null)
-            {
-                InventoryItemBase startRanged = rangedWeapon.GetComponent<InventoryItemBase>();
-                UpdateAssignedKeyText(count++, "K");
-                Inventory.AddItem(startRanged);
-            }
+            // if (rangedWeapon != null)
+            // {
+            //     InventoryItemBase startRanged = rangedWeapon.GetComponent<InventoryItemBase>();
+            //     UpdateAssignedKeyText(count++, "K");
+            //     Inventory.AddItem(startRanged);
+            // }
 
-            if (equipment != null)
+            // if (equipment != null)
+            // {
+            //     InventoryItemBase startEquip = equipment.GetComponent<InventoryItemBase>();
+            //     UpdateAssignedKeyText(count++, "L");
+            //     Inventory.AddItem(startEquip);
+            // }
+
+            if (GameController.control.grenade)
             {
-                InventoryItemBase startEquip = equipment.GetComponent<InventoryItemBase>();
-                UpdateAssignedKeyText(count++, "L");
-                Inventory.AddItem(startEquip);
+                InventoryItemBase grenadeInventoryObject = GameObject.FindGameObjectWithTag("PlayerGrenade").GetComponent<Staff>();
+                Inventory.AddItem(grenadeInventoryObject);
+                itemsEquipped.Add(grenadeInventoryObject);
             }
+            if (GameController.control.shield)
+            {
+                InventoryItemBase shieldInventoryObject = GameObject.FindGameObjectWithTag("PlayerShield").GetComponent<Staff>();
+                Inventory.AddItem(shieldInventoryObject);
+                itemsEquipped.Add(shieldInventoryObject);
+            }
+            if (GameController.control.shotgun)
+            {
+                InventoryItemBase shotgunInventoryObject = GameObject.FindGameObjectWithTag("PlayerShotgun").GetComponent<Staff>();
+                Inventory.AddItem(shotgunInventoryObject);
+                itemsEquipped.Add(shotgunInventoryObject);
+            }
+            if (GameController.control.staff)
+            {
+                InventoryItemBase staffInventoryObject = GameObject.FindGameObjectWithTag("PlayerStaff").GetComponent<Staff>();
+                Inventory.AddItem(staffInventoryObject);
+                itemsEquipped.Add(staffInventoryObject);
+            }
+            if (GameController.control.watch)
+            {
+                InventoryItemBase watchInventoryObject = GameObject.FindGameObjectWithTag("PlayerWatch").GetComponent<Staff>();
+                Inventory.AddItem(watchInventoryObject);
+                itemsEquipped.Add(watchInventoryObject);
+            }
+            if (GameController.control.soda)
+            {
+                InventoryItemBase sodaInventoryObject = GameObject.FindGameObjectWithTag("PlayerSoda").GetComponent<Staff>();
+                Inventory.AddItem(sodaInventoryObject);
+                itemsEquipped.Add(sodaInventoryObject);
+            }
+            // if (GameController.control.cannon)
+            // {
+            //     InventoryItemBase cannonInventoryObject = GameObject.FindGameObjectWithTag("PlayerCannon").GetComponent<Staff>();
+            //     Inventory.AddItem(cannonInventoryObject);
+            //     itemsEquipped.Add(cannonInventoryObject);
+            // }
 
             SetPlayerItemBooleans();
         }
@@ -592,26 +635,20 @@ public class Player : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D other)
     {
 
-		if(other.name == "Grenade"){
+		if(other.name == "Grenade")
 			GameController.control.grenade = true;
-
-		}
-		if(other.name == "Staff"){
+		if(other.name == "Shotgun")
+			GameController.control.shotgun = true;
+		if(other.name == "Shield")
+			GameController.control.shield = true;
+		if(other.name == "Staff")
 			GameController.control.staff = true;
-
-		}
-		if(other.name == "Watch"){
+		if(other.name == "TimeStopWatch")
 			GameController.control.watch = true;
-
-		}
-		if(other.name == "Cola"){
-			GameController.control.cola = true;
-
-		}
-		if(other.name == "Cannon"){
+		if(other.name == "NukaSoda")
+			GameController.control.soda = true;
+		if(other.name == "LaserCannon")
 			GameController.control.cannon = true;
-
-		}
 
 
 

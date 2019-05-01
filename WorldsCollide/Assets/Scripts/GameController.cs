@@ -10,9 +10,11 @@ public class GameController : MonoBehaviour
 	public bool blueactive;
 	public bool redactive;
 	public bool grenade = false;
+	public bool shield = false;
+	public bool shotgun = false;
 	public bool staff = false;
 	public bool watch = false;
-	public bool cola = false;
+	public bool soda = false;
 	public bool fantasydone = false;
 	public bool scifidone = false;
 	public bool wastelanddone = false;
