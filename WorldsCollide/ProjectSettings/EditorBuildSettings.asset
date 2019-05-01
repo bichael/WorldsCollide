@@ -13,7 +13,7 @@ EditorBuildSettings:
     guid: 544f2ca57356e7b4d94d8a66cca31904
   - enabled: 1
     path: Assets/Scenes/Fantasy/Fantasy overworld.unity
-    guid: f74813522e32e5442982ea3ef8c6769b
+    guid: db53dba6709022546b47f1a78c1308dc
   - enabled: 1
     path: Assets/Scenes/Fantasy/Dungeon.unity
     guid: 7310c5dc9b432d645ab4a76bf8283986
@@ -27,8 +27,8 @@ EditorBuildSettings:
     path: Assets/Scenes/SciFi/Scifi Dungeon.unity
     guid: ce91f74bd0cf437428493547183adaeb
   - enabled: 1
-    path: Assets/Scenes/SciFi/SciFiBoss.unity
-    guid: 112d2ac0f42db844eabdcd1d60a3fd39
+    path: Assets/Scenes/SciFi/KALI.unity
+    guid: 672443e062a7aeb479aa0bfb7da09ab2
   - enabled: 1
     path: Assets/Scenes/Wasteland/Wasteland overworld.unity
     guid: 3726c84f41bed3841bc1a98447fcb58e
@@ -41,7 +41,4 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/SciFi/Armory.unity
     guid: 76e596fe6e044e54a986189c8bc5286c
-  - enabled: 1
-    path: Assets/Scenes/SciFi/KALI.unity
-    guid: 672443e062a7aeb479aa0bfb7da09ab2
   m_configObjects: {}
