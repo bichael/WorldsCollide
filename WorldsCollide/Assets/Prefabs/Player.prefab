@@ -452,12 +452,29 @@ MonoBehaviour:
   startTimeBtwProject: 0.8
   timeBtwEquipment: 0
   startTimeBtwEquipment: 2
+  timeBtwShield: 0
+  startTimeBtwShield: 10
+  timeBtwSoda: 0
+  startTimeBtwSoda: 5
+  sodaCooldown: 0
+  startSodaCooldown: 10
+  timeBtwStopwatch: 0
+  startTimeBtwStopwatch: 20
+  timeBtwFireball: 0
+  startTimeBtwFireball: 0.8
+  timeBtwGrenade: 0
+  startTimeBtwGrenade: 20
+  timeBtwShotgun: 0
+  startTimeBtwShotgun: 1.5
+  timeBtwLaser: 0
+  startTimeBtwLaser: 4
   attackPos: {fileID: 5703356202206725900}
   enemyLayer:
     serializedVersion: 2
     m_Bits: 256
   meleeRange: 0.25
   meleeDamage: 3
+  stop_time_count: {fileID: 0}
   bullet: {fileID: 8365747353560420087, guid: 5a02c2b8e50bb244fbb86121f77eb053, type: 3}
   shotgunPellet: {fileID: 8365747353560420087, guid: 4efd34cc1e3adc94e941065e6d82b86d,
     type: 3}
@@ -475,6 +492,7 @@ MonoBehaviour:
   start_time_stop_counter: 300
   time_stop_counter: 0
   is_moving: 0
+  sodaBuff: 0
   inventoryPanel: {fileID: 0}
   fireballClip: {fileID: 8300000, guid: 7617081f2f21fb744a3489d514293234, type: 3}
   shotgunClip: {fileID: 8300000, guid: e1b1dadb3a71925488949fb8a0eb751a, type: 3}
@@ -856,11 +874,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 5703356203344524672}
     m_Modifications:
-    - target: {fileID: 1021129497493814195, guid: 35482f9ec69c3904da4fc12188d939e0,
-        type: 3}
-      propertyPath: m_Name
-      value: Inventory
-      objectReference: {fileID: 0}
     - target: {fileID: 1021129497493814196, guid: 35482f9ec69c3904da4fc12188d939e0,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -915,6 +928,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1021129497493814195, guid: 35482f9ec69c3904da4fc12188d939e0,
+        type: 3}
+      propertyPath: m_Name
+      value: Inventory
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 35482f9ec69c3904da4fc12188d939e0, type: 3}

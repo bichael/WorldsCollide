@@ -19,6 +19,8 @@ public class Player : MonoBehaviour
     public float startTimeBtwShield;
     public float timeBtwSoda;
     public float startTimeBtwSoda;
+    public float sodaCooldown;
+    public float startSodaCooldown;
     public float timeBtwStopwatch;
     public float startTimeBtwStopwatch;
     public float timeBtwFireball;
@@ -37,6 +39,7 @@ public class Player : MonoBehaviour
     public GameObject bullet;
     public GameObject shotgunPellet;
     public GameObject grenade;
+    public GameObject laser;
     public InventoryItemBase meleeWeapon; // Should be Sword
     public InventoryItemBase rangedWeapon;
     public InventoryItemBase equipment;
@@ -50,6 +53,7 @@ public class Player : MonoBehaviour
     public int start_time_stop_counter = 300;
     public int time_stop_counter = 0;
     public bool is_moving;
+    public bool sodaBuff;
     public Transform inventoryPanel;
     AudioSource playerAudio;
     public AudioClip fireballClip;
@@ -58,6 +62,7 @@ public class Player : MonoBehaviour
     public AudioClip shieldClip;
     public AudioClip timeStopWatchClip;
     public AudioClip nukaSodaClip;
+    public AudioClip laserCannonClip;
     private Rigidbody2D rb2d;
     
     private InventoryItemBase mCurrentItem = null;
@@ -93,29 +98,66 @@ public class Player : MonoBehaviour
 
 
         /* Detect key presses that are conditional based on a timer (Shield, Melee, Projectile) */
-        if (timeBtwEquipment <= 0)
+        if (timeBtwShield <= 0)
         {
             if (blocking == true)
             {
                 animator.SetTrigger("ExitShielding");
                 blocking = false;
             }
-            AttemptPlayerEquipment();
-        } else
-            timeBtwEquipment -= Time.deltaTime;
+        } 
+        else
+        {
+            timeBtwShield -= Time.deltaTime;          
+        }
 
-        if (time_stopped){
-            if (time_stop_counter <= 0){
+        if (time_stopped)
+        {
+            if (time_stop_counter <= 0)
+            {
                 time_stopped = false;
                 timeBtwEquipment = 0;
                 stop_time_count.gameObject.SetActive(false);
+                timeBtwStopwatch = startTimeBtwStopwatch;
             }
-            else
-            {
-                stop_time_count.value = time_stop_counter;
+            stop_time_count.value = time_stop_counter;
+        }
 
+        if (timeBtwStopwatch <= 0)
+        {
+            timeBtwStopwatch = 0;
+        }
+        else
+        {
+            timeBtwStopwatch -= Time.deltaTime;
+        }
+
+        if (timeBtwSoda <= 0){
+            if (sodaBuff){
+                sodaCooldown = startSodaCooldown;
             }
-            
+            sodaBuff = false;
+            animator.speed = 1;
+        }
+        else 
+        {
+            timeBtwSoda -= Time.deltaTime;
+        }
+
+        if (sodaCooldown <= 0){
+            sodaCooldown = 0;
+        }
+        else{
+            sodaCooldown -= Time.deltaTime;
+        }
+
+        if (timeBtwEquipment <= 0)
+        {
+            AttemptPlayerEquipment();
+        }
+        else
+        {
+            timeBtwEquipment -= Time.deltaTime;
         }
 
         if (timeBtwAttack <= 0) // If this checks for KeyCode.Space instead, it fails to register sometimes.
@@ -124,6 +166,42 @@ public class Player : MonoBehaviour
             AttemptPlayerAttack();
         } else
             timeBtwAttack -= Time.deltaTime;
+
+        if (timeBtwFireball <= 0)
+        {
+            timeBtwFireball = 0;
+        }
+        else
+        {
+            timeBtwFireball -= Time.deltaTime;
+        }
+
+        if (timeBtwGrenade <= 0)
+        {
+            timeBtwGrenade = 0;
+        }
+        else
+        {
+            timeBtwGrenade -= Time.deltaTime;
+        }
+
+        if (timeBtwLaser <= 0)
+        {
+            timeBtwLaser = 0;
+        }
+        else
+        {
+            timeBtwLaser -= Time.deltaTime;
+        }
+
+        if (timeBtwShotgun <= 0)
+        {
+            timeBtwShotgun = 0;
+        }
+        else
+        {
+            timeBtwShotgun -= Time.deltaTime;
+        }
 
         if (timeBtwProject <= 0)
         {
@@ -200,12 +278,12 @@ public class Player : MonoBehaviour
                 Inventory.AddItem(sodaInventoryObject);
                 itemsEquipped.Add(sodaInventoryObject);
             }
-            // if (GameController.control.cannon)
-            // {
-            //     InventoryItemBase cannonInventoryObject = GameObject.FindGameObjectWithTag("PlayerCannon").GetComponent<Staff>();
-            //     Inventory.AddItem(cannonInventoryObject);
-            //     itemsEquipped.Add(cannonInventoryObject);
-            // }
+            if (GameController.control.cannon)
+            {
+                InventoryItemBase cannonInventoryObject = GameObject.FindGameObjectWithTag("PlayerCannon").GetComponent<Staff>();
+                Inventory.AddItem(cannonInventoryObject);
+                itemsEquipped.Add(cannonInventoryObject);
+            }
 
             SetPlayerItemBooleans();
         }
@@ -258,7 +336,12 @@ public class Player : MonoBehaviour
             }
 
 			SetAnimatorVariables(movement);
-            transform.position = transform.position + movement * Time.deltaTime;
+            if (sodaBuff){
+                transform.position = transform.position + (movement*2) * Time.deltaTime;
+            }
+            else{
+                transform.position = transform.position + movement * Time.deltaTime;
+            }
             
             // Set melee hitbox direction
             float absX = Mathf.Abs(movement.x);
@@ -274,7 +357,7 @@ public class Player : MonoBehaviour
                 if (movement.y > 0) 
                     attackPos.position = transform.position + (0.25f * Vector3.up);
                 else if (movement.y < 0)
-                    attackPos.position = transform.position; 
+                    attackPos.position = transform.position;
             }
         }
         else{
@@ -349,36 +432,42 @@ public class Player : MonoBehaviour
                 return;
             } else
             {
-                if (equipment.GetComponent<Staff>().Name.Equals("Shield"))
+                if ((equipment.GetComponent<Staff>().Name.Equals("Shield")) && (timeBtwShield <= 0))
                 {
-                    startTimeBtwEquipment = 10.0f;
+                    //startTimeBtwEquipment = 10.0f;\
+                    timeBtwShield = startTimeBtwShield;
                     animator.SetTrigger("Shielding");
                     playerAudio.clip = shieldClip;
                     playerAudio.Play();
                     blocking = true;
                 }
-                else if (equipment.GetComponent<Staff>().Name.Equals("Time Stop Watch"))
+                else if ((equipment.GetComponent<Staff>().Name.Equals("Time Stop Watch")) && (timeBtwStopwatch <= 0) && (!time_stopped))
                 {
-                    startTimeBtwEquipment = 5.0f;
+                    //startTimeBtwEquipment = 5.0f;
                     Debug.Log("Stop time!");
-                    time_stopped = true;
+                    //timeBtwStopwatch = startTimeBtwStopwatch;
                     time_stop_counter = start_time_stop_counter;
+                    stop_time_count.value = time_stop_counter;
                     playerAudio.clip = timeStopWatchClip;
                     stop_time_count.gameObject.SetActive(true);
+                    time_stopped = true;
                     //gameObject.GetComponent<Time_Stop_Effect>;
                     playerAudio.Play();
                     // 1. Freeze enemies, 2. add blue tint to screen (perhaps copy damageImage from PlayerHealth?)
                 }
-                else if (equipment.GetComponent<Staff>().Name.Equals("Nuka Soda"))
+                else if ((equipment.GetComponent<Staff>().Name.Equals("Nuka Soda")) && (timeBtwSoda <= 0) && (sodaCooldown <= 0))
                 {
-                    startTimeBtwEquipment = 15.0f;
+                    //startTimeBtwEquipment = 15.0f;
                     Debug.Log("Buff player!");
+                    sodaBuff = true;
+                    animator.speed = 2;
+                    timeBtwSoda = startTimeBtwSoda;
                     playerAudio.clip = nukaSodaClip;
                     playerAudio.Play();
                     // 1. Increase player movement speed, 2. Increase melee attack speed [3. Decrease cooldowns?]
                 }
             }
-            timeBtwEquipment = startTimeBtwEquipment;
+            //timeBtwEquipment = startTimeBtwEquipment;
         }
     }
 
@@ -397,6 +486,7 @@ public class Player : MonoBehaviour
                 blocking = false;
                 if (shieldEquipped){
                     timeBtwEquipment = 1f;
+                    timeBtwShield = 0;
                 }
             }
 
@@ -414,8 +504,12 @@ public class Player : MonoBehaviour
                 // damage enemy
                 enemiesToDamage[i].GetComponent<Enemy>().TakeDamage(meleeDamage);
             }
-
-            timeBtwAttack = startTimeBtwAttack;
+            if (!sodaBuff){
+                timeBtwAttack = startTimeBtwAttack;
+            }
+            else{
+                timeBtwAttack = startTimeBtwAttack / 2;
+            }
         }
     }
 
@@ -431,12 +525,12 @@ public class Player : MonoBehaviour
                 return;
             } else 
             {
-                if (rangedWeapon.GetComponent<Staff>().Name.Equals("Staff"))
+                if ((rangedWeapon.GetComponent<Staff>().Name.Equals("Staff")) && (timeBtwFireball <= 0))
                 {
                     animator.SetTrigger("CastingFireball");
                     playerAudio.clip = fireballClip;
                     playerAudio.Play();
-
+                    timeBtwFireball = startTimeBtwFireball;
                     if (time_stopped){
                         time_stop_counter-=200;
                     }       
@@ -475,20 +569,22 @@ public class Player : MonoBehaviour
                         go.GetComponent<Rigidbody2D>().velocity = Vector2.down;
                     }
                 }
-                else if (rangedWeapon.GetComponent<Staff>().Name.Equals("Shotgun"))
+                else if ((rangedWeapon.GetComponent<Staff>().Name.Equals("Shotgun")) && (timeBtwShotgun <= 0))
                 {
                     animator.SetTrigger("ShotgunShot");
                     playerAudio.clip = shotgunClip;
                     playerAudio.Play();
+                    timeBtwShotgun = startTimeBtwShotgun;
                     if (time_stopped){
                         time_stop_counter-=200;
                     } 
+
                     for (int i=0; i<3; i++)
                     {
                         // Spawns bullet
                         GameObject tempBullet = null;
                         // Randomize angle variation between bullets
-                        float spreadAngle = Random.Range(-10, 10);
+                        float spreadAngle = Random.Range(-25, 25);
                         float rotateAngle = 0;
                         // Rotate bullet sprite to go with player direction
                         Quaternion fixedDirection = Quaternion.identity;
@@ -536,8 +632,9 @@ public class Player : MonoBehaviour
                         }
                     }
                 }
-                else if (rangedWeapon.GetComponent<Staff>().Name.Equals("Holy Hand Grenade"))
+                else if ((rangedWeapon.GetComponent<Staff>().Name.Equals("Holy Hand Grenade")) && (timeBtwGrenade <= 0))
                 {
+                    timeBtwGrenade = startTimeBtwGrenade;
                     if (time_stopped){
                         time_stop_counter-=400;
                     }
@@ -575,6 +672,51 @@ public class Player : MonoBehaviour
                         go.GetComponent<Rigidbody2D>().velocity = Vector2.down;
                     }
                 }
+                
+                if ((rangedWeapon.GetComponent<Staff>().Name.Equals("Laser Cannon")) && (timeBtwLaser <= 0))
+                {
+                    animator.SetTrigger("FiringLaser");
+                    playerAudio.clip = laserCannonClip;
+                    playerAudio.Play();
+                    timeBtwLaser = startTimeBtwLaser;
+                    if (time_stopped){
+                        time_stop_counter-=600;
+                    }       
+
+                    // Rotate bullet sprite to go with player direction
+                    Quaternion fixedDirection = Quaternion.identity;
+                    fixedDirection.eulerAngles = new Vector3(0, 0, 180 - (direction * 180)); // Multiply by 180 to convert to degrees.
+                    Debug.Log("direction = " + direction);
+
+                    Vector2 projectilePosition = transform.position;
+                    float projectileAngle = Mathf.Round(direction * 2) / 2; // Round to nearest 0.5
+                    if (projectileAngle == -0.5f) // if facing left
+                    {
+                        projectilePosition.x -= 0.15f; // offset from player pivot (to avoid shooting from chest)
+                        projectilePosition.y += 0.15f; // offset from player feet pivot
+                        GameObject go = (GameObject)Instantiate (laser, projectilePosition, fixedDirection);
+                        go.GetComponent<Rigidbody2D>().velocity = Vector2.left;
+                    }
+                    else if (projectileAngle == 0) // if facing up
+                    {
+                        projectilePosition.y += 0.25f;
+                        GameObject go = (GameObject)Instantiate (laser, projectilePosition, fixedDirection);
+                        go.GetComponent<Rigidbody2D>().velocity = Vector2.up;
+                    }
+                    else if (projectileAngle == 0.5f) // if facing right
+                    {
+                        projectilePosition.x += 0.15f;
+                        projectilePosition.y += 0.15f;
+                        GameObject go = (GameObject)Instantiate (laser, projectilePosition, fixedDirection);
+                        go.GetComponent<Rigidbody2D>().velocity = Vector2.right;
+                        
+                    }
+                    else if ((projectileAngle == 1) || (projectileAngle == -1)) // if facing down
+                    {
+                        GameObject go = (GameObject)Instantiate (laser, projectilePosition, fixedDirection);
+                        go.GetComponent<Rigidbody2D>().velocity = Vector2.down;
+                    }
+                }
             }
 
             firing = true;
@@ -584,6 +726,7 @@ public class Player : MonoBehaviour
                 blocking = false;
                 if (shieldEquipped){
                     timeBtwEquipment = 1f;
+                    timeBtwShield = 0;
                 }
             }
             

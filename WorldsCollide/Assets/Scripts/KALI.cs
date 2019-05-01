@@ -16,10 +16,12 @@ public class KALI : MonoBehaviour
     public Slider healthBar;
     public float projectileSpeed = 0.5f;
     public bool enemiesAlive;
+    public bool introTalkDone;
+    public bool outroTalkDone;
     public int botsKilled;
     private int botsSent = 0;
     public GameObject kaliBot;
-    public GameObject exitTeleporter;
+    public GameObject exitTeleporter;   
     // Start is called before the first frame update
     void Start()
     {

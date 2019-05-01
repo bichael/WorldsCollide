@@ -74,6 +74,10 @@ public class PlayerHealth : MonoBehaviour
 
     public void TakeDamage(int amount)
     {
+        if (playerMovement.sodaBuff == true){
+            int sodaDodge = Random.Range(0,2);
+            amount -= sodaDodge;
+        }
         if (playerMovement.blocking == true) 
         {
             amount -= 1;

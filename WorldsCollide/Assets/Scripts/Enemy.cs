@@ -263,6 +263,10 @@ public class Enemy : MonoBehaviour
             TakeProjDamage(col.gameObject.GetComponent<ProjectileController>().damage, col.gameObject.GetComponent<ProjectileController>().daze_mod);
             Destroy(col.gameObject);
         }
+        else if (col.gameObject.tag.Equals("PiercingProjectile"))
+        {
+            TakeProjDamage(col.gameObject.GetComponent<ProjectileController>().damage, col.gameObject.GetComponent<ProjectileController>().daze_mod);
+        }
         else if (col.gameObject == player)
         {
             playerInRange = true;

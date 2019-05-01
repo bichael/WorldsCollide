@@ -125,10 +125,10 @@ MonoBehaviour:
   enemyHurtClip: {fileID: 8300000, guid: 76c89b75bc1651544ae9104b96d76c3a, type: 3}
   enemyMeleeClip: {fileID: 8300000, guid: 1bf9647b0a137ca4aae142b0a5d8e76c, type: 3}
   enemyShootClip: {fileID: 8300000, guid: 3c14ea7499667184fb79f79a85b9f9ec, type: 3}
-  meleeDamage: 0
-  meleeRange: 0
-  sightRange: 1
-  disengageRange: 3
+  meleeDamage: 2
+  meleeRange: 1
+  sightRange: 1.25
+  disengageRange: 1.5
   weaponType: 1
   bullet: {fileID: 8365747353560420087, guid: 5c3fa9ca7b4850749b467d51cba5fc93, type: 3}
 --- !u!50 &6864872912183092173
