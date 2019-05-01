@@ -6020,6 +6020,31 @@ PrefabInstance:
       propertyPath: m_Pivot.y
       value: 0.5
       objectReference: {fileID: 0}
+    - target: {fileID: 6290918897828316373, guid: 33f5531163e84044e87454c1bd124f25,
+        type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 4.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 6290918897828316373, guid: 33f5531163e84044e87454c1bd124f25,
+        type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 1682.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6290918897828316373, guid: 33f5531163e84044e87454c1bd124f25,
+        type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 4.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 6290918897828316373, guid: 33f5531163e84044e87454c1bd124f25,
+        type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 71.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6290918897828316372, guid: 33f5531163e84044e87454c1bd124f25,
+        type: 3}
+      propertyPath: m_FontData.m_FontSize
+      value: 31
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 33f5531163e84044e87454c1bd124f25, type: 3}
 --- !u!224 &5768245064735732144 stripped
