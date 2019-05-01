@@ -68,7 +68,8 @@ public class Player : MonoBehaviour
     {
         playerAudio = GetComponent<AudioSource>();
         SetPlayerStartingItems();
-        stop_time_count.gameObject.SetActive(false);
+        if (stop_time_count != null)
+            stop_time_count.gameObject.SetActive(false);
     }
 
     // Update is called once per frame
