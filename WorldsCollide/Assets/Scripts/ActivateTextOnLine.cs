@@ -27,11 +27,16 @@ public class ActivateTextOnLine : MonoBehaviour
     void Update()
     {
 		if(waitForPress && Input.GetKeyDown("g")){
+			if(Time.timeScale == 1.0f){
+				Time.timeScale = 0.0f;
+			}
 			theTextBox.ReloadScript (theText);
 			theTextBox.currentLine = startLine;
 			theTextBox.endAtLine = endLine;
 			theTextBox.EnableTextBox ();
-
+			if(Time.timeScale == 0.0f){
+				Time.timeScale = 1.0f;
+			}
 			if (destroyWhenActivated) {
 				Destroy (gameObject);
 
@@ -47,11 +52,15 @@ public class ActivateTextOnLine : MonoBehaviour
 				return;
 			}
 
+				Time.timeScale = 0.0f;
+
 			theTextBox.ReloadScript (theText);
 			theTextBox.currentLine = startLine;
 			theTextBox.endAtLine = endLine;
 			theTextBox.EnableTextBox ();
 
+				Time.timeScale = 1.0f;
+			
 			if (destroyWhenActivated) {
 				Destroy (gameObject);
 			

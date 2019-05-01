@@ -59,6 +59,7 @@ public class TextBoxManager : MonoBehaviour
 		if (currentLine > endAtLine) {
 			DisableTextBox ();
 			signdestroy = true;
+
 		}
     }
 
