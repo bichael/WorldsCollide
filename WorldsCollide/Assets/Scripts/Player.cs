@@ -15,10 +15,25 @@ public class Player : MonoBehaviour
     public float startTimeBtwProject;
     public float timeBtwEquipment;
     public float startTimeBtwEquipment;
+    public float timeBtwShield;
+    public float startTimeBtwShield;
+    public float timeBtwSoda;
+    public float startTimeBtwSoda;
+    public float timeBtwStopwatch;
+    public float startTimeBtwStopwatch;
+    public float timeBtwFireball;
+    public float startTimeBtwFireball;
+    public float timeBtwGrenade;
+    public float startTimeBtwGrenade;
+    public float timeBtwShotgun;
+    public float startTimeBtwShotgun;
+    public float timeBtwLaser;
+    public float startTimeBtwLaser;
     public Transform attackPos;
     public LayerMask enemyLayer;
     public float meleeRange;
     public int meleeDamage;
+    public Slider stop_time_count;
     public GameObject bullet;
     public GameObject shotgunPellet;
     public GameObject grenade;
@@ -53,6 +68,7 @@ public class Player : MonoBehaviour
     {
         playerAudio = GetComponent<AudioSource>();
         SetPlayerStartingItems();
+        stop_time_count.gameObject.SetActive(false);
     }
 
     // Update is called once per frame
@@ -88,7 +104,14 @@ public class Player : MonoBehaviour
             if (time_stop_counter <= 0){
                 time_stopped = false;
                 timeBtwEquipment = 0;
+                stop_time_count.gameObject.SetActive(false);
             }
+            else
+            {
+                stop_time_count.value = time_stop_counter;
+
+            }
+            
         }
 
         if (timeBtwAttack <= 0) // If this checks for KeyCode.Space instead, it fails to register sometimes.
@@ -294,6 +317,7 @@ public class Player : MonoBehaviour
                     time_stopped = true;
                     time_stop_counter = start_time_stop_counter;
                     playerAudio.clip = timeStopWatchClip;
+                    stop_time_count.gameObject.SetActive(true);
                     //gameObject.GetComponent<Time_Stop_Effect>;
                     playerAudio.Play();
                     // 1. Freeze enemies, 2. add blue tint to screen (perhaps copy damageImage from PlayerHealth?)
@@ -330,7 +354,7 @@ public class Player : MonoBehaviour
             }
 
             if (time_stopped){
-                time_stop_counter-=100;
+                time_stop_counter-=200;
             }
 
             animator.SetTrigger("Attacking");
@@ -367,7 +391,7 @@ public class Player : MonoBehaviour
                     playerAudio.Play();
 
                     if (time_stopped){
-                        time_stop_counter-=100;
+                        time_stop_counter-=200;
                     }       
 
                     // Rotate bullet sprite to go with player direction
@@ -410,7 +434,7 @@ public class Player : MonoBehaviour
                     playerAudio.clip = shotgunClip;
                     playerAudio.Play();
                     if (time_stopped){
-                        time_stop_counter-=100;
+                        time_stop_counter-=200;
                     } 
                     for (int i=0; i<3; i++)
                     {
