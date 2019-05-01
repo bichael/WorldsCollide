@@ -21,14 +21,14 @@ EditorBuildSettings:
     path: Assets/Scenes/Wasteland/RuinsDung.unity
     guid: 92d511d4451b17b42a4c0ddacc553e85
   - enabled: 1
-    path: Assets/Scenes/Scifi/SciFi overworld.unity
+    path: Assets/Scenes/SciFi/SciFi overworld.unity
     guid: 1e0a02dcd48fef14cb1572dfe48d1538
   - enabled: 1
-    path: Assets/Scenes/Scifi/Scifi Dungeon.unity
+    path: Assets/Scenes/SciFi/Scifi Dungeon.unity
     guid: ce91f74bd0cf437428493547183adaeb
-  - enabled: 1
-    path: Assets/Scenes/Fantasy/OLD_Fantasy overworld.unity
-    guid: 5a7e82d8524cef14d9a2b9c7f89fea25
+  - enabled: 0
+    path: 
+    guid: 00000000000000000000000000000000
   - enabled: 0
     path: 
     guid: 00000000000000000000000000000000

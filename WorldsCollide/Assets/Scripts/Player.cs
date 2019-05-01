@@ -528,6 +528,30 @@ public class Player : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D other)
     {
+
+		if(other.name == "Grenade"){
+			GameController.control.grenade = true;
+
+		}
+		if(other.name == "Staff"){
+			GameController.control.staff = true;
+
+		}
+		if(other.name == "Watch"){
+			GameController.control.watch = true;
+
+		}
+		if(other.name == "Cola"){
+			GameController.control.cola = true;
+
+		}
+		if(other.name == "Cannon"){
+			GameController.control.cannon = true;
+
+		}
+
+
+
         InventoryItemBase item = other.GetComponent<InventoryItemBase>();
 
         if (item != null)

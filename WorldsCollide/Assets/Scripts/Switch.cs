@@ -5,26 +5,31 @@ using UnityEngine;
 public class Switch : MonoBehaviour
 {
 	
-	//public Red Redscript;
-	//public Blue Bluescript;
+	public Red redscript;
+	public Blue bluescript;
 
-    
+	public bool blueactive;
+	public bool redactive;
+
+
 
 	public void OnTriggerEnter2D(Collider2D col){
 		if(col.name == "Player"){
-			if(GameController.control.redactive == true){
-				GameController.control.redactive = false;
-				GameController.control.blueactive = true;
+			
 
-				//Redscript.MakeInactive();
-				//Bluescript.MakeActive();
+			if((bluescript != null) && blueactive){
+				Debug.Log("BlueDown");
+				blueactive = false;
+				redactive = true;
+				redscript.MakeActive();
+				bluescript.MakeInactive();
 			}
-			else if(GameController.control.redactive == false){
-				GameController.control.redactive = true;
-				GameController.control.blueactive = false;
-
-				//Redscript.MakeActive();
-				//Bluescript.MakeInactive();
+			else{
+				Debug.Log("Red down");
+				blueactive = true;
+				redactive = false;
+				redscript.MakeInactive();
+				bluescript.MakeActive();
 			}
 		}
 

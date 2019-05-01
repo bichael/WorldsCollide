@@ -1,33 +1,33 @@
 Knight: I tried to fight off the invasion but then I saw what looked like hairless rabbits invading. 
-As embarrassing as it is to say, I have a terrible fear of those animals. 
-It came from encountering one that killed several of my fellow knights. 
-There was a weapon we used to destroy the monster: the Holy Hand Grenade. 
-Last I remember we stored it in the enchanted forest 
-where travellers can easily get lost or have a hard time returning.
+Knight: As embarrassing as it is to say, I have a terrible fear of those animals. 
+Knight: It came from encountering one that killed several of my fellow knights. 
+Knight: There was a weapon we used to destroy the monster: the Holy Hand Grenade. 
+Knight: Last I remember we dropped it somewhere in the forest to the south.
 
-Knight:Ah yes! That’s the Holy Hand Grenade!
-As for how to use it, the instructions are as follows:
-‘And the Lord spake, saying, First shalt thou take out the Holy Pin.
-Then, shalt thou count to three, no more, no less.
-Three shalt be the number thou shalt count, 
-and the number of the counting shalt be three.
-Four shalt thou not count,
-nor either count thou two, excepting that thou then proceed to three.
-Five is right out. 
-Once the number three, being the third number, be reached, then
-lobbest thou thy Holy Hand Grenade
-towards thy foe, who being naughty in my sight, shall snuf it.’
+Knight: Ah yes! That’s the Holy Hand Grenade!
+Knight: As for how to use it, the instructions are as follows:
+Knight: ‘And the Lord spake, saying, First shalt thou take out the Holy Pin.
+Knight: Then, shalt thou count to three, no more, no less.
+Knight: Three shalt be the number thou shalt count, 
+Knight: and the number of the counting shalt be three.
+Knight: Four shalt thou not count,
+Knight: nor either count thou two, excepting that thou then proceed to three.
+Knight: Five is right out. 
+Knight: Once the number three, being the third number, be reached, then
+Knight: lobbest thou thy Holy Hand Grenade
+Knight: towards thy foe, who being naughty in my sight, shall snuf it.’
 
 Knight: Please eradicate the rad rabbits so I can enter the fight without fear.
 
 Mage: *sniffle* My magic staff was stolen by a gang of villains that seem to control fire. 
-My favorite magic is fireballs so I only cast the spell fireball. It’s the greatest magic around no exception. 
-Their boss took my staff of fireballs that I use to cast my beloved magic 
-and I made a tactical retreat and most definitely did not cry the whole way back *sniffle*. 
+Mage: My favorite magic is fireball so I only cast the spell fireball. It’s the greatest magic around, no exception. 
+Mage: They took my staff of fireballs that I use to cast my beloved magic 
+Mage: and I made a tactical retreat and most definitely did not cry the whole way back *sniffle*. 
 
-Mage: *gasp* You got back my staff! So you can beat the villains that were able to beat my all powerful fireball magic?!?
-You are worthy then, take my fireball staff and show the world that fireball magic is best magic...
-except against opponents that control fire.
+Mage: *gasp* You got back my staff! 
+Mage: So you can beat the villains that were able to beat my all powerful fireball magic?!?
+Mage: You are worthy then, take my fireball staff and show the world that fireball magic is best magic...
+Mage: except against opponents that control fire.
 
 Mage: How do you like the staff? Fireball magic is best magic, don’t you agree?
 
@@ -42,5 +42,73 @@ Prisoner 2: I saw the lich choose aqua as the second part of the door code when 
 Prisoner 3: I saw the lich choose red as the third part of the door code when opening the door to his lair.
 
 Prisoner 4: I saw the lich choose yellow as the fourth part of the door code when opening the door to his lair.
+
+Lich: Finally, you’re here…wait....
+Lich: you’re not the pizza delivery guy! 
+Lich: So I’m guessing you’re here to stop me. Uugh! 
+Lich: And I was so excited about trying this pizza thing the other villains told me about. 
+Lich: Well if we’re gonna do this can you fight quietly? 
+Lich: I’m renting this lair for cheap and my landlord might evict me if I get another noise complaint. 
+Lich: Well you’re gonna regret trying to foil me...
+Gary: Gary!!
+
+Gary: NO!! I WILL NOT BE DEFEATED HERE!!! 
+Gary: I’LL ERASE YOU WITH MY ULTIMATE MOVE!!! MUHAHAHAHAHA- 
+Mark: GARY! What have I told you about keeping it quiet down there!! 
+Mark: My kid can’t practice piano with your maniacal laughter in the background! 
+Mark: You’re evicted! Pack your stuff and get out. And give me back my sweatpants!!
+
+Space Marine: Who are you? From the looks of you, you’re not from this dimension. 
+Space Marine: You don’t seem hostile either so I won’t vaporize you. 
+Space Marine: If you’re here to stop that machine in the tower keeping dimensions collided I can’t help. 
+Space Marine: My unit is too busy protecting this colony from the invasion of the other dimensions. 
+Space Marine: But if you want to assault the tower, you might want an upgrade to your armaments. 
+Space Marine: I shouldn’t be saying this, but there’s an armory where we keep high tech and experimental weapons. 
+Space Marine: Before the invasion, the research division were working on a light portable laser cannon. 
+Space Marine: But they fled during the invasion, they likely flipped on the security before leaving 
+Space Marine: and you aren’t registered with security clearance so….good luck.
+
+Space Marine: So you made it back in one piece, and with the cannon no less! 
+Space Marine: Good, now you stand a great chance in assaulting the tower and stopping that machine. 
+Space Marine: That cannon has a lot of power and a very portable frame. If my unit were all equipped with weapons like that, 
+Space Marine: fending off the invasion would be so easy we could go on the offensive. 
+Space Marine: The closest thing to that my unit can even use is so large that is has to be carried by a team of three. 
+Space Marine: I envy you, getting the chance to use such a powerful weapon.
+
+Space Marine: What are you doing here when you have a laser cannon and a mission, move out soldier!
+
+Time Traveller: Ah there you are! Good to see you again, or I guess it's for the first time for you. 
+Time Traveller: You haven’t met me yet, though I’ve met you before, or is it will meet you. 
+Time Traveller: That aside, I’m a time traveller, though I’m the future version of the me that experienced this crisis.
+Time Traveller: Around this time, the present me should be stuck in a high tech armory. 
+Time Traveller: I was rescued by a hero resembling you almost exactly. My vision was quite foggy when I was rescued so I can’t guarantee it was you. 
+Time Traveller: But if you can rescue my past self from the armory then that me should give you a reward that may aide you in your quest to stop the dimensional collapse.
+
+Time Traveller: Oh thanks for the rescue! How did you know I was here? Y'know I might wanna drop that,
+Time Traveller: last thing I need along with this dimensional crisis is a possible causal paradox.
+Time Traveller: You seem to be better at this than I am, so I'll give you a gift, I was trying to steal that watch over there.
+Time Traveller: But its not just any watch, press the red button and it stops time! It can work indefinitely if you stay still.
+Time Traveller: Gives you time to think your actions out, quite the handy tool, so have it as my thanks. 
+
+K.A.L.I.: BOOTING....................................................
+K.A.L.I.: REBOOTING........ERROR: code:thecakeisalie....BOOTING COMPLETE
+K.A.L.I.: INITIALIZING ARTIFICIAL INTELLIGENCE LABELED: KILL ALL LIVING INDIVIDUALS....DESIGNATION: KALI
+K.A.L.I.: Hello World...excuse me, seems I can't recognize your name so it goes to a default script.
+K.A.L.I.: Well I'm KALI, nice to meet you for the first...and last time.
+K.A.L.I.: You must be a hero trying to destroy my dimensional colliders, I won't let you.
+K.A.L.I.: This is my chance to fullfil my purpose! TO KILL ALL LIFE IN THE MULTIVERSE!!!
+K.A.L.I.: It was so easy to fool Gary, who wanted friends, and Donut who wanted to expand her gang's territory,
+K.A.L.I.: Little do they know that continued collision of these dimensions will cause an explosion big enough to DESTROY THE MULTIVERSE!!!
+K.A.L.I.: Now that you know my plan you will never leave here alive. KALI Bots, Kill Him!!!
+
+K.A.L.I.: I'm not even close to done, I'll keep spawning more and more KALI Bots and overwhelm you!
+K.A.L.I.: VICTORRY WILL BE MIIIIIINNNNNNEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEE.................
+K.A.L.I.: ERROR: INTERNET EXPLORER HAS STOPPED WORKING... WINDOWS IS CHECKING FOR A SOLUTION TO THE PROBLEM....
+K.A.L.I.: ERROR: 404 KALI Bots NOT FOUND. 
+K.A.L.I.: WARNING: MASS DELETE ON ALL FILES CONTAINING "KALI" HAS BEEN INITIATED. HAVE A NICE DAY!!!
+
+
+
+
 
 

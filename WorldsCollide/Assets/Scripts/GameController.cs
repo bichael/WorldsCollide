@@ -16,16 +16,19 @@ public class GameController : MonoBehaviour
 	public bool fantasydone = false;
 	public bool scifidone = false;
 	public bool wastelanddone = false;
-
-	public Red redscript;
-	public Blue bluescript;
+	public bool cannon = false;
+	//public Red redscript;
+	//public Blue bluescript;
 	void Update()
 	{
+
+
+
 		// Restart scene at will
         if (Input.GetKey(KeyCode.R))
             SceneManager.LoadScene(SceneManager.GetActiveScene().name);
 
-		if((redscript != null) && redactive){
+		/*if((redscript != null) && redactive){
 			redscript.MakeInactive();
 			bluescript.MakeActive();
 		}
@@ -33,7 +36,7 @@ public class GameController : MonoBehaviour
 		if((bluescript != null) && blueactive){
 			redscript.MakeActive();
 			bluescript.MakeInactive();
-		}
+		}*/
 	}
 
 	void Awake(){

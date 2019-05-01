@@ -28,6 +28,7 @@ public class SaveLoad : MonoBehaviour
 		data.fantasydone = GameController.control.fantasydone;
 		data.scifidone = GameController.control.scifidone;
 		data.wastelanddone = GameController.control.wastelanddone;
+		data.cannon = GameController.control.cannon;
 		formatter.Serialize (path, data);
 		path.Close ();
 	}
@@ -50,7 +51,7 @@ public class SaveLoad : MonoBehaviour
 			GameController.control.fantasydone = data.fantasydone;
 			GameController.control.scifidone = data.scifidone;
 			GameController.control.wastelanddone = data.wastelanddone;
-
+			GameController.control.cannon = data.cannon;
 
 
 		} else {
@@ -74,5 +75,6 @@ class PlayerData{
 	public bool fantasydone;
 	public bool scifidone;
 	public bool wastelanddone;
+	public bool cannon;
 }
 
