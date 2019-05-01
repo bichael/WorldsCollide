@@ -32,11 +32,11 @@ public class WallDeflect : MonoBehaviour
             }
             // Send colliding object on vector towards boss // TODO change to ricochet to actually give difficulty?
             // Vector3 target = gary.transform.position - col.gameObject.transform.position;
-            Vector3 target = player.transform.position - col.gameObject.transform.position;
+            Vector3 target = (player.transform.position - col.gameObject.transform.position).normalized;
             // col.gameObject.transform.position = Vector2.MoveTowards(col.gameObject.transform.position, target, speed * Time.deltaTime);
             ProjectileController pc = col.gameObject.GetComponent<ProjectileController>();
             pc.SetProjectileVector("None");
-            col.gameObject.GetComponent<Rigidbody2D>().velocity = target * pc.speed;
+            col.gameObject.GetComponent<Rigidbody2D>().velocity = target * (pc.speed * 1.5f);
         }
     }
 }
