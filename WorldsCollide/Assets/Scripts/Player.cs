@@ -32,7 +32,7 @@ public class Player : MonoBehaviour
     public bool staffEquipped;
     public bool shieldEquipped;
     public bool time_stopped;
-    public int start_time_stop_counter = 600;
+    public int start_time_stop_counter = 300;
     public int time_stop_counter = 0;
     public bool is_moving;
     public Transform inventoryPanel;
@@ -75,11 +75,11 @@ public class Player : MonoBehaviour
         /* Detect key presses that are conditional based on a timer (Shield, Melee, Projectile) */
         if (timeBtwEquipment <= 0)
         {
-            //if (blocking == true)
-            //{
-           //     animator.SetTrigger("ExitShielding");
-            //    blocking = false;
-            //}
+            if (blocking == true)
+            {
+                animator.SetTrigger("ExitShielding");
+                blocking = false;
+            }
             AttemptPlayerEquipment();
         } else
             timeBtwEquipment -= Time.deltaTime;
@@ -281,6 +281,7 @@ public class Player : MonoBehaviour
             {
                 if (equipment.GetComponent<Staff>().Name.Equals("Shield"))
                 {
+                    startTimeBtwEquipment = 10.0f;
                     animator.SetTrigger("Shielding");
                     playerAudio.clip = shieldClip;
                     playerAudio.Play();
@@ -288,6 +289,7 @@ public class Player : MonoBehaviour
                 }
                 else if (equipment.GetComponent<Staff>().Name.Equals("Time Stop Watch"))
                 {
+                    startTimeBtwEquipment = 5.0f;
                     Debug.Log("Stop time!");
                     time_stopped = true;
                     time_stop_counter = start_time_stop_counter;
@@ -298,6 +300,7 @@ public class Player : MonoBehaviour
                 }
                 else if (equipment.GetComponent<Staff>().Name.Equals("Nuka Soda"))
                 {
+                    startTimeBtwEquipment = 15.0f;
                     Debug.Log("Buff player!");
                     playerAudio.clip = nukaSodaClip;
                     playerAudio.Play();
@@ -321,6 +324,9 @@ public class Player : MonoBehaviour
             {
                 animator.SetTrigger("ExitShielding");
                 blocking = false;
+                if (shieldEquipped){
+                    timeBtwEquipment = 1f;
+                }
             }
 
             if (time_stopped){
@@ -505,6 +511,9 @@ public class Player : MonoBehaviour
             {
                 animator.SetTrigger("ExitShielding");
                 blocking = false;
+                if (shieldEquipped){
+                    timeBtwEquipment = 1f;
+                }
             }
             
             timeBtwProject = startTimeBtwProject;

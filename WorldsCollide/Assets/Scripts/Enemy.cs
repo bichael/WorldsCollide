@@ -67,7 +67,7 @@ public class Enemy : MonoBehaviour
         {
             inSightRange = false;
         }
-        if (aggro)
+        if (aggro && (ply.time_stopped == false))
         {
             //Check if player is far enough to disengage
             Collider2D[] disengageSearch = Physics2D.OverlapCircleAll(transform.position, disengageRange, playerLayer);
@@ -173,57 +173,59 @@ public class Enemy : MonoBehaviour
             fixedDirection.eulerAngles = new Vector3(0, 0, 90 - (-enemyPlayerAngle * 180)); // Multiply by 180 to convert to degrees.  Offset by 90 just cuz.
             // GameObject go = (GameObject)Instantiate (bullet, transform.position, fixedDirection);
             Vector2 projectilePosition = transform.position;
-            if (enemyPlayerAngle == 0) // if facing left
-            {
-                projectilePosition.x -= 0.15f; // offset from player pivot (to avoid shooting from chest)
-                GameObject go = (GameObject)Instantiate (bullet, projectilePosition, fixedDirection);
-                go.GetComponent<ProjectileController>().SetProjectileVector("Left");
-            }
-            else if (enemyPlayerAngle == -0.5f) // if facing up
-            {
-                projectilePosition.y += 0.2f;
-                GameObject go = (GameObject)Instantiate (bullet, projectilePosition, fixedDirection);
-                go.GetComponent<ProjectileController>().SetProjectileVector("Up");
-            }
-            else if ((enemyPlayerAngle == 1) || (enemyPlayerAngle == -1)) // if facing right
-            {
-                projectilePosition.x += 0.15f;
-                GameObject go = (GameObject)Instantiate (bullet, projectilePosition, fixedDirection);
-                go.GetComponent<ProjectileController>().SetProjectileVector("Right");
-            }
-            else if (enemyPlayerAngle == 0.5f) // if facing down
-            {
-                projectilePosition.y -= 0.2f;
-                GameObject go = (GameObject)Instantiate (bullet, projectilePosition, fixedDirection);
-                go.GetComponent<ProjectileController>().SetProjectileVector("Down");
-            }
-            else if (enemyPlayerAngle == -0.25) // if facing up-left
-            {
-                projectilePosition.y += 0.15f;
-                projectilePosition.x -= 0.15f;
-                GameObject go = (GameObject)Instantiate (bullet, projectilePosition, fixedDirection);
-                go.GetComponent<ProjectileController>().SetProjectileVector("UpLeft");
-            }
-            else if (enemyPlayerAngle == -0.75) // if facing up-right
-            {
-                projectilePosition.y += 0.15f;
-                projectilePosition.x += 0.15f;
-                GameObject go = (GameObject)Instantiate (bullet, projectilePosition, fixedDirection);
-                go.GetComponent<ProjectileController>().SetProjectileVector("UpRight");
-            }
-            else if (enemyPlayerAngle == 0.75) // if facing down-right
-            {
-                projectilePosition.y -= 0.15f;
-                projectilePosition.x += 0.15f;
-                GameObject go = (GameObject)Instantiate (bullet, projectilePosition, fixedDirection);
-                go.GetComponent<ProjectileController>().SetProjectileVector("DownRight");
-            }
-            else if (enemyPlayerAngle == 0.25)// if facing down-left
-            {
-                projectilePosition.y -= 0.15f;
-                projectilePosition.x -= 0.15f;
-                GameObject go = (GameObject)Instantiate (bullet, projectilePosition, fixedDirection);
-                go.GetComponent<ProjectileController>().SetProjectileVector("DownLeft");
+            if (ply.time_stopped == false){
+                if (enemyPlayerAngle == 0) // if facing left
+                {
+                    projectilePosition.x -= 0.15f; // offset from player pivot (to avoid shooting from chest)
+                    GameObject go = (GameObject)Instantiate (bullet, projectilePosition, fixedDirection);
+                    go.GetComponent<ProjectileController>().SetProjectileVector("Left");
+                }
+                else if (enemyPlayerAngle == -0.5f) // if facing up
+                {
+                    projectilePosition.y += 0.2f;
+                    GameObject go = (GameObject)Instantiate (bullet, projectilePosition, fixedDirection);
+                    go.GetComponent<ProjectileController>().SetProjectileVector("Up");
+                }
+                else if ((enemyPlayerAngle == 1) || (enemyPlayerAngle == -1)) // if facing right
+                {
+                    projectilePosition.x += 0.15f;
+                    GameObject go = (GameObject)Instantiate (bullet, projectilePosition, fixedDirection);
+                    go.GetComponent<ProjectileController>().SetProjectileVector("Right");
+                }
+                else if (enemyPlayerAngle == 0.5f) // if facing down
+                {
+                    projectilePosition.y -= 0.2f;
+                    GameObject go = (GameObject)Instantiate (bullet, projectilePosition, fixedDirection);
+                    go.GetComponent<ProjectileController>().SetProjectileVector("Down");
+                }
+                else if (enemyPlayerAngle == -0.25) // if facing up-left
+                {
+                    projectilePosition.y += 0.15f;
+                    projectilePosition.x -= 0.15f;
+                    GameObject go = (GameObject)Instantiate (bullet, projectilePosition, fixedDirection);
+                    go.GetComponent<ProjectileController>().SetProjectileVector("UpLeft");
+                }
+                else if (enemyPlayerAngle == -0.75) // if facing up-right
+                {
+                    projectilePosition.y += 0.15f;
+                    projectilePosition.x += 0.15f;
+                    GameObject go = (GameObject)Instantiate (bullet, projectilePosition, fixedDirection);
+                    go.GetComponent<ProjectileController>().SetProjectileVector("UpRight");
+                }
+                else if (enemyPlayerAngle == 0.75) // if facing down-right
+                {
+                    projectilePosition.y -= 0.15f;
+                    projectilePosition.x += 0.15f;
+                    GameObject go = (GameObject)Instantiate (bullet, projectilePosition, fixedDirection);
+                    go.GetComponent<ProjectileController>().SetProjectileVector("DownRight");
+                }
+                else if (enemyPlayerAngle == 0.25)// if facing down-left
+                {
+                    projectilePosition.y -= 0.15f;
+                    projectilePosition.x -= 0.15f;
+                    GameObject go = (GameObject)Instantiate (bullet, projectilePosition, fixedDirection);
+                    go.GetComponent<ProjectileController>().SetProjectileVector("DownLeft");
+                }
             }
 
             // // ALTERNATE APPROACH: Shoot projectile directly at player.
