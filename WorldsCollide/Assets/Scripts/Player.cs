@@ -58,6 +58,7 @@ public class Player : MonoBehaviour
     public AudioClip shieldClip;
     public AudioClip timeStopWatchClip;
     public AudioClip nukaSodaClip;
+    private Rigidbody2D rb2d;
     
     private InventoryItemBase mCurrentItem = null;
     public Inventory Inventory;
@@ -70,11 +71,13 @@ public class Player : MonoBehaviour
         SetPlayerStartingItems();
         if (stop_time_count != null)
             stop_time_count.gameObject.SetActive(false);
+        rb2d = GetComponent<Rigidbody2D>();
     }
 
     // Update is called once per frame
     void Update()
     {
+        rb2d.velocity = Vector2.zero;
         /* Movement */
 		if (!playercanmove)
 			return;

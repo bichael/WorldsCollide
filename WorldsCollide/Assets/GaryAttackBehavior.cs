@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class AttackBehavior : StateMachineBehaviour
+public class GaryAttackBehavior : StateMachineBehaviour
 {    
     public float timer;
     public float minTime = 0.5f;

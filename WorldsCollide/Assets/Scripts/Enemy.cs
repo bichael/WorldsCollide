@@ -31,6 +31,7 @@ public class Enemy : MonoBehaviour
     bool playerInRange; // Becomes true when player enters enemy collider; close enough to melee.
     bool inSightRange; // Becomes true when player enters sight FOV, becomes false when player exits sight FOV.
     bool aggro; // Becomes true when player enters sight FOV, becomes false when player exits disengage FOV.
+    private Rigidbody2D rb2d;
 
 	public WeaponType weaponType = WeaponType.MELEE;
 	// public EnemyState idleState = EnemyState.IDLE_STATIC;
@@ -45,6 +46,7 @@ public class Enemy : MonoBehaviour
         anim = GetComponent<Animator>();
         enemyAudio = GetComponent<AudioSource>();
         sfxAudio = GameObject.FindGameObjectWithTag("GameController").GetComponent<AudioSource>();
+        rb2d = GetComponent<Rigidbody2D>();
     }
 
     // Update is called once per frame
@@ -52,6 +54,8 @@ public class Enemy : MonoBehaviour
     {
         if (health <= 0) 
         {
+            if (GameObject.FindGameObjectWithTag("KALI") != null)
+                GameObject.FindGameObjectWithTag("KALI").GetComponent<KALI>().IncrementBotsKilled();
             Destroy(gameObject);
         }
 
@@ -156,6 +160,7 @@ public class Enemy : MonoBehaviour
 
     private void AttemptAttack()
     {
+        rb2d.velocity = Vector2.zero;
         // animator.SetTrigger("Attacking");
         if (weaponType == WeaponType.PROJECTILE)
         {
