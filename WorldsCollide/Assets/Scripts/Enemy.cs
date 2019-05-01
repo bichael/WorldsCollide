@@ -14,6 +14,11 @@ public class Enemy : MonoBehaviour
     private float timeBtwAttack;
     public float startTimeBtwAttack;
     public LayerMask playerLayer;
+    AudioSource enemyAudio;
+    AudioSource sfxAudio;
+    public AudioClip enemyHurtClip;
+    public AudioClip enemyMeleeClip;
+    public AudioClip enemyShootClip;
     public int meleeDamage;
     public float meleeRange = .1f;
     public float sightRange = 1f;
@@ -36,6 +41,8 @@ public class Enemy : MonoBehaviour
         // playerHealthScript = player.transform.GetComponent<PlayerHealth>();
         playerHealthScript = player.GetComponent<PlayerHealth>();
         anim = GetComponent<Animator>();
+        enemyAudio = GetComponent<AudioSource>();
+        sfxAudio = GameObject.FindGameObjectWithTag("GameController").GetComponent<AudioSource>();
     }
 
     // Update is called once per frame
@@ -128,14 +135,20 @@ public class Enemy : MonoBehaviour
 
     public void TakeDamage(int damage)
     {
+        // AudioSource.PlayClipAtPoint(enemyHurtClip, transform.position);
         dazedTime = startDazedTime;
         health -= damage;
+        sfxAudio.clip = enemyHurtClip;
+        sfxAudio.Play();
         Debug.Log(this + " took " + damage + " damage");
     }
     public void TakeProjDamage(int damage,float mod)
     {
+        // AudioSource.PlayClipAtPoint(enemyHurtClip, transform.position);
         dazedTime = startDazedTime * mod;
         health -= damage;
+        sfxAudio.clip = enemyHurtClip;
+        sfxAudio.Play();
         Debug.Log(this + " took " + damage + " damage");
     }
 
@@ -144,6 +157,8 @@ public class Enemy : MonoBehaviour
         // animator.SetTrigger("Attacking");
         if (weaponType == WeaponType.PROJECTILE)
         {
+            enemyAudio.clip = enemyShootClip;
+            enemyAudio.Play();
             Vector3 enemyPlayerDifferenceVector = transform.position - player.transform.position;
             float enemyPlayerAngle = (Mathf.Atan2(enemyPlayerDifferenceVector.y, enemyPlayerDifferenceVector.x) * Mathf.Rad2Deg) / 180;
 
@@ -217,6 +232,8 @@ public class Enemy : MonoBehaviour
         }
         else if (weaponType == WeaponType.MELEE)
         {
+            enemyAudio.clip = enemyMeleeClip;
+            enemyAudio.Play();
             // timeBtwAttack = startTimeBtwAttack;
             Collider2D[] playerToDamage = Physics2D.OverlapCircleAll(transform.position, meleeRange, playerLayer);
             Debug.Log("Player found in " + this + "'s melee hitbox: " + playerToDamage.Length);

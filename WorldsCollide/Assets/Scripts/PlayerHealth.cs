@@ -12,6 +12,7 @@ public class PlayerHealth : MonoBehaviour
     private bool canBeAttacked;
     private GameObject healthUI;
     public Image damageImage;
+    public AudioClip playerHurtClip;
     public AudioClip deathClip;
     public float flashSpeed = 5f;
     public Color flashColor = new Color(1f, 0f, 0f, 0.1f);
@@ -86,8 +87,12 @@ public class PlayerHealth : MonoBehaviour
         damaged = true;
         damageCooldown = damageGracePeriod;
         currentHealth -= amount;
+        // Avoid negative health.
+        if (currentHealth < 0)
+            currentHealth = 0;
         Debug.Log("Player took " + amount + " damage.");
         AssertPlayerHealthEqualsHearts(true);
+        playerAudio.clip = playerHurtClip;
         playerAudio.Play();
         
         if (currentHealth <= 0 && !isDead) 
@@ -143,6 +148,7 @@ public class PlayerHealth : MonoBehaviour
             if (col.gameObject.tag.Equals("EnemyProjectile"))
             {
                 TakeDamage(col.gameObject.GetComponent<ProjectileController>().damage);
+                Destroy(col.gameObject);
             } else if (col.gameObject.tag.Equals("HealthPickUp"))
             {
                 if (currentHealth < startingHealth) {
