@@ -20,6 +20,7 @@ public class Gary : MonoBehaviour
     public bool phase1;
     public bool phase2;
     private float speed;
+    public GameObject exitTeleporter;
 
     // Start is called before the first frame update
     void Start()
@@ -49,6 +50,11 @@ public class Gary : MonoBehaviour
             anim.SetTrigger("Death");
             phase2 = false;
             gameObject.SetActive(false); // TODO come up with better handling of death for Gary.
+            if (exitTeleporter != null)
+            {
+                exitTeleporter.GetComponent<SpriteRenderer>().enabled = true;
+                exitTeleporter.GetComponent<BoxCollider2D>().enabled = true;
+            }
         }
     }
 
@@ -62,7 +68,7 @@ public class Gary : MonoBehaviour
         Quaternion fixedDirection = Quaternion.identity;
         fixedDirection.eulerAngles = new Vector3(0, 0, 90 - (enemyPlayerAngle * 180)); // Multiply by 180 to convert to degrees.  Offset by 90 just cuz.
         Vector2 projectilePosition = transform.position;
-        Vector3 target = player.transform.position - transform.position;
+        Vector3 target = (player.transform.position - transform.position).normalized;
         if (enemyPlayerAngle == 0) // if facing left
         {
             projectilePosition.x -= 0.5f; // offset from player pivot (to avoid shooting from chest)
