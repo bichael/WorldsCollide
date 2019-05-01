@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using System.IO;
 using System.Runtime.Serialization.Formatters.Binary;
+using UnityEngine.SceneManagement;
 
 public class SaveLoad : MonoBehaviour
 {
@@ -52,10 +53,10 @@ public class SaveLoad : MonoBehaviour
 			GameController.control.scifidone = data.scifidone;
 			GameController.control.wastelanddone = data.wastelanddone;
 			GameController.control.cannon = data.cannon;
-
+			//SceneManager.LoadScene("Hub");
 
 		} else {
-			//Application.LoadLevel (5);
+			//SceneManager.LoadScene("Hub");
 		}
 
 
