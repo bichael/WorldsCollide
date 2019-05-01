@@ -1,8 +1,8 @@
-Knight: I tried to fight off the invasion but then I saw what looked like hairless rabbits invading. 
+Knight: I tried to fight off the invasion but then I saw what looked like hairless rabbits invading from another world. 
 Knight: As embarrassing as it is to say, I have a terrible fear of those animals. 
 Knight: It came from encountering one that killed several of my fellow knights. 
 Knight: There was a weapon we used to destroy the monster: the Holy Hand Grenade. 
-Knight: Last I remember we dropped it somewhere in the forest to the south.
+Knight: Last I remember we dropped it somewhere in the forest in the south.
 
 Knight: Ah yes! That’s the Holy Hand Grenade!
 Knight: As for how to use it, the instructions are as follows:
@@ -19,7 +19,7 @@ Knight: towards thy foe, who being naughty in my sight, shall snuf it.’
 
 Knight: Please eradicate the rad rabbits so I can enter the fight without fear.
 
-Mage: *sniffle* My magic staff was stolen by a gang of villains that seem to control fire. 
+Mage: *sniffle* My magic staff was stolen by a gang of villains from another world that seem to control fire. 
 Mage: My favorite magic is fireball so I only cast the spell fireball. It’s the greatest magic around, no exception. 
 Mage: They took my staff of fireballs that I use to cast my beloved magic 
 Mage: and I made a tactical retreat and most definitely did not cry the whole way back *sniffle*. 
