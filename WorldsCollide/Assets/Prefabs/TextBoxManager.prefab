@@ -49,7 +49,7 @@ MonoBehaviour:
   isActive: 0
   textLines: []
   currentLine: 0
-  endAtLine: 3
+  endAtLine: 51
   player: {fileID: 0}
   signdestroy: 0
-  stopPlayerMovement: 0
+  stopPlayerMovement: 1

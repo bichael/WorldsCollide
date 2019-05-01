@@ -51,6 +51,57 @@ MonoBehaviour:
   PickRotation: {x: 0, y: 0, z: 0}
   UseItemAfterPickup: 0
   player: {fileID: 0}
+--- !u!1 &1133137027389575770
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 3692187656966823618}
+  - component: {fileID: 7736494358730077330}
+  m_Layer: 0
+  m_Name: LaserCannonInventoryIcon
+  m_TagString: PlayerCannon
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &3692187656966823618
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1133137027389575770}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 5703356203344524672}
+  m_RootOrder: 10
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &7736494358730077330
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1133137027389575770}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d6f76201b6b2cb243bc07acc8752bea7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Name: Laser Cannon
+  Image: {fileID: 21300000, guid: 60595057dfcd07345a886a783faf5153, type: 3}
+  InteractText: 
+  ItemType: 0
+  PickPosition: {x: 0, y: 0, z: 0}
+  PickRotation: {x: 0, y: 0, z: 0}
+  UseItemAfterPickup: 0
+  player: {fileID: 0}
 --- !u!1 &4220801444352408980
 GameObject:
   m_ObjectHideFlags: 0
@@ -327,6 +378,7 @@ Transform:
   - {fileID: 7364497507621706260}
   - {fileID: 5429582370869725122}
   - {fileID: 797901447045353271}
+  - {fileID: 3692187656966823618}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -479,6 +531,7 @@ MonoBehaviour:
   shotgunPellet: {fileID: 8365747353560420087, guid: 4efd34cc1e3adc94e941065e6d82b86d,
     type: 3}
   grenade: {fileID: 5468873657229393453, guid: 4309f3e1c1133244c81d04ef3acca702, type: 3}
+  laser: {fileID: 0}
   meleeWeapon: {fileID: 1479374308}
   rangedWeapon: {fileID: 0}
   equipment: {fileID: 0}
@@ -500,6 +553,7 @@ MonoBehaviour:
   shieldClip: {fileID: 0}
   timeStopWatchClip: {fileID: 8300000, guid: 144932734769452419a574f60d60be97, type: 3}
   nukaSodaClip: {fileID: 8300000, guid: a3cd07eb88cfb0f43ad6b00f9f09e2fc, type: 3}
+  laserCannonClip: {fileID: 0}
   Inventory: {fileID: 0}
   Hud: {fileID: 0}
 --- !u!114 &5703356203344524676

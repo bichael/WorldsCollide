@@ -21,24 +21,41 @@ public class GameController : MonoBehaviour
 	public bool cannon = false;
 	//public Red redscript;
 	//public Blue bluescript;
+	
 	void Update()
 	{
+        if (Input.GetKey(KeyCode.LeftShift) || Input.GetKey(KeyCode.RightShift))
+        {
+            if (Input.GetKeyDown(KeyCode.Alpha1) || (Input.GetKeyDown(KeyCode.Keypad1)))
+            {
+                SetAllItemsTrue();
+                SceneManager.LoadScene("Hub");
+            }
+            else if (Input.GetKeyDown(KeyCode.Alpha2) || (Input.GetKeyDown(KeyCode.Keypad2)))
+            {
+                SetAllItemsTrue();
+                SceneManager.LoadScene("Gary");
+            }
+            else if (Input.GetKeyDown(KeyCode.Alpha3) || (Input.GetKeyDown(KeyCode.Keypad3)))
+            {
+                SetAllItemsTrue();
+                SceneManager.LoadScene("KALI");
+            }
+        }
+	}
 
-
-
-		// Restart scene at will
-        if (Input.GetKey(KeyCode.R))
-            SceneManager.LoadScene(SceneManager.GetActiveScene().name);
-
-		/*if((redscript != null) && redactive){
-			redscript.MakeInactive();
-			bluescript.MakeActive();
-		}
-
-		if((bluescript != null) && blueactive){
-			redscript.MakeActive();
-			bluescript.MakeInactive();
-		}*/
+	public void SetAllItemsTrue()
+	{
+		grenade = true;
+		shield = true;
+		shotgun = true;
+		staff = true;
+		watch = true;
+		soda = true;
+		fantasydone = true;
+		scifidone = true;
+		wastelanddone = true;
+		cannon = true;
 	}
 
 	void Awake(){
