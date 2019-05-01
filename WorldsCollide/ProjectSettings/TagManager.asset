@@ -19,6 +19,7 @@ TagManager:
   - PlayerSoda
   - PlayerCannon
   - KALI
+  - PiercingProjectile
   layers:
   - Default
   - TransparentFX

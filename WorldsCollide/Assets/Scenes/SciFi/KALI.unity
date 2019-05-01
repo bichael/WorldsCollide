@@ -24915,6 +24915,18 @@ RectTransform:
     type: 3}
   m_PrefabInstance: {fileID: 644239556}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &644239561 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1380352909388104926, guid: 1b9601bf919cd5c4b9856084568dedf6,
+    type: 3}
+  m_PrefabInstance: {fileID: 644239556}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: -113659843, guid: f70555f144d8491a825f0804e09c671c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &675401671
 GameObject:
   m_ObjectHideFlags: 0
@@ -120165,6 +120177,8 @@ MonoBehaviour:
   healthBar: {fileID: 644239558}
   projectileSpeed: 0.5
   enemiesAlive: 0
+  introTalkDone: 0
+  outroTalkDone: 0
   botsKilled: 0
   kaliBot: {fileID: 678084077140841101, guid: d021164344c35174a8126131a742aa4e, type: 3}
   exitTeleporter: {fileID: 1642463129}
@@ -120351,6 +120365,11 @@ PrefabInstance:
       propertyPath: inventoryPanel
       value: 
       objectReference: {fileID: 644239560}
+    - target: {fileID: 5703356203344524683, guid: 38a92168c1d9678459a1c820fb1e6b12,
+        type: 3}
+      propertyPath: stop_time_count
+      value: 
+      objectReference: {fileID: 644239561}
     - target: {fileID: 5703356203344524672, guid: 38a92168c1d9678459a1c820fb1e6b12,
         type: 3}
       propertyPath: m_LocalPosition.x

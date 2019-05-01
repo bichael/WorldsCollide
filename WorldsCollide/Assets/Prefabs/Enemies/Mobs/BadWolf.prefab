@@ -115,10 +115,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a832dab94cfba7f4bb4d60e29aa3a7b7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  health: 2
+  health: 4
   initSpeed: 0.7
-  startDazedTime: 0.6
-  startTimeBtwAttack: 1
+  startDazedTime: 0.3
+  startTimeBtwAttack: 1.3
   playerLayer:
     serializedVersion: 2
     m_Bits: 512
@@ -126,9 +126,9 @@ MonoBehaviour:
   enemyMeleeClip: {fileID: 8300000, guid: 1bf9647b0a137ca4aae142b0a5d8e76c, type: 3}
   enemyShootClip: {fileID: 8300000, guid: 3c14ea7499667184fb79f79a85b9f9ec, type: 3}
   meleeDamage: 2
-  meleeRange: 0.1
-  sightRange: 2
-  disengageRange: 2
+  meleeRange: 0.25
+  sightRange: 1.5
+  disengageRange: 1.75
   weaponType: 0
   bullet: {fileID: 0}
 --- !u!50 &3217419659422903791
