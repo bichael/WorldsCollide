@@ -518,7 +518,7 @@ Canvas:
   m_SortingBucketNormalizedSize: 0
   m_AdditionalShaderChannelsFlag: 0
   m_SortingLayerID: 0
-  m_SortingOrder: 0
+  m_SortingOrder: -2
   m_TargetDisplay: 0
 --- !u!114 &114466072209372770
 MonoBehaviour:
@@ -572,7 +572,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Inventory: {fileID: 0}
-  SavePanel: {fileID: 0}
+  SavePanel: {fileID: 483493683096811828}
   MessagePanel: {fileID: 1110487696105504}
 --- !u!95 &95976927383937146
 Animator:
@@ -5978,17 +5978,17 @@ PrefabInstance:
     - target: {fileID: 6290918898112257560, guid: 33f5531163e84044e87454c1bd124f25,
         type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 67.9
+      value: 97.20001
       objectReference: {fileID: 0}
     - target: {fileID: 6290918898112257560, guid: 33f5531163e84044e87454c1bd124f25,
         type: 3}
       propertyPath: m_SizeDelta.x
-      value: -0.049987793
+      value: -0.1
       objectReference: {fileID: 0}
     - target: {fileID: 6290918898112257560, guid: 33f5531163e84044e87454c1bd124f25,
         type: 3}
       propertyPath: m_SizeDelta.y
-      value: 133.6
+      value: 192.2
       objectReference: {fileID: 0}
     - target: {fileID: 6290918898112257560, guid: 33f5531163e84044e87454c1bd124f25,
         type: 3}

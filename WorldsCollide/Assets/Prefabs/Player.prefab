@@ -531,7 +531,7 @@ MonoBehaviour:
   shotgunPellet: {fileID: 8365747353560420087, guid: 4efd34cc1e3adc94e941065e6d82b86d,
     type: 3}
   grenade: {fileID: 5468873657229393453, guid: 4309f3e1c1133244c81d04ef3acca702, type: 3}
-  laser: {fileID: 0}
+  laser: {fileID: 5459637075070686018, guid: 3cadbe1c682dcd348ba68046a9c7de4c, type: 3}
   meleeWeapon: {fileID: 1479374308}
   rangedWeapon: {fileID: 0}
   equipment: {fileID: 0}
@@ -553,8 +553,8 @@ MonoBehaviour:
   shieldClip: {fileID: 0}
   timeStopWatchClip: {fileID: 8300000, guid: 144932734769452419a574f60d60be97, type: 3}
   nukaSodaClip: {fileID: 8300000, guid: a3cd07eb88cfb0f43ad6b00f9f09e2fc, type: 3}
-  laserCannonClip: {fileID: 0}
-  Inventory: {fileID: 0}
+  laserCannonClip: {fileID: 8300000, guid: e1b1dadb3a71925488949fb8a0eb751a, type: 3}
+  Inventory: {fileID: 1453377067755989717}
   Hud: {fileID: 0}
 --- !u!114 &5703356203344524676
 MonoBehaviour:
@@ -928,6 +928,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 5703356203344524672}
     m_Modifications:
+    - target: {fileID: 1021129497493814195, guid: 35482f9ec69c3904da4fc12188d939e0,
+        type: 3}
+      propertyPath: m_Name
+      value: Inventory
+      objectReference: {fileID: 0}
     - target: {fileID: 1021129497493814196, guid: 35482f9ec69c3904da4fc12188d939e0,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -983,11 +988,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 1021129497493814195, guid: 35482f9ec69c3904da4fc12188d939e0,
-        type: 3}
-      propertyPath: m_Name
-      value: Inventory
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 35482f9ec69c3904da4fc12188d939e0, type: 3}
 --- !u!4 &1453377067755989716 stripped
@@ -996,3 +996,15 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 1873683675028246880}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1453377067755989717 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1021129497493814197, guid: 35482f9ec69c3904da4fc12188d939e0,
+    type: 3}
+  m_PrefabInstance: {fileID: 1873683675028246880}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c29ca21d799f02b438b17e73359555ed, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

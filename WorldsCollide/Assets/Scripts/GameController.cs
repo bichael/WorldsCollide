@@ -24,7 +24,12 @@ public class GameController : MonoBehaviour
 	
 	void Update()
 	{
-        if (Input.GetKey(KeyCode.LeftShift) || Input.GetKey(KeyCode.RightShift))
+
+		if (Input.GetKey(KeyCode.R))
+			SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+
+		
+        else if (Input.GetKey(KeyCode.LeftShift) || Input.GetKey(KeyCode.RightShift))
         {
             if (Input.GetKeyDown(KeyCode.Alpha1) || (Input.GetKeyDown(KeyCode.Keypad1)))
             {
